@@ -36,8 +36,9 @@
 
 $:.unshift File.dirname(__FILE__)
 
+require 'rubygems'
+require 'tangocard_sdk'
 require 'test/unit'
-require '../lib/tangocard_sdk.rb'
 
 module TangoCardSdkUnitTest
     class TestServiceResponseEnum < Test::Unit::TestCase

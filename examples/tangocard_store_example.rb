@@ -42,9 +42,11 @@
 
 $:.unshift File.dirname(__FILE__)
 
+require 'rubygems'
+require 'tangocard_sdk'
+
 require 'singleton'
 require 'inifile'
-require '../lib/tangocard_sdk.rb'
 
 module TangoCardSdkExamples
     class TangoCard_Store_Example
