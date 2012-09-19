@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,7 +29,7 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     Id: get_available_balance_response.rb 2012-09-18 00:00:00 PST 
+# @version     Id: get_available_balance_response.rb 2012-09-19 15:00:00 PST 
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -47,6 +47,7 @@ module TangoCardSdk
         #       Tango Card services.
         #
         def initialize(responseJson)
+            
             @availableBalance = responseJson['response']['availableBalance'].to_f
         end
 

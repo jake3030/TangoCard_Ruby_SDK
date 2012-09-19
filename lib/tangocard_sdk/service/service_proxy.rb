@@ -29,10 +29,12 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     Id: service_proxy.rb 2012-09-18 00:00:00 PST 
+# @version     Id: service_proxy.rb 2012-09-19 15:00:00 PST 
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
+
+require 'json'
 
 module TangoCardSdk
     class ServiceProxy
@@ -41,35 +43,46 @@ module TangoCardSdk
         # @var string
         #
         attr_accessor :base_url
+        
         # 
         # Controller
         # @var string
         #
         attr_accessor :controller
+        
         # 
         # Action
         # @var string
         #
         attr_accessor :action
+        
         # 
         # Full request path
         # @var string
         #
         attr_accessor :path
-        # 
-        # Action request
-        # @var JSON Object
-        #
-        attr_accessor :request_json
+
         # 
         # Requesting object
         # @var BaseRequest
         #
-        attr_accessor :requestObject
+        attr_accessor :request_object
+        
+        # 
+        # Response object
+        # @var JSON Object
+        #
+        attr_accessor :response_json
+        
+        # 
+        # Response object
+        # @var BaseResponse
+        #
+        attr_accessor :response_object
 
         # Constructor
         #
-        # @param \TangoCard\Sdk\Request\BaseRequest requestObject reference
+        # @param \TangoCard\Sdk\Request\BaseRequest request_object reference
         # 
         # @return bool   Return true upon success, else false.
         # 
@@ -80,138 +93,152 @@ module TangoCardSdk
         def initialize ( requestObject ) 
 
             if ( requestObject.nil? )
-                raise Exception.new("Parameter 'requestObject' is not set.")
+                raise ArgumentError.new("Parameter 'requestObject' is not set.")
             end
             
             begin
-                @requestObject = requestObject
-                
-                appConfig = SdkConfig.new()
-                
+                @request_object = requestObject
                 @base_url = nil
-                
-                service = requestObject.GetTangoCardServiceApiEnum()
+                service = @request_object.enumTangoCardServiceApi
                 
                 case service
-                when TangoCardServiceApiEnum::INTEGRATION
-                    @base_url = appConfig.GetConfigValue("tc_sdk_environment_integration_url")
-                when TangoCardServiceApiEnum::PRODUCTION
-                    @base_url = appConfig.GetConfigValue("tc_sdk_environment_production_url")
-                else
-                    raise TangoCardSdkException.new( "Unexpected Tango Card Service API request: " + requestObject.GetTangoCardServiceApiEnum() )
+                    when TangoCardServiceApiEnum::INTEGRATION
+                        @base_url = SdkConfig.instance.config_value("tc_sdk_environment_integration_url")
+                    when TangoCardServiceApiEnum::PRODUCTION
+                        @base_url = SdkConfig.instance.config_value("tc_sdk_environment_production_url")
+                    else
+                        raise TangoCardSdkException.new( "Unexpected Tango Card Service API request: %s" % [@request_object.enumTangoCardServiceApi.to_s] )
                 end
                 
-                @controller = appConfig.GetConfigValue("tc_sdk_controller")
-                @action = requestObject.getRequestAction()
-                @path = sprintf("%s/%s/%s", @base_url, @controller, @action) 
+                @controller = SdkConfig.instance.config_value("tc_sdk_controller")
+                @action = request_object.request_action
+                @path = "%s/%s/%s" % [@base_url, @controller, @action]
              
             rescue Exception => e
-                raise Exception.new("Failed to initialize proxy: " + e.message())
+                raise Exception.new("Failed to initialize proxy: %s" % [e.message])
             end
         end
 
         # Map request by encoding JSON paramters.
         # 
-        # @return bool   Return true upon success, else false.
+        # @return JSON Object   Return object upon success, else nil.
         # 
         # @access protected
         #
-        def MapRequest()
-            isSuccess = false
+        def map_request()
+          
+            requestJsonEncoded = nil
+            
             begin
-                requestJsonEncoded = nil
-                if ( @requestObject.GetJsonEncodedRequest(requestJsonEncoded) && !requestJsonEncoded.nil? )
-                    @request_json = requestJsonEncoded
-                    isSuccess = true
+                requestJsonEncoded = @request_object.json_encoded_request
+                if ( requestJsonEncoded.nil? )
+                    raise TangoCardSdkException.new( "Failed to map request: %s" % [e.message] )
                 end
 
+            rescue TangoCardSdkException => e
+                raise
             rescue Exception => e
-                raise TangoCardSdkException.new( "Failed to map request. " + e.message() )
+                raise TangoCardSdkException.new( "[%s::%s] Unexpected exception: %s" % [File.basename(__FILE__), __LINE__.to_s, e.message] )
             end
-            return isSuccess
+            
+            return requestJsonEncoded
         end
         
         # POST request to Tango Card service
         #
-        # @param JSON &responseJsonEncoded reference
-        # 
-        # @return bool   Return true upon success, else false.
+        # @return JSON Object upon success, else nil upon failure
         # 
         # @access public
         #    
-        def PostRequest(responseJsonEncoded)
-            if (@path.nil?)
+        def post_request()
+            if @path.nil?
                 raise TangoCardSdkException.new('path is not set.')
             end
             
-            isSuccess = false
-            
             responseJsonEncoded = nil
-            
             begin
                 # root certificate authority (CA) certificate
-                caCertPath = File.dirname(File.dirname(File.dirname(File.dirname(__FILE__)))) + "/ssl/cacert.pem"
+                caCertPath = File.dirname(File.dirname(File.dirname(__FILE__))) + "/ssl/cacert.pem"
                 unless File.exists?(caCertPath) then
-                    raise TangoCardSdkException.new('The CAcerts file is required: ' + caCertPath )
+                    raise TangoCardSdkException.new("The CAcerts file is required: '%s'" % [caCertPath] )
                 end
                 
-                if ( self.MapRequest() )
+                requestJsonEncoded = self.map_request()
+                if !requestJsonEncoded.nil?
+                
                     uri = URI.parse(@path)
                     
-                    request = Net::HTTP::Post.new(@path)
-                    request.body = @request_json
-                    
+                    request = Net::HTTP::Post.new(uri.request_uri)
+                    request.body = requestJsonEncoded                    
                     request["Content-Type"] = "application/x-www-form-urlencoded"
 
                     http = Net::HTTP.new(uri.host, uri.port)
                     http.use_ssl = true
                     http.verify_mode = OpenSSL::SSL::VERIFY_PEER
                     http.ca_file = caCertPath
-                    response = http.request(request)
-
-                    # parse the JSON object returned from the service
-                    responseJsonEncoded = JSON.parse(response.body)
-
-                    isSuccess = true
-                end     
+                    
+                    responseHttp = http.request(request)
+                    if ( responseHttp.nil? )
+                        raise TangoCardSdkException.new( "Failed to get HTTP response." )
+                    end
+                    
+                    responseJsonEncoded = responseHttp.body
+                    if ( responseJsonEncoded.nil? )
+                        raise TangoCardSdkException.new( "Failed to get JSON response body." )
+                    end
+                else
+                    raise TangoCardSdkException.new( "Failed to get request JSON Encoded object." )
+                end
+            rescue TangoCardSdkException => e
+                raise
             rescue Exception => e
-                raise TangoCardSdkException.new( "Failed to post request. " + e.message() )
+                raise TangoCardSdkException.new( "Failed to post request: %s" % [e.message] )
             end
             
-            return isSuccess
+            responseJson = nil
+            begin
+                # parse the JSON object returned from the service
+                responseJson = JSON.parse(responseJsonEncoded)
+            rescue Exception => e
+                raise TangoCardSdkException.new( "Failed to parse response: %s" % [e.message] )
+            end
+            
+            return responseJson
         end
         
         # Executes request upon Tango Card service
         #
-        # @param BaseResponse &responseSuccess reference
-        # 
-        # @return bool   Return true upon success, else false.
+        # @return BaseResponse   Return responseSuccess upon success, else nil.
         # 
         # @access public
         #
-        def ExecuteRequest(&responseSuccess)
-            isSuccess = false
-            responseJsonEncoded = nil
+        def execute_request()
+            responseSuccess = nil
             begin
-                if (self.PostRequest(responseJsonEncoded)) 
-                    responseJson = JSON.parse(responseJsonEncoded)
-                    
-                    ServiceProxy::ThrowOnError(responseJson)
-                    
-                    if ( @requestObject.is_a? GetAvailableBalanceRequest)
-                        responseSuccess = GetAvailableBalanceResponse.new(responseJson['response'])
-                    elsif ( @requestObject.is_a? PurchaseCardRequest )
-                        responseSuccess = PurchaseCardResponse.new(responseJson['response'])
+                responseJson = self.post_request()
+                if !responseJson.nil?
+
+                    self.throw_on_error(responseJson)
+
+                    if @request_object.is_a? GetAvailableBalanceRequest                        
+                        responseSuccess = GetAvailableBalanceResponse.new(responseJson)                
+                    elsif @request_object.is_a? PurchaseCardRequest
+                        responseSuccess = PurchaseCardResponse.new(responseJson)
                     else
-                        raise TangoCardSdkException.new('requester from TangoCard appears to be invalid: ' + @requestObject.class )
+                        raise TangoCardSdkException.new("Requester from TangoCard appears to be invalid: %s" % [@request_object.class.to_s] )
                     end
-                    
-                    isSuccess = true
+                else
+                    raise TangoCardSdkException.new( "Failed to get response JSON Encoded object." )
                 end
+            rescue TangoCardServiceException
+                raise
+            rescue TangoCardSdkException
+                raise
             rescue Exception => e
-                raise TangoCardSdkException.new( "Failed to process request. " + e.message() )
+                raise TangoCardSdkException.new( "Failed to process request: %s: %s" % [e.class, e.message] )
             end
-            return isSuccess
+            
+            return responseSuccess
         end
         
         # Throw TangoCardServiceException if Tango Card service indicates failure.
@@ -222,36 +249,41 @@ module TangoCardSdk
         # 
         # @access protected
         #
-        def ThrowOnError(responseJson)
+        def throw_on_error(responseJson)
+          
             if (responseJson.nil?)
                 raise TangoCardSdkException.new('Supplied JSON does not appear to be valid.')
             end
             
-            case responseJson['responseType']
+            responseType = responseJson['responseType']
+
+            p "responseType: %s" % [responseType]
+            
+            case responseType
                 when "SUCCESS"
 
                 when "SYS_ERROR"
-                        responseFailure = SystemErrorResponse.new(responseJson['response'])
+                        responseFailure = SystemErrorResponse.new(responseJson)
                         raise TangoCardServiceException.new( ServiceResponseEnum::SYS_ERROR, responseFailure )
                         
                 when "INV_INPUT"
-                        responseFailure = InvalidInputResponse.new(responseJson['response'])
+                        responseFailure = InvalidInputResponse.new(responseJson)
                         raise TangoCardServiceException.new( ServiceResponseEnum::INV_INPUT, responseFailure )
 
                 when "INV_CREDENTIAL"
-                        responseFailure = InvalidCredentialsResponse.new(responseJson['response'])
+                        responseFailure = InvalidCredentialsResponse.new(responseJson)
                         raise TangoCardServiceException.new( ServiceResponseEnum::INV_CREDENTIAL, responseFailure )
 
                 when "INS_INV"
-                        responseFailure = InsufficientInventoryResponse.new(responseJson['response'])
+                        responseFailure = InsufficientInventoryResponse.new(responseJson)
                         raise TangoCardServiceException.new( ServiceResponseEnum::INS_INV, responseFailure)
 
                 when "INS_FUNDS"
-                        responseFailure = InsufficientFundsResponse.new(responseJson['response'])
+                        responseFailure = InsufficientFundsResponse.new(responseJson)
                         raise TangoCardServiceException.new( ServiceResponseEnum::INS_FUNDS, responseFailure)
 
                 else
-                    raise TangoCardSdkException.new('responseType from TangoCard appears to be invalid.')
+                    raise TangoCardSdkException.new( "Unexpected response type: %s" % [responseType] )
             end 
         end
     end

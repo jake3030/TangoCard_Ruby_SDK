@@ -29,7 +29,7 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     Id: invalid_credentials_response.rb 2012-09-18 00:00:00 PST 
+# @version     Id: invalid_credentials_response.rb 2012-09-19 15:00:00 PST 
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -39,7 +39,7 @@ module TangoCardSdk
         #
         # @ignore
         #
-        attr_accessor :message
+        attr_accessor :message_credentials
         
         #
         # Construct a new InvalidCredentials failure type.
@@ -47,7 +47,7 @@ module TangoCardSdk
         #       Tango Card services.
         #
         def initialize(responseJson)
-            @message = responseJson['response']['message']
+            @message_credentials = responseJson['response']['message']
         end
         
         #
@@ -55,11 +55,11 @@ module TangoCardSdk
         # @return string A message from the Tango Card services indicating 
         #        what it thinks the problem is.
         #
-        def Message()
-            if ( @message == "TCP:PNPA:3" )
+        def message()
+            if ( @message_credentials == "TCP:PNPA:3" )
                 return "Provided user credentials are not valid."
             end
-            return @message
+            return @message_credentials
         end
     end
 end

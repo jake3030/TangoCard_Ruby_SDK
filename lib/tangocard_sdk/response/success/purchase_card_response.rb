@@ -29,7 +29,7 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     Id: purchase_card_response.rb 2012-09-18 00:00:00 PST 
+# @version     Id: purchase_card_response.rb 2012-09-19 15:00:00 PST 
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 

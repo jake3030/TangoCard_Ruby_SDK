@@ -29,7 +29,7 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     $Id: sdk_config.rb 2012-09-18 00:00:00 PST $
+# @version     $Id: sdk_config.rb 2012-09-19 15:00:00 PST $
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -53,14 +53,13 @@ module TangoCardSdk
           @config_vars = nil
           begin
             config_file = File.dirname(File.dirname(File.dirname(__FILE__))) + "/config/tc_sdk_config.ini"
-            puts "config_file: " + config_file
             unless File.file?(config_file)
               raise TangoCardSdkException.new( "Missing config file." )
             end
             config_ini = IniFile.new(:filename => config_file, :comment => '#', :parameter => '=')
             @config_vars = config_ini['TANGOCARD']
-          rescue Exception => e
-            raise e
+          rescue Exception
+            raise
           end
         end
         

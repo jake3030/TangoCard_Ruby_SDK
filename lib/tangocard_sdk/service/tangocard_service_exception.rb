@@ -29,7 +29,7 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     Id: tangocard_service_exception.rb 2012-09-18 00:00:00 PST 
+# @version     Id: tangocard_service_exception.rb 2012-09-19 15:00:00 PST 
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -50,7 +50,6 @@ module TangoCardSdk
           #
           attr_reader :response
 
-          
           #
           # 
           # Constructor
@@ -61,7 +60,7 @@ module TangoCardSdk
           def initialize(responseType, response, message = nil)
               @responseType = ServiceResponseEnum.to_s(responseType)
               @response = response
-              super(response.message())
+              super(response.message)
           end
     end
 end

@@ -29,7 +29,7 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     Id: invalid_input_response.rb 2012-09-18 00:00:00 PST 
+# @version     Id: invalid_input_response.rb 2012-09-19 15:00:00 PST 
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -55,7 +55,7 @@ module TangoCardSdk
         # Get error message for this failure response.
         # @return string
         #    
-        def Message()
+        def message()
 
             message = "Unknown."
             unless ( @invalid['cardSku'].nil? )

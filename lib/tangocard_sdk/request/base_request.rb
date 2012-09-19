@@ -29,7 +29,7 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     $Id: base_request.rb 2012-09-18 00:00:00 PST $
+# @version     $Id: base_request.rb 2012-09-19 15:00:00 PST $
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -40,27 +40,20 @@ module TangoCardSdk
         attr_accessor :password
         attr_accessor :enumTangoCardServiceApi
 
-        #
         # 
         # Get controller action for this request.
         # 
         # @return string
         #
-        def getRequestAction() 
-            raise if self.class == BaseRequest 
-            super 
+        def request_action() 
         end
 
-    
-        #
         # 
         # Get JSON mapped and encoded request body.
         # 
         # @param object $requestJsonEncoded
         #
-        def getJsonEncodedRequest( requestJsonEncoded ) 
-            raise if self.class == BaseRequest 
-            super 
+        def json_encoded_request() 
         end
     
         #
@@ -88,21 +81,23 @@ module TangoCardSdk
             # -----------------------------------------------------------------
             # isProductionMode
             if ( !TangoCardServiceApiEnum::is_valid(enumTangoCardServiceApi) )
-                raise new Exception.new("Parameter 'enumTangoCardServiceApi' must be TangoCardServiceApiEnum.")
+                raise TangoCardSdkException.new("Parameter 'enumTangoCardServiceApi' must be TangoCardServiceApiEnum.")
             end
             # username
             if ( username.nil? )
-                raise new Exception.new("Parameter 'username' is not defined.")
-            end
-            if ( username.empty? )
-                raise new Exception.new("Parameter 'username' must be a string.")
+                raise ArgumentError.new("Parameter 'username' is not defined.")
+            elsif !username.is_a?(String)
+                raise ArgumentError.new("Parameter 'username' must be a string.")
+            elsif username.empty?
+                raise ArgumentError.new("Parameter 'username' must not be an empty string.")
             end 
             # password
             if ( password.nil? )
-                raise new Exception.new("Parameter 'password' is not defined.")
-            end
-            if ( password.empty? )
-                raise new Exception.new("Parameter 'password' must be a string.")
+                raise ArgumentError.new("Parameter 'password' is not defined.")
+            elsif !password.is_a?(String)
+                raise ArgumentError.new("Parameter 'password' must be a string.")
+            elsif password.empty?
+                raise ArgumentError.new("Parameter 'password' must not be an empty string.")
             end
                    
             @enumTangoCardServiceApi = enumTangoCardServiceApi
@@ -113,17 +108,17 @@ module TangoCardSdk
         # 
         # Execute request
         # 
-        # @param \TangoCard\Sdk\Response\Success\SuccessResponse $response
-        # 
-        # @return True upon success, else False
+        # @return BaseResponse Object upon success, else nill
         #
-        def execute(response)
-          begin
-            proxy = ServiceProxy.new(self)
-            return proxy.executeRequest(response)
-          rescue Exception => e
-            raise new Exception.new("Failed to execute: " + e.message())
-          end
+        def execute()
+            responseSuccess = nil
+            begin
+                proxy = ServiceProxy.new(self)
+                responseSuccess = proxy.execute_request()
+            rescue Exception
+                raise
+            end
+            return responseSuccess
         end
     end
 end

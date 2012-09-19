@@ -5,7 +5,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -51,25 +51,12 @@ module TangoCardSdk
             ) 
             super enumTangoCardServiceApi, username, password 
         end
-
-        #
-        # 
-        # Execute request
-        # 
-        # @param \TangoCard\Sdk\Response\Success\GetAvailableBalanceResponse &response
-        # 
-        # @return True upon success, else False
-        # 
-        # @see BaseRequest::execute()
-        #
-        def execute(&response)
-            return super::execute(response)
-        end
         
         #
         # @see BaseRequest::getRequestAction()
         #
-        def getRequestAction()
+        def request_action()
+            super 
             return "GetAvailableBalance"
         end
 
@@ -83,25 +70,27 @@ module TangoCardSdk
         #
         # @see BaseRequest::getJsonEncodedRequest()
         #
-        def getJsonEncodedRequest(&requestJsonEncoded)
-            isSuccess = true
-            requestJsonEncoded = null
+        def json_encoded_request()
+            super 
+            requestJsonEncoded = nil
+            
+            
+            
             begin
             
                 request = {
-                    'username'  => super::getUsername(),
-                    'password'  => super::getPassword()
+                    'username'  => @username,
+                    'password'  => @password
                 }
                 
                 # encode the request as a JSON object
                 requestJsonEncoded = JSON.generate(request)
-                isSuccess = true
                 
             rescue Exception => e
-                raise e
+                raise TangoCardSdkException.new("[%s::%s] Failed encoding request: %s" % [File.basename(__FILE__), __LINE__.to_s, e.message] )
             end
             
-            return isSuccess
+            return requestJsonEncoded
         end
     end
 end

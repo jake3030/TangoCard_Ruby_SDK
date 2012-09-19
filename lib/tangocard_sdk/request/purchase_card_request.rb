@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,7 +29,7 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     Id: purchase_card_request.rb 2012-09-18 00:00:00 PST 
+# @version     Id: purchase_card_request.rb 2012-09-19 15:00:00 PST 
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -70,6 +70,11 @@ module TangoCardSdk
         # @ignore
         #
         attr_accessor :gift_from
+      
+        #
+        # @ignore
+        #
+        attr_accessor :company_identifier
         
         #
         # Set up a new PurchaseCard request.
@@ -96,6 +101,9 @@ module TangoCardSdk
         # @param string giftFrom The name of the person giving the gift. Only 
         #       necessary if tcSend = true. If tcSend = false, input will be 
         #       ignored.
+        # @param string companyIdentifier The name of the parent company providing 
+        #       this gift. Optional if tcSend = true. If tcSend = false, then this input 
+        #       ignored.
         #       
         # @throws \InvalidArgumentException One of the supplied arguments was 
         #        not in the expected state.
@@ -110,86 +118,93 @@ module TangoCardSdk
                 recipientName = nil, 
                 recipientEmail = nil, 
                 giftMessage = nil, 
-                giftFrom = nil
+                giftFrom = nil,
+                companyIdentifier = nil
             )
         
             # parent construct
-            super(enumTangoCardServiceApi, username, password)
+            super enumTangoCardServiceApi, username, password 
             
             # -----------------------------------------------------------------
             # validate inputs
             # ----------------------------------------------------------------- 
          
             # cardSku
-            if (!is_string(cardSku))
-                raise Exception.new("Parameter 'cardSku' must be a string.")
-            end
-            if (strlen(cardSku) < 1)
-                raise Exception.new("Parameter 'cardSku' must have a length greater than zero.")
-            end
-            if (strlen(cardSku) > 255)
-                raise Exception.new("Parameter 'cardSku' must have a length less than 255.")
+            if !cardSku.is_a?(String)
+                raise ArgumentError.new("Parameter 'cardSku' must be a string.")
+            elsif cardSku.length < 1
+                raise ArgumentError.new("Parameter 'cardSku' must have a length greater than zero.")
+            elsif cardSku.length > 255
+                raise ArgumentError.new("Parameter 'cardSku' must have a length less than 255.")
             end
             
             # cardValue
-            if (!is_int(cardValue))
-                raise Exception.new("Parameter 'cardValue' must be an integer.")
-            end
-            if (cardValue < 1)
-                raise Exception.new("Parameter 'cardValue' must have a value which is greater than or equal to 1.")
+            if !cardValue.is_a?(Integer)
+                raise ArgumentError.new("Parameter 'cardValue' must be an integer.")
+            elsif cardValue < 1
+                raise ArgumentError.new("Parameter 'cardValue' must have a value which is greater than or equal to 1.")
             end   
             
             # tcSend
-            if (!is_bool(tcSend))
-                raise Exception.new("Parameter 'tcSend' must be a boolean.")
+            if !tcSend.is_a?(FalseClass) && !tcSend.is_a?(TrueClass)
+                raise ArgumentError.new("Parameter 'tcSend' must be a boolean.")
             end
             
             # all of the inputs that are conditional on tcSend
             if (tcSend)
                 # recipientName
-                if (is_nil(recipientName))
-                    raise Exception.new("Parameter 'recipientName' must be present (not nil) if tcSend is set to true.")
+                if recipientName.nil?
+                    raise ArgumentError.new("Parameter 'recipientName' must be present (not nil) if tcSend is set to true.")
+                elsif !recipientName.is_a?(String)
+                    raise ArgumentError.new("Parameter 'recipientName' must be a string.")
+                elsif recipientName.length < 1
+                    raise ArgumentError.new("Parameter 'recipientName' must have a length greater than zero.")
+                elsif recipientName.length > 255
+                    raise ArgumentError.new("Parameter 'recipientName' must have a length less than 256.")
                 end
-                if (!is_string(recipientName))
-                    raise Exception.new("Parameter 'recipientName' must be a string.")
-                end 
-                if (strlen(recipientName) < 1)
-                    raise Exception.new("Parameter 'recipientName' must have a length greater than zero.")
-                end
-                if (strlen(recipientName) > 255)
-                    raise Exception.new("Parameter 'recipientName' must have a length less than 256.")
-                end
+                
                 # recipientEmail
-                if (is_nil(recipientEmail))
-                    raise Exception.new("Parameter 'recipientEmail' must be present (not nil) if tcSend is set to true.")
+                if recipientEmail.nil?
+                    raise ArgumentError.new("Parameter 'recipientEmail' must be present (not nil) if tcSend is set to true.")
+                elsif !recipientEmail.is_a?(String)
+                    raise ArgumentError.new("Parameter 'recipientEmail' must be a string.")
+                elsif recipientEmail.length < 3
+                    raise ArgumentError.new("Parameter 'recipientEmail' must have a length greater than two.")
+                elsif recipientEmail.length > 255
+                    raise ArgumentError.new("Parameter 'recipientEmail' must have a length less than 256.")
                 end
-                if (!is_string(recipientEmail))
-                    raise Exception.new("Parameter 'recipientEmail' must be a string.")
-                end 
-                if (strlen(recipientEmail) < 3)
-                    raise Exception.new("Parameter 'recipientEmail' must have a length greater than two.")
-                end
-                if (strlen(recipientEmail) > 255)
-                    raise Exception.new("Parameter 'recipientEmail' must have a length less than 256.")
-                end
+                
                 # giftFrom
-                if (is_nil(giftFrom))
-                    raise Exception.new("Parameter 'giftFrom' must be present (not nil) if tcSend is set to true.")
+                if giftFrom.nil?
+                    raise ArgumentError.new("Parameter 'giftFrom' must be present (not nil) if tcSend is set to true.")
+                elsif !giftFrom.is_a?(String)
+                    raise ArgumentError.new("Parameter 'giftFrom' must be a string.")
+                elsif giftFrom.length < 1
+                    raise ArgumentError.new("Parameter 'giftFrom' must have a length greater than zero.")
+                elsif giftFrom.length > 255
+                    raise ArgumentError.new("Parameter 'giftFrom' must have a length less than 256.")
                 end
-                if (!is_string(giftFrom))
-                    raise Exception.new("Parameter 'giftFrom' must be a string.")
-                end 
-                if (strlen(giftFrom) < 1)
-                    raise Exception.new("Parameter 'giftFrom' must have a length greater than zero.")
-                end
-                if (strlen(giftFrom) > 255)
-                    raise Exception.new("Parameter 'giftFrom' must have a length less than 256.")
-                end
+                
                 # giftMessage
-                if ( !giftMessage.nil? && !giftMessage.empty? )
-                    if (strlen(giftMessage) > 255)
-                        raise Exception.new("Parameter 'giftMessage' must have a length less than 256.")
+                if !giftMessage.nil?
+                    if !giftMessage.is_a?(String)
+                        raise ArgumentError.new("Parameter 'giftMessage' must be a string.")
+                    elsif giftMessage.length < 1
+                        raise ArgumentError.new("Parameter 'giftMessage' must have a length greater than zero.")
+                    elsif giftMessage.length > 255
+                        raise ArgumentError.new("Parameter 'giftMessage' must have a length less than 256.")
                     end
+                end
+            end
+            
+            # companyIdentifier
+            if !companyIdentifier.nil?
+                if !companyIdentifier.is_a?(String)
+                    raise ArgumentError.new("Parameter 'companyIdentifier' must be a string.")
+                elsif companyIdentifier.length < 1
+                    raise ArgumentError.new("Parameter 'companyIdentifier' must have a length greater than zero.")
+                elsif companyIdentifier.length > 255
+                    raise ArgumentError.new("Parameter 'companyIdentifier' must have a length less than 256.")
                 end
             end
             
@@ -208,26 +223,16 @@ module TangoCardSdk
                     @gift_message    = giftMessage
                 end
             end
-        end
-            
-        #
-        # 
-        # Execute request
-        # 
-        # @param \TangoCard\Sdk\Response\Success\PurchaseCardResponse response
-        # 
-        # @return True upon success, else False
-        # 
-        # @see BaseRequest::execute()
-        #
-        def execute(&response) 
-            return super::execute(response)
+            if ( !companyIdentifier.nil? && !companyIdentifier.empty? )
+                @company_identifier = companyIdentifier
+            end
         end
         
         #
         # @see BaseRequest::getRequestAction()
         #
-        def getRequestAction()
+        def request_action()
+            super 
             return "PurchaseCard"
         end
         
@@ -241,17 +246,17 @@ module TangoCardSdk
         #
         # @see BaseRequest::getJsonEncodedRequest()
         #
-        def getJsonEncodedRequest(&requestJsonEncoded)
-            isSuccess = true
+        def json_encoded_request()
+            super 
             requestJsonEncoded = nil
             begin
-                request = Array.new
-                
-                request['username' ] = parent::getUsername()
-                request['password' ] = parent::getPassword()
+
+                request = Hash.new
+                request['username' ] = @username 
+                request['password' ] = @password 
                 request['cardSku'  ] = @card_sku
                 request['cardValue'] = @card_value
-                request['tcSend'   ] = @tc_send                                     
+                request['tcSend'   ] = @tc_send
                 
                 if (@tc_send)
                     request['recipientName' ] = @recipient_name
@@ -262,15 +267,18 @@ module TangoCardSdk
                     end
                 end
                 
+                if ( !@company_identifier.nil? && !@company_identifier.empty? )
+                    request['companyIdentifier'] = @company_identifier
+                end
+                
                 # encode the request as a JSON object
                 requestJsonEncoded = JSON.generate(request)
-                isSuccess = true
             
             rescue Exception => e
-                raise e
+                raise TangoCardSdkException.new("[%s::%s] Failed encoding request: %s" % [File.basename(__FILE__), __LINE__.to_s, e.message] )
             end
             
-            return isSuccess
+            return requestJsonEncoded
         end
     end
 end
