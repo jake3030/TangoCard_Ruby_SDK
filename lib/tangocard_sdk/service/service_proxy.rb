@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -106,7 +106,7 @@ module TangoCardSdk
                 @path = sprintf("%s/%s/%s", @base_url, @controller, @action) 
              
             rescue Exception => e
-                raise e
+                raise Exception.new("Failed to initialize proxy: " + e.message())
             end
         end
 
@@ -139,7 +139,7 @@ module TangoCardSdk
         # 
         # @access public
         #    
-        def PostRequest(&responseJsonEncoded)
+        def PostRequest(responseJsonEncoded)
             if (@path.nil?)
                 raise TangoCardSdkException.new('path is not set.')
             end

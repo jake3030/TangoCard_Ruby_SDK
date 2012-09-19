@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,22 +34,28 @@
 # 
 # 
 
+$:.unshift File.dirname(__FILE__)
+
 require 'test/unit'
 require '../lib/tangocard_sdk.rb'
 
-module TangoCardSdk
+module TangoCardSdkUnitTest
     class TestServiceResponseEnum < Test::Unit::TestCase
     
         def test_tc_integration_url
-            s = SdkConfig.new()
-            url = s.GetConfigValue("tc_sdk_environment_integration_url")
-            assert_equal( url, "https://int.tangocard.com" )
+            actual = TangoCardSdk::SdkConfig.instance.config_value("tc_sdk_environment_integration_url")
+            assert_equal( "https://int.tangocard.com", actual )
         end
         
         def test_tc_production_url
-            s = SdkConfig.new()
-            url = s.GetConfigValue("tc_sdk_environment_production_url")
-            assert_equal( url, "https://api.tangocard.com" )
+            actual = TangoCardSdk::SdkConfig.instance.config_value("tc_sdk_environment_production_url")
+            assert_equal( "https://api.tangocard.com", actual )
         end
+        
+      
+      def test_tc_sku
+          actual = TangoCardSdk::SdkConfig.instance.config_value("tc_sdk_card_sku")
+          assert_equal( "tango-card", actual )
+      end
     end
 end

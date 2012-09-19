@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,12 +29,39 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     $Id: tangocard_service_exception.rb 2012-09-18 00:00:00 PST $
+# @version     Id: tangocard_service_exception.rb 2012-09-18 00:00:00 PST 
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
 module TangoCardSdk
     class TangoCardServiceException < Exception
+
+          #
+          # 
+          # Failure response type
+          # @var string
+          #
+          attr_reader :responseType
+          #
+          # 
+          # Failure response object
+          # @var FailureResponse
+          #
+          attr_reader :response
+
+          
+          #
+          # 
+          # Constructor
+          # @param \TangoCard\Sdk\Response\ServiceResponseEnum      responseType
+          # @param \TangoCard\Sdk\Response\Failure\FailureResponse  response
+          # @param string                                           message
+          #
+          def initialize(responseType, response, message = nil)
+              @responseType = ServiceResponseEnum.to_s(responseType)
+              @response = response
+              super(response.message())
+          end
     end
 end

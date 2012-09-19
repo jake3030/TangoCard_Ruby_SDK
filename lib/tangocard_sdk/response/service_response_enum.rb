@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -109,14 +109,14 @@ module TangoCardSdk
         # Enter description here ...
         # @param enumServiceType
         #
-        def IsValid(enumResponseType)
-            ServiceResponseEnum::ENUM_TO_STRING.has_key?( enumResponseType )
+        def self.is_valid(enumResponseType)
+            return ServiceResponseEnum::ENUM_TO_STRING.has_key?( enumResponseType )
         end
         
         # 
         # 
         #
-        def ToString(enumResponseType)
+        def self.to_s(enumResponseType)
 
             if ( ServiceResponseEnum::ENUM_TO_STRING.has_key?( enumResponseType ) )
                 return ServiceResponseEnum::ENUM_TO_STRING[enumResponseType]
@@ -128,7 +128,7 @@ module TangoCardSdk
         # 
         # 
         #
-        def ToEnum(strResponseType)
+        def self.to_enum(strResponseType)
 
             if ( ServiceResponseEnum::STRING_TO_ENUM.has_key?( strResponseType ) )
                 return ServiceResponseEnum::STRING_TO_ENUM[strResponseType]

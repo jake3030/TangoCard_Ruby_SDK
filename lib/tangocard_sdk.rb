@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -47,10 +47,11 @@ require 'openssl'
 require 'bigdecimal'
 require 'date'
 require 'singleton'
+require 'inifile'
 
 $:.unshift File.dirname(__FILE__)
 
-require "tangocard_sdk/tangocard_sdk"
+require "tangocard_sdk/tangocard_service_api"
 require "tangocard_sdk/common/helper"
 require "tangocard_sdk/common/sdk_config"
 require "tangocard_sdk/common/tangocard_sdk_exception"

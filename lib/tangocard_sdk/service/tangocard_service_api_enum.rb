@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -79,8 +79,8 @@ module TangoCardSdk
         # Enter description here ...
         # @param unknown_type $enumServiceType
         #
-        def isValid(enumServiceType)
-            TangoCardServiceApiEnum::ENUM_TO_STRING.has_key?( enumServiceType )
+        def self.is_valid(enumServiceType)
+            return TangoCardServiceApiEnum::ENUM_TO_STRING.has_key?( enumServiceType )
         end
         
         # 
@@ -89,12 +89,12 @@ module TangoCardSdk
         # @return string
         # @throws TangoCardSdkException
         #
-        def ToString(enumServiceType)
+        def self.to_s(enumServiceType)
             if ( TangoCardServiceApiEnum::ENUM_TO_STRING.has_key?( enumServiceType ) )
                 return TangoCardServiceApiEnum::ENUM_TO_STRING[enumServiceType]
             end
             
-            raise TangoCardSdkException.new("Unexpected enumeration: " + enumServiceType)
+            raise TangoCardSdkException.new("Unexpected enumeration: " + enumServiceType.to_s())
         end
         
         # 
@@ -102,12 +102,12 @@ module TangoCardSdk
         # @param string strServiceType
         # @throws TangoCardSdkException
         #
-        def ToEnum(strServiceType)
-            if ( TangoCardServiceApiEnum::STRING_TO_ENUM.has_key?( strResponseType ) )
+        def self.to_enum(strServiceType)
+            if ( TangoCardServiceApiEnum::STRING_TO_ENUM.has_key?( strServiceType ) )
                 return TangoCardServiceApiEnum::STRING_TO_ENUM[strServiceType]
             end
             
-            raise TangoCardSdkException.new("Unexpected enumeration: " + $strServiceType)
+            raise TangoCardSdkException.new("Unexpected enumeration: " + strServiceType)
         end
     end
 end

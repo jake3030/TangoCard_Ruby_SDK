@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -33,57 +33,43 @@
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
+# encoding: UTF-8
+
+require 'singleton'
+require 'inifile'
 
 module TangoCardSdk
     class SdkConfig
-        attr_accessor :config_vars
+        include Singleton
+        
+        attr_reader :config_vars
+        attr_reader :config_status
         
         def initialize()
+          self.read_config()
+        end
+        
+        def read_config()
+          @config_vars = nil
+          begin
             config_file = File.dirname(File.dirname(File.dirname(__FILE__))) + "/config/tc_sdk_config.ini"
-            @config_vars = get_vars(config_file)
+            puts "config_file: " + config_file
+            unless File.file?(config_file)
+              raise TangoCardSdkException.new( "Missing config file." )
+            end
+            config_ini = IniFile.new(:filename => config_file, :comment => '#', :parameter => '=')
+            @config_vars = config_ini['TANGOCARD']
+          rescue Exception => e
+            raise e
+          end
         end
         
-        def get_vars(conf_file)
-            #Here we define a couple of things
-            #First is the regular expression that we use to 
-            #get rid of whitespace and the array characters.
-            line_sub = Regexp.new(/\s+|"|\[|\]/)
-
-            temp = Array.new
-            vars=Hash.new
-
-            #Check and make sure that the file exists
-            unless File.exists?(conf_file) then
-              raise "The specified configuration file doesn't exist!"	
-            end
-            IO.foreach(conf_file) do |line|
-                #discard comment lines
-                if line.match(/^#/)
-                    next
-                elsif
-                    #discard a blank line
-                    line.match(/^$/)
-                    next
-                else
-                    #Snag variable and throw it into the varhash
-                    temp[0],temp[1] = line.to_s.scan(/^.*$/).to_s.split('=')
-
-                    #Match our regular expression and substitute
-                    temp.collect! do |val|
-                        val.gsub(line_sub, "")
-                    end
-                    #Add the variables to our hash
-                    vars[temp[0]] = temp[1]
-                end
-            end
-            #And return them
-            return vars
-        end
-
-
-        
-        def GetConfigValue(key)
-            return @config_vars[key]
+        def config_value(key)
+          if !@config_vars.nil?
+              return @config_vars[key]
+          else
+              raise TangoCardSdkException.new( "Undefined configuation variables." )
+          end
         end
     end
 end

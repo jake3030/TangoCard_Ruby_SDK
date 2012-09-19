@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -87,7 +87,7 @@ module TangoCardSdk
             # validate inputs
             # -----------------------------------------------------------------
             # isProductionMode
-            if ( !TangoCardServiceApiEnum::isValid(enumTangoCardServiceApi) )
+            if ( !TangoCardServiceApiEnum::is_valid(enumTangoCardServiceApi) )
                 raise new Exception.new("Parameter 'enumTangoCardServiceApi' must be TangoCardServiceApiEnum.")
             end
             # username
@@ -117,9 +117,13 @@ module TangoCardSdk
         # 
         # @return True upon success, else False
         #
-        def execute(&response)
-            proxy = new ServiceProxy(self)
+        def execute(response)
+          begin
+            proxy = ServiceProxy.new(self)
             return proxy.executeRequest(response)
+          rescue Exception => e
+            raise new Exception.new("Failed to execute: " + e.message())
+          end
         end
     end
 end

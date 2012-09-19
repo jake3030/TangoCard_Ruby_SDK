@@ -4,7 +4,7 @@
 
 #
 # 
-# © 2012 Tango Card, Inc
+# ï¿½ 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -34,34 +34,33 @@
 # 
 # 
 
+$:.unshift File.dirname(__FILE__)
+
 require 'test/unit'
 require '../lib/tangocard_sdk.rb'
 
-module TangoCardSdk
+module TangoCardSdkUnitTest
 
     class TestServiceResponseEnum < Test::Unit::TestCase
         def test_SUCCESS
-            s = ServiceResponseEnum.new()
-            v = s.ToString( ServiceResponseEnum::SUCCESS )
-            assert_equal( v, "SUCCESS" )
+            act = TangoCardSdk::ServiceResponseEnum.to_s( TangoCardSdk::ServiceResponseEnum::SUCCESS )
+            assert_equal( "SUCCESS", act )
             
-            v = s.ToEnum( "SUCCESS" )
-            assert_equal( v, ServiceResponseEnum::SUCCESS )
+            act = TangoCardSdk::ServiceResponseEnum.to_enum( "SUCCESS" )
+            assert_equal( TangoCardSdk::ServiceResponseEnum::SUCCESS, act )
         end
         
         def test_SYS_ERROR
-            s = ServiceResponseEnum.new()
-            v = s.ToString( ServiceResponseEnum::SYS_ERROR )
-            assert_equal( v, "SYS_ERROR" )
+            act = TangoCardSdk::ServiceResponseEnum.to_s( TangoCardSdk::ServiceResponseEnum::SYS_ERROR )
+            assert_equal( "SYS_ERROR", act )
             
-            v = s.ToEnum( "SYS_ERROR" )
-            assert_equal( v, ServiceResponseEnum::SYS_ERROR )
+            act = TangoCardSdk::ServiceResponseEnum.to_enum( "SYS_ERROR" )
+            assert_equal( TangoCardSdk::ServiceResponseEnum::SYS_ERROR, act )
         end
         
         def test_GARBAGE
-            assert_raise TangoCardSdkException do 
-                s = ServiceResponseEnum.new()
-                v = s.ToEnum( "GARBAGE" )
+            assert_raise TangoCardSdk::TangoCardSdkException do
+                act = TangoCardSdk::ServiceResponseEnum.to_enum( "GARBAGE" )
             end
         end
     end
