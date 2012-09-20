@@ -138,9 +138,9 @@ To learn more about Tango Card integration solutions, call 1.877.55.TANGO.
 <a name="sdk_overview"></a>
 # Tango Card SDK Overview #
 
-The Tango Card Ruby SDK is a wrapper around the Tango Card Service API. environments. As such, it has two primary types of objects, Requests and Responses; which are handled by a wrapper class `TangoCard\Sdk\TangoCardServiceApi`.
+The Tango Card Ruby SDK is a wrapper around the Tango Card Service API. environments. As such, it has two primary types of objects, Requests and Responses; which are handled by a wrapper class `TangoCardSdk::TangoCardServiceApi`.
 
-The wrapper class `TangoCard\Sdk\TangoCardServiceApi` currently handles the following static methods:
+The wrapper class `TangoCardSdk::TangoCardServiceApi` currently handles the following static methods:
 <dl>
     <dt>bool GetAvailableBalance()</dt>
     <dd>- Gather the currently available balance for provided user within their www.tangocard.com account.</dd>
@@ -183,7 +183,7 @@ With the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card
 <a name="tango_card_service_api_endpoints"></a>
 ## Tango Card Service API Endpoints ##
 
-Available are two endpoints that provide the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, as defined by `enum TangoCard\Sdk\Service\TangoCardServiceApiEnum` :
+Available are two endpoints that provide the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, as defined by `TangoCard::TangoCardServiceApiEnum` :
 <dl>
     <dt>INTEGRATION</dt> 
     <dd>
