@@ -461,8 +461,8 @@ The exception has two properties that define what was failure response from the 
         <td>
             <table>
                 <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
-                <tr><td>INV_CREDENTIAL</td><td><code>TangoCardSdk::InvalidCredentialsResponse</code></td></tr> 
-                <tr><td>SYS_ERROR</td><td><code>TangoCardSdk::SystemFailureResponse</code></td></tr>
+                <tr><td><code>INV_CREDENTIAL</code></td><td><code>TangoCardSdk::InvalidCredentialsResponse</code></td></tr> 
+                <tr><td><code>SYS_ERROR</code></td><td><code>TangoCardSdk::SystemFailureResponse</code></td></tr>
             </table>
         </td>
     </tr>
@@ -471,11 +471,11 @@ The exception has two properties that define what was failure response from the 
         <td>
             <table>
                 <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
-                <tr><td>INS_FUNDS</td><td><code>TangoCardSdk::InsufficientFundsResponse</code></td></tr>
-                <tr><td>INS_INV</td><td><code>TangoCardSdk::InsufficientInventoryResponse</code></td></tr> 
-                <tr><td>INV_CREDENTIAL</td><td><code>TangoCardSdk::InvalidCredentialsResponse</code></td></tr> 
-                <tr><td>INV_INPUT</td><td><code>TangoCardSdk::InvalidInputResponse</code></td></tr>
-                <tr><td>SYS_ERROR</td><td><code>TangoCardSdk::SystemFailureResponse</code></td></tr>
+                <tr><td><code>INS_FUNDS</code></td><td><code>TangoCardSdk::InsufficientFundsResponse</code></td></tr>
+                <tr><td><code>INS_INV</code></td><td><code>TangoCardSdk::InsufficientInventoryResponse</code></td></tr> 
+                <tr><td><code>INV_CREDENTIAL</code></td><td><code>TangoCardSdk::InvalidCredentialsResponse</code></td></tr> 
+                <tr><td><code>INV_INPUT</code></td><td><code>TangoCardSdk::InvalidInputResponse</code></td></tr>
+                <tr><td><code>SYS_ERROR</code></td><td><code>TangoCardSdk::SystemFailureResponse</code></td></tr>
             </table>
         </td>
     </tr>

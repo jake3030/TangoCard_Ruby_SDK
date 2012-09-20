@@ -75,7 +75,7 @@ module TangoCardSdk
                 }
 
         # 
-        # Determine if enum is a valid service type
+        # Determine if enum is a valid service api environment type
         # [param] TangoCardServiceApiEnum enumerations   enumServiceType
         #
         def self.is_valid(enumServiceType)
