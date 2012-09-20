@@ -156,15 +156,13 @@ The wrapper class `TangoCard\Sdk\TangoCardServiceApi` currently handles the foll
 
 * [Ruby 1.9.3](http://www.ruby-lang.org/en/downloads/)
 * Gems
-** 'cgi'
-** 'net/https'
-** 'uri'
-** 'rubygems'
-** 'json'
-** 'openssl'
-** 'date'
-** 'singleton'
-** 'inifile'
+** [rubygems](http://ruby-doc.org/stdlib-1.9.3/libdoc/rubygems/rdoc/index.html)
+** [net/https](http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/index.html)
+** [uri](http://ruby-doc.org/stdlib-1.9.3/libdoc/uri/rdoc/index.html)
+** [json](http://ruby-doc.org/stdlib-1.9.3/libdoc/json/rdoc/index.html)
+** [openssl](http://ruby-doc.org/stdlib-1.9.3/libdoc/openssl/rdoc/index.html)
+** [singleton](http://ruby-doc.org/stdlib-1.9.3/libdoc/singleton/rdoc/index.html)
+** [inifile](http://rubygems.org/gems/inifile)
 
 ## Tango Card Ruby SDK Gem Install ##
 
