@@ -428,11 +428,11 @@ A service will return the following failure responses as enumerated by `TangoCar
 
 <table>
     <tr><th>Failure</th><th>Failure Reponse Type</th><th>Failure Response Object</th></tr>
-    <tr><td>Insufficient Funds</td><td>INS_FUNDS</td><td>`TangoCardSdk::Response\Failure\InsufficientFundsResponse`</td></tr>
-    <tr><td>Insufficient Inventory</td><td>INS_INV</td><td>`TangoCardSdk::Response\Failure\InsufficientInventoryResponse`</td></tr> 
-    <tr><td>Invalid Credentials</td><td>INV_CREDENTIAL</td><td>`TangoCardSdk::Response\Failure\InvalidCredentialsResponse`</td></tr> 
-    <tr><td>Invalid Input</td><td>INV_INPUT</td><td>`TangoCardSdk::Response\Failure\InvalidInputResponse`</td></tr>
-    <tr><td>System Failure</td><td>SYS_ERROR</td><td>`TangoCardSdk::Response\Failure\SystemFailureResponse`</td></tr>
+    <tr><td>Insufficient Funds</td><td><code>INS_FUNDS</code></td><td><code>TangoCardSdk::InsufficientFundsResponse</code></td></tr>
+    <tr><td>Insufficient Inventory</td><td><code>INS_INV</code></td><td><code>TangoCardSdk::InsufficientInventoryResponse</code></td></tr> 
+    <tr><td>Invalid Credentials</td><td><code>INV_CREDENTIAL</code></td><td><code>TangoCardSdk::InvalidCredentialsResponse</code></td></tr> 
+    <tr><td>Invalid Input</td><td><code>INV_INPUT</code></td><td><code>TangoCardSdk::InvalidInputResponse</code></td></tr>
+    <tr><td>System Failure</td><td><code>SYS_ERROR</code></td><td><code>TangoCardSdk::SystemFailureResponse</code></td></tr>
 </table>
 
 Each of the aforementioned `Failure Responses` contains details as to the reason that the `Tango Card Service API` did not perform provided `Request`.
@@ -462,7 +462,7 @@ The exception has two properties that define what was failure response from the 
         </td>
     </tr>
     <tr>
-        <td><code>PurchaseCardRequest</code></td>
+        <td><code>TangoCardSdk::PurchaseCardRequest</code></td>
         <td>
             <table>
                 <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
