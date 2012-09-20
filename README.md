@@ -154,15 +154,20 @@ The wrapper class `TangoCardSdk::TangoCardServiceApi` currently handles the foll
 <a name="sdk_requirements"></a>
 # Tango Card Ruby SDK Requirements #
 
-* [Ruby 1.9.3](http://www.ruby-lang.org/en/downloads/)
-* Gems
-** [rubygems](http://ruby-doc.org/stdlib-1.9.3/libdoc/rubygems/rdoc/index.html)
-** [net/https](http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/index.html)
-** [uri](http://ruby-doc.org/stdlib-1.9.3/libdoc/uri/rdoc/index.html)
-** [json](http://ruby-doc.org/stdlib-1.9.3/libdoc/json/rdoc/index.html)
-** [openssl](http://ruby-doc.org/stdlib-1.9.3/libdoc/openssl/rdoc/index.html)
-** [singleton](http://ruby-doc.org/stdlib-1.9.3/libdoc/singleton/rdoc/index.html)
-** [inifile](http://rubygems.org/gems/inifile)
+<ul>
+    <li>[Ruby 1.9.3](http://www.ruby-lang.org/en/downloads/)</li>
+    <li>Gems
+        <ul>
+            <li>[rubygems](http://ruby-doc.org/stdlib-1.9.3/libdoc/rubygems/rdoc/index.html)</li>
+            <li>[net/https](http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/index.html)</li>
+            <li>[uri](http://ruby-doc.org/stdlib-1.9.3/libdoc/uri/rdoc/index.html)</li>
+            <li>[json](http://ruby-doc.org/stdlib-1.9.3/libdoc/json/rdoc/index.html)</li>
+            <li>[openssl](http://ruby-doc.org/stdlib-1.9.3/libdoc/openssl/rdoc/index.html)</li>
+            <li>[singleton](http://ruby-doc.org/stdlib-1.9.3/libdoc/singleton/rdoc/index.html)</li>
+            <li>[inifile](http://rubygems.org/gems/inifile)</li>
+        </ul>
+    </li>
+</ul>
 
 ## Tango Card Ruby SDK Gem Install ##
 
