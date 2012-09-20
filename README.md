@@ -386,17 +386,31 @@ This section details the provided sources of this SDK.
 ## lib ##
 This is the heart of the SDK which contains the sources, and here is a listing of its directories:
 
-* lib\TangoCardSdk.php
-* lib\TangoCard
-* lib\TangoCard\config
-* lib\TangoCard\ssl
-* lib\TangoCard\Sdk
-* libTangoCardSdk::Common
-* libTangoCardSdk::Request
-* libTangoCardSdk::Response
-* libTangoCardSdk::Response\Failure
-* libTangoCardSdk::Response\Success
-* libTangoCardSdk::Service
+* lib\tangocard-sdk.rb
+* lib\tangocard_sdk.rb
+* lib\config\tc_sdk_config.ini
+* lib\ssl\cacert.pem
+* lib\tangocard_sdk\tangocard_service_api.rb
+* lib\tangocard_sdk\common\helper.rb
+* lib\tangocard_sdk\common\sdk_config.rb
+* lib\tangocard_sdk\common\tangocard_sdk_exception.rb
+* lib\tangocard_sdk\request\base_request.rb
+* lib\tangocard_sdk\request\get_available_balance_request.rb
+* lib\tangocard_sdk\request\purchase_card_request.rb
+* lib\tangocard_sdk\response\base_response.rb
+* lib\tangocard_sdk\response\service_response_enum.rb
+* lib\tangocard_sdk\response\failure\failure_response.rb
+* lib\tangocard_sdk\response\failure\insufficient_funds_response.rb
+* lib\tangocard_sdk\response\failure\insufficient_inventory_response.rb
+* lib\tangocard_sdk\response\failure\invalid_credentials_response.rb
+* lib\tangocard_sdk\response\failure\invalid_input_response.rb
+* lib\tangocard_sdk\response\failure\system_error_response.rb
+* lib\tangocard_sdk\response\success\get_available_balance_response.rb
+* lib\tangocard_sdk\response\success\purchase_card_response.rb
+* lib\tangocard_sdk\response\success\success_response.rb
+* lib\tangocard_sdk\service\service_proxy.rb
+* lib\tangocard_sdk\service\tangocard_service_api_enum.rb
+* lib\tangocard_sdk\service\tangocard_service_exception.rb
 
 <a name="configuration_files"></a>
 ## configuration files ##
