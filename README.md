@@ -424,7 +424,7 @@ The Tango Card Service API SDK handles its errors by throwing the following exce
 <a name="service_failure_responses"></a>
 ## Service Failure Responses ##
 
-A service will return the following failure responses as enumerated by `TangoCardSdk::Response\ServiceResponseEnum`:
+A service will return the following failure responses as enumerated by `TangoCardSdk::ServiceResponseEnum`:
 
 <table>
     <tr><th>Failure</th><th>Failure Reponse Type</th><th>Failure Response Object</th></tr>
@@ -443,30 +443,34 @@ The details of these service failure responses are embedded and thrown within `T
 
 ### Expected Failure Responses for Specific Requests ###
 
-Each Request will have the following possible Failure Responses as a property value within `TangoCardSdk::TangoCardServiceException.getResponse()`:
+Using this SDK, when a request fails because of failure response from the Tango Card Service API, then <code>TangoCardSdk::TangoCardServiceException</code> is thrown.
+
+The exception has two properties that define what was failure response from the Tango Card Service API:
+* `Failure Response Type` held within this property <code>TangoCardSdk::TangoCardServiceException.responseType</code>.
+* `failure Response Object` held within this property <code>TangoCardSdk::TangoCardServiceException.response</code> whose parent class is <code>TangoCardSdk::FailureResponse</code>.
 
 <table>
     <tr><th>Request</th><th>Possible Failure Responses</th></tr>
     <tr>
-        <td>`GetAvailableBalanceRequest`</td>
+        <td><code>TangoCardSdk::GetAvailableBalanceRequest<code></td>
         <td>
             <table>
                 <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
-                <tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
-                <tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
+                <tr><td>INV_CREDENTIAL</td><td><code>TangoCardSdk::InvalidCredentialsResponse</code></td></tr> 
+                <tr><td>SYS_ERROR</td><td><code>TangoCardSdk::SystemFailureResponse</code></td></tr>
             </table>
         </td>
     </tr>
     <tr>
-        <td>`PurchaseCardRequest`</td>
+        <td><code>PurchaseCardRequest</code></td>
         <td>
             <table>
                 <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
-                <tr><td>INS_FUNDS</td><td>`InsufficientFundsResponse`</td></tr>
-                <tr><td>INS_INV</td><td>`InsufficientInventoryResponse`</td></tr> 
-                <tr><td>INV_CREDENTIAL</td><td>`InvalidCredentialsResponse`</td></tr> 
-                <tr><td>INV_INPUT</td><td>`InvalidInputResponse`</td></tr>
-                <tr><td>SYS_ERROR</td><td>`SystemFailureResponse`</td></tr>
+                <tr><td>INS_FUNDS</td><td><code>TangoCardSdk::InsufficientFundsResponse</code></td></tr>
+                <tr><td>INS_INV</td><td><code>TangoCardSdk::InsufficientInventoryResponse</code></td></tr> 
+                <tr><td>INV_CREDENTIAL</td><td><code>TangoCardSdk::InvalidCredentialsResponse</code></td></tr> 
+                <tr><td>INV_INPUT</td><td><code>TangoCardSdk::InvalidInputResponse</code></td></tr>
+                <tr><td>SYS_ERROR</td><td><code>TangoCardSdk::SystemFailureResponse</code></td></tr>
             </table>
         </td>
     </tr>
