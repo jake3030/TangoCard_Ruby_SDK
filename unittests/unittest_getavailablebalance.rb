@@ -86,7 +86,6 @@ module TangoCardSdkUnitTest
             assert_not_nil @config_vars['app_password']    # password
         end
         
-        #
         # 
         # Test GetAvailableBalance using AppConfig settings
         #
