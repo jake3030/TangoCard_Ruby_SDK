@@ -707,7 +707,7 @@ Installation of [Test::Unit::TestCase](http://en.wikibooks.org/wiki/Ruby_Program
 #### unittests\unittest_purchasecard.rb ####
 
 ```Text
-    C:\code\ruby_workspace\TangoCard_Ruby_SDK>ruby -w unittests\unittest_purchasecar d.rb
+    > ruby -w unittests\unittest_purchasecar d.rb
     Run options:
 
     # Running tests:
