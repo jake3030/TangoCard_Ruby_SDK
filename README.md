@@ -195,7 +195,7 @@ Available are two endpoints that provide the <a href="https://github.com/tangoca
                     <li>Send real emails (with fake codes), so only use recipient email addresses you control for testing purposes.</li>
                 </ul>
             </li>
-            <li>Endpoint URL: https://int.tangocard.com/Version2/[method]</li>
+            <li>Endpoint URL: https: //int.tangocard.com/Version2/</li>
             <li>Login to use our testing account through this endpoint is:
                 <dl>
                     <dt>Username:</dt>
@@ -216,7 +216,7 @@ Available are two endpoints that provide the <a href="https://github.com/tangoca
                     <li>Send real emails (with live codes), only use recipient email addresses you wish to deliver to.</li>
                 </ul>
             </li>
-            <li>Endpoint URL: https://api.tangocard.com/Version2/[method]</li>
+            <li>Endpoint URL: https: //api.tangocard.com/Version2/</li>
             <li>Login to use your production account through this endpoint is:
                 <dl>
                     <dt>Username:</dt>
