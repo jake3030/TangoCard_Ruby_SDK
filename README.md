@@ -457,7 +457,7 @@ The exception has two properties that define what was failure response from the 
 <table>
     <tr><th>Request</th><th>Possible Failure Responses</th></tr>
     <tr>
-        <td><code>TangoCardSdk::GetAvailableBalanceRequest<code></td>
+        <td><code>TangoCardSdk::GetAvailableBalanceRequest</code></td>
         <td>
             <table>
                 <tr><th>Failure Reponse Type</th><th>Failure Response</th></tr>
