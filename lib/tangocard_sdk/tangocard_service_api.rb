@@ -63,8 +63,7 @@ module TangoCardSdk
                 username,
                 password
             )
-            
-            
+
             responseGetAvailableBalance = nil
             begin
                 # set up the request
@@ -74,13 +73,9 @@ module TangoCardSdk
                     password
                 )
                 
-                
-                
                 if ( requestGetAvailableBalance.nil? )
                     raise TangoCardSdkException.new( "Failure to define request" )
                 end
-                
-                
   
                 # make the request
                 responseGetAvailableBalance = requestGetAvailableBalance.execute()

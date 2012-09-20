@@ -1,10 +1,9 @@
-#
+﻿#
 # service_proxy.rb
 #
 
-#
 # 
-# � 2012 Tango Card, Inc
+# (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -250,15 +249,13 @@ module TangoCardSdk
         # @access protected
         #
         def throw_on_error(responseJson)
-          
+
             if (responseJson.nil?)
                 raise TangoCardSdkException.new('Supplied JSON does not appear to be valid.')
             end
-            
+
             responseType = responseJson['responseType']
 
-            p "responseType: %s" % [responseType]
-            
             case responseType
                 when "SUCCESS"
 

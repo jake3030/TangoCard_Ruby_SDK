@@ -1,10 +1,9 @@
-#
+﻿#
 # unittest_sdk_config.rb
 #
 
-#
 # 
-# � 2012 Tango Card, Inc
+# (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -41,7 +40,7 @@ require 'tangocard_sdk'
 require 'test/unit'
 
 module TangoCardSdkUnitTest
-    class TestServiceResponseEnum < Test::Unit::TestCase
+    class UnitTest_ServiceResponseEnum < Test::Unit::TestCase
     
         def test_tc_integration_url
             actual = TangoCardSdk::SdkConfig.instance.config_value("tc_sdk_environment_integration_url")

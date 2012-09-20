@@ -1,12 +1,10 @@
-#
+﻿#
 # tangocard_failures_example.rb, Example code using Tango Card SDK forcing 
 # failures and then collecting responses.
 # 
-#
- 
-#
+
 # 
-# © 2012 Tango Card, Inc
+# (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy

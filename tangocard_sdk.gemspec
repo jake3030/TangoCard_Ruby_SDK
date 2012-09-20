@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'tangocard_sdk'
-  s.version     = '1.0.0'
+  s.version     = '1.0.1'
   s.date        = %q{2012-09-19}
   s.summary     = "Tango Card Ruby SDK!"
   s.description = "Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications."
@@ -31,7 +31,9 @@ Gem::Specification.new do |s|
     "lib/tangocard_sdk/response/success/success_response.rb",
     "lib/tangocard_sdk/service/service_proxy.rb",
     "lib/tangocard_sdk/service/tangocard_service_api_enum.rb",
-    "lib/tangocard_sdk/service/tangocard_service_exception.rb"
+    "lib/tangocard_sdk/service/tangocard_service_exception.rb",
+    "LICENSE.md",
+    "README.md"
   ]
   s.require_paths = ["lib"]
   s.homepage    =

@@ -1,10 +1,9 @@
-#
-# unittest_sdk_config.rb
+﻿#
+# unittest_service_api_enums.rb
 #
 
-#
 # 
-# � 2012 Tango Card, Inc
+# (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -29,7 +28,7 @@
 # 
 # @category    TangoCard
 # @package     SDK
-# @version     $Id: unittest_sdk_config.rb 2012-09-19 15:00:00 PST $
+# @version     $Id: unittest_service_api_enums.rb 2012-09-19 15:00:00 PST $
 # @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -42,7 +41,7 @@ require 'test/unit'
 
 module TangoCardSdkUnitTest
 
-    class TestTangoCardServiceApiEnum < Test::Unit::TestCase
+    class UnitTest_TangoCardServiceApiEnum < Test::Unit::TestCase
         def test_SUCCESS
             act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION )
             assert_equal( "INTEGRATION", act )
