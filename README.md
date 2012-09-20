@@ -155,16 +155,16 @@ The wrapper class `TangoCardSdk::TangoCardServiceApi` currently handles the foll
 # Tango Card Ruby SDK Requirements #
 
 <ul>
-    <li>[Ruby 1.9.3](http://www.ruby-lang.org/en/downloads/)</li>
-    <li>Gems
+    <li><a href="http://www.ruby-lang.org/en/downloads/" target="_blank">Ruby 1.9.3</a></li>
+    <li><code>required</code>
         <ul>
-            <li>[rubygems](http://ruby-doc.org/stdlib-1.9.3/libdoc/rubygems/rdoc/index.html)</li>
-            <li>[net/https](http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/index.html)</li>
-            <li>[uri](http://ruby-doc.org/stdlib-1.9.3/libdoc/uri/rdoc/index.html)</li>
-            <li>[json](http://ruby-doc.org/stdlib-1.9.3/libdoc/json/rdoc/index.html)</li>
-            <li>[openssl](http://ruby-doc.org/stdlib-1.9.3/libdoc/openssl/rdoc/index.html)</li>
-            <li>[singleton](http://ruby-doc.org/stdlib-1.9.3/libdoc/singleton/rdoc/index.html)</li>
-            <li>[inifile](http://rubygems.org/gems/inifile)</li>
+            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/rubygems/rdoc/index.html" target="_blank"><code>rubygems</code></a></li>
+            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/index.html" target="_blank"><code>net/https</code></a></li>
+            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/uri/rdoc/index.html" target="_blank"><code>uri</code></a></li>
+            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/json/rdoc/index.html" target="_blank"><code>json</code></a></li>
+            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/openssl/rdoc/index.html" target="_blank"><code>openssl</code></a></li>
+            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/singleton/rdoc/index.html" target="_blank"><code>singleton</code></a></li>
+            <li><a href="http://rubygems.org/gems/inifile" target="_blank"><code>inifile</code></a></li>
         </ul>
     </li>
 </ul>
