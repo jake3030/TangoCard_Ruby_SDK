@@ -1,4 +1,5 @@
-TangoCard Ruby SDK for Ruby 1.9
+<h1>Tango Card Ruby SDK</h1>
+<h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
 ===
 
 # Table of Contents #
@@ -184,7 +185,7 @@ With the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card
 
 Available are two endpoints that provide the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, as defined by `TangoCard::TangoCardServiceApiEnum` :
 <dl>
-    <dt>INTEGRATION</dt> 
+    <dt><code>INTEGRATION</code></dt> 
     <dd>
         <ul>
             <li>Expected to be used for development and testing purposes.</li>
@@ -205,7 +206,7 @@ Available are two endpoints that provide the <a href="https://github.com/tangoca
             </li>
         </ul>
     </dd>
-    <dt>PRODUCTION</dt>
+    <dt><code>PRODUCTION</code></dt>
     <dd>
         <ul>
             <li>Performs actual card purchase requests.</li>
