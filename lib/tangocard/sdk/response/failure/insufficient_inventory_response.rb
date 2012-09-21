@@ -1,5 +1,5 @@
 ﻿#
-# unittest_service_api_enums.rb
+# insufficient_inventory_response.rb
 #
 
 # 
@@ -28,41 +28,41 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     unittest_service_api_enums.rb 2012-20-19 15:00:00 PST
+# [version]     Id: insufficient_inventory_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-$:.unshift File.dirname(__FILE__)
-
-require 'rubygems'
-require 'tangocard_sdk'
-require 'test/unit'
-
-module TangoCardSdkUnitTest
-
-    class UnitTest_TangoCardServiceApiEnum < Test::Unit::TestCase
-        def test_SUCCESS
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION )
-            assert_equal( "INTEGRATION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "INTEGRATION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION, act )
+module TangoCardSdk
+    class InsufficientInventoryResponse < FailureResponse
+        #
+        # [property]
+        #
+        attr_accessor :sku
+        
+        #
+        # [property]
+        #
+        attr_accessor :value
+        
+        # 
+        # Constructor
+        #
+        # Construct a new InsufficientInventory failure type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            @sku   = responseJson['response']['sku']
+            @value = responseJson['response']['value']
         end
         
-        def test_SYS_ERROR
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION )
-            assert_equal( "PRODUCTION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "PRODUCTION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION, act )
-        end
-        
-        def test_GARBAGE
-            assert_raise TangoCardSdk::TangoCardSdkException do
-                TangoCardSdk::TangoCardServiceApiEnum.to_enum( "GARBAGE" )
-            end
+        #
+        # Get error message for this failure response.
+        # [return] string
+        #    
+        def message()
+            return "SKU: %s, Value: %s" % [@sku, @value]
         end
     end
 end
-__END__

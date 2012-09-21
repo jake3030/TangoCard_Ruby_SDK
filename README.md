@@ -1,5 +1,6 @@
 <h1>Tango Card Ruby SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
+<h4>Update: 2012-09-21</h4>
 ===
 
 # Table of Contents #
@@ -541,29 +542,29 @@ This is the heart of the SDK which contains the sources, and here is a listing o
 
 * lib\tangocard-sdk.rb
 * lib\tangocard_sdk.rb
-* lib\config\tc_sdk_config.ini
-* lib\ssl\cacert.pem
-* lib\tangocard_sdk\tangocard_service_api.rb
-* lib\tangocard_sdk\common\helper.rb
-* lib\tangocard_sdk\common\sdk_config.rb
-* lib\tangocard_sdk\common\tangocard_sdk_exception.rb
-* lib\tangocard_sdk\request\base_request.rb
-* lib\tangocard_sdk\request\get_available_balance_request.rb
-* lib\tangocard_sdk\request\purchase_card_request.rb
-* lib\tangocard_sdk\response\base_response.rb
-* lib\tangocard_sdk\response\service_response_enum.rb
-* lib\tangocard_sdk\response\failure\failure_response.rb
-* lib\tangocard_sdk\response\failure\insufficient_funds_response.rb
-* lib\tangocard_sdk\response\failure\insufficient_inventory_response.rb
-* lib\tangocard_sdk\response\failure\invalid_credentials_response.rb
-* lib\tangocard_sdk\response\failure\invalid_input_response.rb
-* lib\tangocard_sdk\response\failure\system_error_response.rb
-* lib\tangocard_sdk\response\success\get_available_balance_response.rb
-* lib\tangocard_sdk\response\success\purchase_card_response.rb
-* lib\tangocard_sdk\response\success\success_response.rb
-* lib\tangocard_sdk\service\service_proxy.rb
-* lib\tangocard_sdk\service\tangocard_service_api_enum.rb
-* lib\tangocard_sdk\service\tangocard_service_exception.rb
+* lib\tangocard\config\tc_sdk_config.ini
+* lib\tangocard\sdk\tangocard_service_api.rb
+* lib\tangocard\sdk\common\helper.rb
+* lib\tangocard\sdk\common\sdk_config.rb
+* lib\tangocard\sdk\common\tangocard_sdk_exception.rb
+* lib\tangocard\sdk\request\base_request.rb
+* lib\tangocard\sdk\request\get_available_balance_request.rb
+* lib\tangocard\sdk\request\purchase_card_request.rb
+* lib\tangocard\sdk\response\base_response.rb
+* lib\tangocard\sdk\response\service_response_enum.rb
+* lib\tangocard\sdk\response\failure\failure_response.rb
+* lib\tangocard\sdk\response\failure\insufficient_funds_response.rb
+* lib\tangocard\sdk\response\failure\insufficient_inventory_response.rb
+* lib\tangocard\sdk\response\failure\invalid_credentials_response.rb
+* lib\tangocard\sdk\response\failure\invalid_input_response.rb
+* lib\tangocard\sdk\response\failure\system_error_response.rb
+* lib\tangocard\sdk\response\success\get_available_balance_response.rb
+* lib\tangocard\sdk\response\success\purchase_card_response.rb
+* lib\tangocard\sdk\response\success\success_response.rb
+* lib\tangocard\sdk\service\service_proxy.rb
+* lib\tangocard\sdk\service\tangocard_service_api_enum.rb
+* lib\tangocard\sdk\service\tangocard_service_exception.rb
+* lib\tangocard\ssl\cacert.pem
 
 <a name="configuration_files"></a>
 ## configuration files ##
@@ -683,6 +684,7 @@ This example is intended to be run from the command line:
 
 The SDK's unittests have been written to use [Test::Unit::TestCase](http://en.wikibooks.org/wiki/Ruby_Programming/Unit_testing).
 
+* `unittests\unittests_tangocard.rb`
 * `unittests\unittest_getavailablebalance.rb`
 * `unittests\unittest_purchasecard.rb`
 * `unittests\unittest_sdk_config.rb`
@@ -691,36 +693,21 @@ The SDK's unittests have been written to use [Test::Unit::TestCase](http://en.wi
 
 ### Running Ruby Unit Tests ###
 
-Installation of [Test::Unit::TestCase](http://en.wikibooks.org/wiki/Ruby_Programming/Unit_testing) is required to run these from command-line.
+Unittests for this SDK can be run from the command line. File `unittests\unittests_tangocard.rb` is a suite of all available unit tests.
 
-#### unittests\unittest_getavailablebalance.rb ####
+#### `unittests\unittests_tangocard.rb` ####
 
 ```Text
-    > ruby -w unittests\unittest_getavailabl ebalance.rb
+    > ruby -w unittests\unittests_tangocard.rb
     Run options:
 
     # Running tests:
 
-    ...
+    ..................
 
-    Finished tests in 2.684154s, 1.1177 tests/s, 4.4707 assertions/s.
+    Finished tests in 8.877508s, 2.0276 tests/s, 7.2092 assertions/s.
 
-    3 tests, 12 assertions, 0 failures, 0 errors, 0 skips
-```
-
-#### unittests\unittest_purchasecard.rb ####
-
-```Text
-    > ruby -w unittests\unittest_purchasecar d.rb
-    Run options:
-
-    # Running tests:
-
-    ......
-
-    Finished tests in 9.651552s, 0.6217 tests/s, 4.0408 assertions/s.
-
-    6 tests, 39 assertions, 0 failures, 0 errors, 0 skips
+    18 tests, 64 assertions, 0 failures, 0 errors, 0 skips
 ```
 
 <a name="sdk_development_environment"></a>

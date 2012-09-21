@@ -1,5 +1,5 @@
-﻿#
-# unittest_service_response_enums.rb
+#
+# helper.rb
 #
 
 # 
@@ -28,41 +28,11 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     unittest_service_response_enums.rb 2012-20-19 15:00:00 PST
+# [version]     Id: helper 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-$:.unshift File.dirname(__FILE__)
-
-require 'rubygems'
-require 'tangocard_sdk'
-require 'test/unit'
-
-module TangoCardSdkUnitTest
-
-    class UnitTest_ServiceResponseEnum < Test::Unit::TestCase
-        def test_SUCCESS
-            act = TangoCardSdk::ServiceResponseEnum.to_s( TangoCardSdk::ServiceResponseEnum::SUCCESS )
-            assert_equal( "SUCCESS", act )
-            
-            act = TangoCardSdk::ServiceResponseEnum.to_enum( "SUCCESS" )
-            assert_equal( TangoCardSdk::ServiceResponseEnum::SUCCESS, act )
-        end
-        
-        def test_SYS_ERROR
-            act = TangoCardSdk::ServiceResponseEnum.to_s( TangoCardSdk::ServiceResponseEnum::SYS_ERROR )
-            assert_equal( "SYS_ERROR", act )
-            
-            act = TangoCardSdk::ServiceResponseEnum.to_enum( "SYS_ERROR" )
-            assert_equal( TangoCardSdk::ServiceResponseEnum::SYS_ERROR, act )
-        end
-        
-        def test_GARBAGE
-            assert_raise TangoCardSdk::TangoCardSdkException do
-                TangoCardSdk::ServiceResponseEnum.to_enum( "GARBAGE" )
-            end
-        end
-    end
-end
-__END__
+module Boolean; end 
+class TrueClass; include Boolean; end 
+class FalseClass; include Boolean; end 

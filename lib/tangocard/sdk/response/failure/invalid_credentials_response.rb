@@ -1,8 +1,8 @@
 ﻿#
-# unittest_service_api_enums.rb
+# invalid_credentials_response.rb
 #
 
-# 
+#
 # Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
@@ -28,41 +28,39 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     unittest_service_api_enums.rb 2012-20-19 15:00:00 PST
+# [version]     Id: invalid_credentials_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-$:.unshift File.dirname(__FILE__)
-
-require 'rubygems'
-require 'tangocard_sdk'
-require 'test/unit'
-
-module TangoCardSdkUnitTest
-
-    class UnitTest_TangoCardServiceApiEnum < Test::Unit::TestCase
-        def test_SUCCESS
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION )
-            assert_equal( "INTEGRATION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "INTEGRATION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION, act )
+module TangoCardSdk
+    class InvalidCredentialsResponse < FailureResponse
+        #
+        # [property]
+        #
+        attr_accessor :message_credentials
+        
+        # 
+        # Constructor
+        #
+        # Construct a new InvalidCredentials failure type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            @message_credentials = responseJson['response']['message']
         end
         
-        def test_SYS_ERROR
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION )
-            assert_equal( "PRODUCTION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "PRODUCTION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION, act )
-        end
-        
-        def test_GARBAGE
-            assert_raise TangoCardSdk::TangoCardSdkException do
-                TangoCardSdk::TangoCardServiceApiEnum.to_enum( "GARBAGE" )
+        #
+        # Get the detailed error message.
+        # [return] string A message from the Tango Card services indicating 
+        #        what it thinks the problem is.
+        #
+        def message()
+            if ( @message_credentials == "TCP:PNPA:3" )
+                return "Provided user credentials are not valid."
             end
+            return @message_credentials
         end
     end
 end
-__END__

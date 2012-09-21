@@ -1,5 +1,5 @@
-﻿#
-# unittest_service_api_enums.rb
+#
+# unittests_tangocard.rb
 #
 
 # 
@@ -28,41 +28,20 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     unittest_service_api_enums.rb 2012-20-19 15:00:00 PST
+# [version]     unittests_tangocard.rb 2012-09-21 15:00:00 PST
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
+# The SDK initialization enters here. Loads all needed libraries and files. Inspects
+# the current runtime to see if Rails is present. If it is, we inject our helper into
+# ActiveSupport.
+
 $:.unshift File.dirname(__FILE__)
 
-require 'rubygems'
-require 'tangocard_sdk'
-require 'test/unit'
-
-module TangoCardSdkUnitTest
-
-    class UnitTest_TangoCardServiceApiEnum < Test::Unit::TestCase
-        def test_SUCCESS
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION )
-            assert_equal( "INTEGRATION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "INTEGRATION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION, act )
-        end
-        
-        def test_SYS_ERROR
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION )
-            assert_equal( "PRODUCTION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "PRODUCTION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION, act )
-        end
-        
-        def test_GARBAGE
-            assert_raise TangoCardSdk::TangoCardSdkException do
-                TangoCardSdk::TangoCardServiceApiEnum.to_enum( "GARBAGE" )
-            end
-        end
-    end
-end
+require 'unittest_getavailablebalance.rb'
+require 'unittest_purchasecard.rb'
+require 'unittest_sdk_config.rb'
+require 'unittest_service_api_enums.rb'
+require 'unittest_service_response_enums.rb'
 __END__

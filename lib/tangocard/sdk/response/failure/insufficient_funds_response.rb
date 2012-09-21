@@ -1,8 +1,8 @@
 ﻿#
-# unittest_service_api_enums.rb
+# insufficient_funds_response.rb
 #
 
-# 
+#
 # Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
@@ -28,41 +28,39 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     unittest_service_api_enums.rb 2012-20-19 15:00:00 PST
+# [version]     Id: insufficient_funds_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-$:.unshift File.dirname(__FILE__)
+module TangoCardSdk
+    class InsufficientFundsResponse < FailureResponse
+        #
+        # [property]
+        #
+        attr_reader :availableBalance
 
-require 'rubygems'
-require 'tangocard_sdk'
-require 'test/unit'
+        #
+        # [property]
+        #
+        attr_reader :orderCost
 
-module TangoCardSdkUnitTest
-
-    class UnitTest_TangoCardServiceApiEnum < Test::Unit::TestCase
-        def test_SUCCESS
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION )
-            assert_equal( "INTEGRATION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "INTEGRATION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION, act )
+        #
+        # Construct a new InsufficientFunds failure type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            @availableBalance = responseJson['response']['availableBalance']
+            @orderCost        = responseJson['response']['orderCost']
         end
-        
-        def test_SYS_ERROR
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION )
-            assert_equal( "PRODUCTION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "PRODUCTION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION, act )
-        end
-        
-        def test_GARBAGE
-            assert_raise TangoCardSdk::TangoCardSdkException do
-                TangoCardSdk::TangoCardServiceApiEnum.to_enum( "GARBAGE" )
-            end
+
+        #
+        # Get error message for this failure response.
+        # [return] string
+        #    
+        def message()
+            return "Available Balance: %s, Order Cost: %s" % [@availableBalance, @orderCost]
         end
     end
 end
-__END__

@@ -1,5 +1,5 @@
-﻿#
-# unittest_service_api_enums.rb
+#
+# system_error_response.rb
 #
 
 # 
@@ -28,41 +28,35 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     unittest_service_api_enums.rb 2012-20-19 15:00:00 PST
+# [version]     Id: system_error_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-$:.unshift File.dirname(__FILE__)
-
-require 'rubygems'
-require 'tangocard_sdk'
-require 'test/unit'
-
-module TangoCardSdkUnitTest
-
-    class UnitTest_TangoCardServiceApiEnum < Test::Unit::TestCase
-        def test_SUCCESS
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION )
-            assert_equal( "INTEGRATION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "INTEGRATION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::INTEGRATION, act )
-        end
+module TangoCardSdk
+    class SystemErrorResponse < FailureResponse
+        #
+        # [property]
+        #
+        attr_accessor :errorCode
         
-        def test_SYS_ERROR
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_s( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION )
-            assert_equal( "PRODUCTION", act )
-            
-            act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "PRODUCTION" )
-            assert_equal( TangoCardSdk::TangoCardServiceApiEnum::PRODUCTION, act )
+        # 
+        # Constructor
+        #
+        # Construct a new SystemError failure type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            @errorCode = responseJson['response']['errorCode']
         end
-        
-        def test_GARBAGE
-            assert_raise TangoCardSdk::TangoCardSdkException do
-                TangoCardSdk::TangoCardServiceApiEnum.to_enum( "GARBAGE" )
-            end
+
+        #
+        # Get error message for this failure response.
+        # [return] string
+        #
+        def message()
+            return "Error Code: %s" % [@errorCode]
         end
     end
 end
-__END__
