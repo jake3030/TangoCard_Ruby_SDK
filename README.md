@@ -171,7 +171,7 @@ The Tango Card Ruby SDK provides the following RubyGem builds:
     <dd><code>gems\Ruby193\tangocard_sdk-[current version].gem</code></dd>
 </dl>
 
-Using these build require RubyGem installs of `json` and `inifile`.
+Using these build require RubyGem installs of <code>json</code> and <code>inifile</code>.
 
 <a name="sdk_requirements_environment"></a>
 ## Tango Card Ruby SDK Environment Required ##
@@ -180,7 +180,7 @@ Using these build require RubyGem installs of `json` and `inifile`.
     <li><a href="http://www.ruby-lang.org/en/downloads/" target="_blank">Ruby 1.9.3</a></li>
     <li><a href="http://rubyinstaller.org/downloads/" target="_blank">Development Kit (DevKit)</a>
         <ul>
-            <li>Required for installing `json` and `inifile` gems.
+            <li>Required for installing <code>json</code> and <code>inifile</code> gems.
             <li><a href="http://socrateos.blogspot.com/2011/03/installing-ruby-devkit-for-windows.html" target="_blank">Installing Ruby DevKit for Windows</li>
         </ul>
     </li>
