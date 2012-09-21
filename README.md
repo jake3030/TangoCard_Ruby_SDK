@@ -156,14 +156,8 @@ The wrapper class `TangoCardSdk::TangoCardServiceApi` currently handles the foll
 
 <ul>
     <li><a href="http://www.ruby-lang.org/en/downloads/" target="_blank">Ruby 1.9.3</a></li>
-    <li><code>required</code>
+    <li><code>gem install</code>
         <ul>
-            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/rubygems/rdoc/index.html" target="_blank"><code>rubygems</code></a></li>
-            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/net/http/rdoc/index.html" target="_blank"><code>net/https</code></a></li>
-            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/uri/rdoc/index.html" target="_blank"><code>uri</code></a></li>
-            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/json/rdoc/index.html" target="_blank"><code>json</code></a></li>
-            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/openssl/rdoc/index.html" target="_blank"><code>openssl</code></a></li>
-            <li><a href="http://ruby-doc.org/stdlib-1.9.3/libdoc/singleton/rdoc/index.html" target="_blank"><code>singleton</code></a></li>
             <li><a href="http://rubygems.org/gems/inifile" target="_blank"><code>inifile</code></a></li>
         </ul>
     </li>
