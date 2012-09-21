@@ -1,4 +1,4 @@
-﻿#
+#
 # insufficient_funds_response.rb
 #
 

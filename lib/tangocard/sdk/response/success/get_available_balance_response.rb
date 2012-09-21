@@ -1,4 +1,4 @@
-﻿#
+#
 # get_available_balance_response.rb
 #
 

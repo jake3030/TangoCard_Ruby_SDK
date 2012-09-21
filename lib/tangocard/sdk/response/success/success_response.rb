@@ -1,4 +1,4 @@
-﻿#
+#
 # success_response.rb
 #
 

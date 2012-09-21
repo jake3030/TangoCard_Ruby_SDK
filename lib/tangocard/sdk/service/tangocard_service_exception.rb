@@ -1,4 +1,4 @@
-﻿#
+#
 # tangocard_service_exception.rb
 #
 

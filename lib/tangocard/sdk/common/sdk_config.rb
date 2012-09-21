@@ -1,4 +1,4 @@
-﻿#
+#
 # sdk_config.rb
 #
 

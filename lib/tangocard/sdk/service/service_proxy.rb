@@ -1,4 +1,4 @@
-﻿#
+#
 # service_proxy.rb
 #
 

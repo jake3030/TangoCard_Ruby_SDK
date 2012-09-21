@@ -1,4 +1,4 @@
-﻿#
+#
 # failure_response.rb
 #
 

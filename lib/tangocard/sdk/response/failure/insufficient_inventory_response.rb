@@ -1,4 +1,4 @@
-﻿#
+#
 # insufficient_inventory_response.rb
 #
 

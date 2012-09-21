@@ -1,4 +1,4 @@
-﻿#
+#
 # base_request.rb
 #
 

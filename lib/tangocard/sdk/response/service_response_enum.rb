@@ -1,4 +1,4 @@
-﻿#
+#
 # service_response_enum.rb
 #
 

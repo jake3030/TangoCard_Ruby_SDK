@@ -1,4 +1,4 @@
-﻿#
+#
 # tangocard_store_example.rb, Example code using Tango Card SDK to get available 
 # balance and purchase card.
 # 

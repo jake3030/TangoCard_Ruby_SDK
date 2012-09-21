@@ -1,4 +1,4 @@
-﻿#
+#
 # purchase_card_request.rb
 #
 

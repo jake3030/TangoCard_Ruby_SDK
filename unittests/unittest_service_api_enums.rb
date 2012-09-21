@@ -1,4 +1,4 @@
-﻿#
+#
 # unittest_service_api_enums.rb
 #
 

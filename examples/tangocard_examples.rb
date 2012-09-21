@@ -1,4 +1,4 @@
-﻿#
+#
 # tangocard_examples.rb, Example code using Tango Card SDK
 # 
 

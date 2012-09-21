@@ -1,4 +1,4 @@
-﻿#
+#
 # unittest_purchasecard.rb
 #
 

@@ -1,4 +1,4 @@
-﻿#
+#
 # invalid_credentials_response.rb
 #
 

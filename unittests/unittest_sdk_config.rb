@@ -1,4 +1,4 @@
-﻿#
+#
 # unittest_sdk_config.rb
 #
 

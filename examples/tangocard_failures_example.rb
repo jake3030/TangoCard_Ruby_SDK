@@ -1,4 +1,4 @@
-﻿#
+#
 # tangocard_failures_example.rb, Example code using Tango Card SDK forcing 
 # failures and then collecting responses.
 # 

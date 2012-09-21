@@ -1,4 +1,4 @@
-﻿#
+#
 # tangocard-sdk.rb
 #
 
