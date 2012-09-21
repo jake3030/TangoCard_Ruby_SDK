@@ -204,11 +204,11 @@ If your Ruby version is other than <code>Ruby 1.9.3</code> or <code>Ruby 1.8.7</
 <a name="sdk_requirements_install"></a>
 ## Tango Card Ruby SDK RubyGem Install ##
 
-Use [RubyGem](http://rubygems.org/) to install Tango Card Ruby SDK Gem file:
+Use [RubyGem](http://rubygems.org/) to install Tango Card Ruby SDK Gem file `gems\Ruby193\tangocard_sdk-[current version].gem` for `Ruby 1.9.3`:
 
 ```Test
 
-    > gem install tangocard_sdk-[current version].gem
+    > gem install gems\Ruby193\tangocard_sdk-[current version].gem
 
 ```
 
