@@ -204,7 +204,7 @@ module TangoCardSdk
                     
                     request = Net::HTTP::Post.new(uri.request_uri)
                     request.body = requestJsonEncoded
-                    request["Content-Type"] = "application/json"
+                    request["Content-Type"] = "application/json; charset=utf-8"
 
                     http = Net::HTTP.new(uri.host, uri.port)
                     http.use_ssl = true
