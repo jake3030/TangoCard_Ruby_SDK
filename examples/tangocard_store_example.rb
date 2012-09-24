@@ -93,13 +93,13 @@ module TangoCardSdkExamples
                         enumTangoCardServiceApi,
                         app_username, 
                         app_password,
-                        app_card_sku,                           # cardSku
-                        cardValueTangoCardCents,                # cardValue
-                        true,                                   # tcSend 
-                        "Sally Example",                        # recipientName
-                        "sally@example.com",                    # recipientEmail
-                        "Happy Birthday",                       # giftMessage
-                        "Bill Example"                          # giftFrom
+                        app_card_sku,                                                                   # cardSku
+                        cardValueTangoCardCents,                                                        # cardValue
+                        true,                                                                           # tcSend 
+                        "Sally Customer",                                                               # recipientName
+                        app_username,                                                                   # recipientEmail
+                        "Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n601 Union Street, Suite 4200\nSeattle, WA 98101",      # giftMessage
+                        "Bill Support"                                                                  # giftFrom
                     )
    
                 if not responsePurchaseCard_Delivery.nil?

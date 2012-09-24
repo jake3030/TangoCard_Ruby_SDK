@@ -169,7 +169,6 @@ module TangoCardSdk
                 if requestJsonEncoded.nil? 
                     raise TangoCardSdkException.new( "Failed to map request: %s" % [e.message] )
                 end
-
             rescue TangoCardSdkException => e
                 raise e
             rescue Exception => e
@@ -204,8 +203,8 @@ module TangoCardSdk
                     uri = URI.parse(@path)
                     
                     request = Net::HTTP::Post.new(uri.request_uri)
-                    request.body = requestJsonEncoded                    
-                    request["Content-Type"] = "application/x-www-form-urlencoded"
+                    request.body = requestJsonEncoded
+                    request["Content-Type"] = "application/json"
 
                     http = Net::HTTP.new(uri.host, uri.port)
                     http.use_ssl = true

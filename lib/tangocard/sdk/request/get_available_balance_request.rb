@@ -76,8 +76,6 @@ module TangoCardSdk
             super 
             requestJsonEncoded = nil
             
-            
-            
             begin
             
                 request = {

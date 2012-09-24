@@ -61,14 +61,21 @@ module TangoCardSdk
                 username,
                 password
             )
-
+            
+            if username.nil? 
+                raise ArgumentError.new("Parameter 'username' is not defined.")
+            end
+            if password.nil? 
+                raise ArgumentError.new("Parameter 'password' is not defined.")
+            end
+            
             responseGetAvailableBalance = nil
             begin
                 # set up the request
                 requestGetAvailableBalance = GetAvailableBalanceRequest.new(
                     enumTangoCardServiceApi,
-                    username, 
-                    password
+                    username.strip,
+                    password.strip
                 )
                 
                 if requestGetAvailableBalance.nil?
@@ -130,20 +137,27 @@ module TangoCardSdk
                 giftFrom
             )
             responsePurchaseCard = nil
+            
+            if username.nil? 
+                raise ArgumentError.new("Parameter 'username' is not defined.")
+            end
+            if password.nil? 
+                raise ArgumentError.new("Parameter 'password' is not defined.")
+            end
 
             begin
                 # set up the request
                 requestPurchaseCard = PurchaseCardRequest.new(
                         enumTangoCardServiceApi,
-                        username,
-                        password,
-                        cardSku,
+                        username.nil? ? nil : username.strip,
+                        password.nil? ? nil : password.strip,
+                        cardSku.nil? ? nil : cardSku.strip.force_encoding("UTF-8"),
                         cardValue,
                         tcSend,
-                        recipientName,
-                        recipientEmail,
-                        giftMessage,
-                        giftFrom
+                        recipientName.nil? ? nil : recipientName.strip.force_encoding("UTF-8"),
+                        recipientEmail.nil? ? nil : recipientEmail.strip,
+                        giftMessage.nil? ? nil : (giftMessage.strip.force_encoding("UTF-8")).gsub(/\n/, '<br>'),
+                        giftFrom.nil? ? nil : giftFrom.strip
                     )
 
                 if requestPurchaseCard.nil? 
