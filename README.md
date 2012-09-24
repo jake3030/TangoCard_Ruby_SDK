@@ -162,16 +162,9 @@ The wrapper class `TangoCardSdk::TangoCardServiceApi` currently handles the foll
 <a name="sdk_requirements"></a>
 # Tango Card Ruby SDK Requirements #
 
-The Tango Card Ruby SDK provides the following RubyGem builds:
+The provided built RubyGem file labeled `tangocard_sdk-<current-version>.gem` has been tested within both `Ruby 1.9.3` and `Ruby 1.8.7`.
 
-<dl>
-    <dt><code>Ruby 1.8.7</code></dt>
-    <dd><code>gems\Ruby187\tangocard_sdk-[current version].gem</code></dd>
-    <dt><code>Ruby 1.9.3</code> - The latest stable version </dt>
-    <dd><code>gems\Ruby193\tangocard_sdk-[current version].gem</code></dd>
-</dl>
-
-Using these build require RubyGem installs of <code>json</code> and <code>inifile</code>.
+Using this build requires RubyGem installs of <code>json</code> and <code>inifile</code>.
 
 <a name="sdk_requirements_environment"></a>
 ## Tango Card Ruby SDK Environment Required ##
