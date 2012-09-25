@@ -144,7 +144,7 @@ If you have any questions with the Tango Card SDKs, please contact us at sdk@tan
 To learn more about Tango Card integration solutions, call 1.877.55.TANGO.
 
 <a name="sdk_overview"></a>
-# Tango Card SDK Overview #
+# Tango Card Ruby SDK Overview #
 
 The Tango Card Ruby SDK is a wrapper around the Tango Card Service API. environments. As such, it has two primary types of objects, Requests and Responses; which are handled by a wrapper class `TangoCardSdk::TangoCardServiceApi`.
 
@@ -167,7 +167,7 @@ The provided built RubyGem file labeled `tangocard_sdk-<current-version>.gem` ha
 Using this build requires RubyGem installs of <code>json</code> and <code>inifile</code>.
 
 <a name="sdk_requirements_environment"></a>
-## Tango Card Ruby SDK Environment Required ##
+## Tango Card Ruby SDK Environment ##
 
 <ul>
     <li><a href="http://www.ruby-lang.org/en/downloads/" target="_blank">Ruby 1.9.3</a></li>
