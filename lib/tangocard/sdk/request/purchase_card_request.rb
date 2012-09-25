@@ -173,7 +173,7 @@ module TangoCardSdk
                     raise ArgumentError.new("Parameter 'giftFrom' must have a length less than 256.")
                 end
                 
-                # giftMessage
+                # giftMessage [Optional]
                 if not giftMessage.nil?
                     if not giftMessage.is_a?(String)
                         raise ArgumentError.new("Parameter 'giftMessage' must be a string.")

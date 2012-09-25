@@ -36,3 +36,14 @@
 module Boolean; end 
 class TrueClass; include Boolean; end 
 class FalseClass; include Boolean; end 
+
+
+module TangoCardSdk
+    class Helper
+        # Test if provided value is nil or empty string
+        def self.is_null_or_empty(str)
+            return str.nil? or not str.is_a?(String) or str.empty?
+        end
+    end
+end
+__END__
