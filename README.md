@@ -23,18 +23,16 @@
                     <li><a href="#start_using_gift_cards">The Tango Card and other Retailer Brand Gift Cards</a></li>
                 </ul>
             </li>
-            <li><a href="#sdk_support">Tango Card SDKs Support</a></li>
-            <li><a href="#contact_us">Contact Us</a></li>
         </ul>
     </li>
-    <li><a href="#sdk_overview">Tango Card SDK Overview</a></li>
-    <li><a href="#sdk_requirements">Tango Card SDK Requirements</a>
+    <li><a href="#sdk_support">Tango Card Ruby SDK and Service API Support</a>
         <ul>
-            <li><a href="#sdk_requirements_environment">Environment Required</a></li>
-            <li><a href="#sdk_requirements_build">RubyGem Build</a></li>
-            <li><a href="#sdk_requirements_install">RubyGem Install</a></li>
+            <li><a href="#sdk_support_contact">Contact Us</a></li>
+            <li><a href="#sdk_support_resolve">Resolving Issues using Fiddler 2</a></li>
         </ul>
     </li>
+    <li><a href="#sdk_overview">Tango Card Ruby SDK Overview</a></li>
+    <li><a href="#sdk_requirements">Tango Card SDK Requirements</a></li>
     <li><a href="#tango_card_service_api_requests">Tango Card Service API Requests</a>
         <ul>
             <li><a href="#tango_card_service_api_endpoints">Tango Card Service API Endpoints</a></li>
@@ -136,12 +134,19 @@ The API is optimized for ordering the Tango Card, which has SKU of ```"tango-car
 If you have questions about potentially incorporating other brands or digital goods in your program please contact us at general@tangocard.com.
 
 <a name="sdk_support"></a>
-## Tango Card SDKs Support ##
-If you have any questions with the Tango Card SDKs, please contact us at sdk@tangocard.com.
+# Tango Card PHP SDK and Service API Support #
+If you have any questions with the Tango Card Ruby SDK or our Service API, please contact us at sdk@tangocard.com.
 
-<a name="contact_us"></a>
+<a name="sdk_support_contact"></a>
 ## Contact Us ##
 To learn more about Tango Card integration solutions, call 1.877.55.TANGO.
+
+<a name="sdk_support_resolve"></a>
+## Resolving Issues using Fiddler 2 ##
+
+The best way to resolve any issues that pertain to using our Tango Card Ruby SDK or our Service API is by using this freely available tool <a href="http://www.fiddler2.com/fiddler2/" target="_blank">`Fiddler 2 - Web Debugging Proxy`</a>, and provide us with the raw request and response using its `Inspectors`.
+
+Using `Fiddler 2` will provide the most complete detail and the fast response from Tango Card by understanding if there is an issue on how a request was presented to our service, or if it is an issue with our service on how we replied with your request.
 
 <a name="sdk_overview"></a>
 # Tango Card Ruby SDK Overview #
