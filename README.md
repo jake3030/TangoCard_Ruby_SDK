@@ -81,8 +81,8 @@
 # Introduction #
 
 <a name="tango_card_sdks"></a>
-## Tango Card SDK ##
-Tango Card's SDKs are flexible, secure, and straight forward. It allows any server to purchase the Tango Card and is intended for users requiring high volume transactions.
+## Tango Card SDKs ##
+The Tango Card SDKs are flexible, secure, and straight forward. It allows any server to purchase the Tango Card and is intended for users requiring high volume transactions.
 
 there are several Tango Card SDKs currently available that use the `Tango Card Service API`:
 <ul>
