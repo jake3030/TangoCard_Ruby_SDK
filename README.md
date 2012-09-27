@@ -242,7 +242,7 @@ If your Ruby version is other than <code>Ruby 1.9.3</code> or <code>Ruby 1.8.7</
 <a name="sdk_requirements_install"></a>
 ## Tango Card Ruby SDK RubyGem Install ##
 
-Use [RubyGem](http://rubygems.org/) to install Tango Card Ruby SDK Gem file `tangocard_sdk-[current version].gem`:
+Use [RubyGem](http://rubygems.org/) to install Tango Card Ruby SDK Gem file `tangocard_sdk-[current version].gem`. To assure that you install the correct `tangocard_sdk` gem, uninstall all existing instances within your local ruby environment. Here is an example recommended installation:
 
 ```Text
     > gem uninstall -Iax tangocard_sdk
