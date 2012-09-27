@@ -1,6 +1,6 @@
 <h1>Tango Card Ruby SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-09-21</h4>
+<h4>Update: 2012-09-27</h4>
 ===
 
 # Table of Contents #
@@ -144,9 +144,41 @@ To learn more about Tango Card integration solutions, call 1.877.55.TANGO.
 <a name="sdk_support_resolve"></a>
 ## Resolving Issues using Fiddler 2 ##
 
-The best way to resolve any issues that pertain to using our Tango Card Ruby SDK or our Service API is by using this freely available tool <a href="http://www.fiddler2.com/fiddler2/" target="_blank">`Fiddler 2 - Web Debugging Proxy`</a>, and provide us with the raw request and response using its `Inspectors`.
+The best way to resolve any issues that pertain to using our Tango Card Ruby SDK or our Service API is by using this freely available tool <a href="http://www.fiddler2.com/fiddler2/" target="_blank">`Fiddler 2 - Web Debugging Proxy`</a>, and providing us with the raw request and response bodies using its `Inspectors` tab feature.
 
-Using `Fiddler 2` will provide the most complete detail and the fast response from Tango Card by understanding if there is an issue on how a request was presented to our service, or if it is an issue with our service on how we replied with your request.
+Using `Fiddler 2` will provide us with the most complete detail and the fastest response from Tango Card by understanding if there is an issue on how a request was presented to our service, or if it is an issue with our service on how we replied to your request.
+
+### Fiddler 2 Example - Raw Request from Client - Get Available Balance ###
+
+```Text
+POST https://int.tangocard.com/Version2/GetAvailableBalance HTTP/1.1
+Accept: application/json, text/javascript, */*; q=0.01
+Accept-Language: en-us
+Content-Type: application/json; charset=UTF-8
+Accept-Encoding: gzip, deflate
+User-Agent: Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; WOW64; Trident/5.0)
+Host: int.tangocard.com
+Content-Length: 69
+Connection: Keep-Alive
+Cache-Control: no-cache
+ 
+{"username":"third_party_int@tangocard.com","password":"integrateme"}
+```
+ 
+### Fiddler 2 Example - Raw Response from Service - Get Available Balance ###
+
+```Text
+HTTP/1.1 200 OK
+Date: Wed, 26 Sep 2012 04:30:36 GMT
+Server: Apache/2.2.22 (Ubuntu)
+X-Powered-By: PHP/5.3.10-1ubuntu3.3
+Access-Control-Allow-Origin: *
+Content-Length: 68
+Connection: close
+Content-Type: application/json
+ 
+{"responseType":"SUCCESS","response":{"availableBalance":873431432}}
+```
 
 <a name="sdk_overview"></a>
 # Tango Card Ruby SDK Overview #
@@ -191,7 +223,7 @@ Using this build requires RubyGem installs of <code>json</code> and <code>inifil
 
 If your Ruby version is other than <code>Ruby 1.9.3</code> or <code>Ruby 1.8.7</code>, then this SDK provides a build file `tangocard_sdk.gemspec` to build required `tangocard_sdk`.
 
-```Test
+```Text
     > gem build tangocard_sdk.gemspec
       Successfully built RubyGem
       Name: tangocard_sdk
@@ -202,12 +234,18 @@ If your Ruby version is other than <code>Ruby 1.9.3</code> or <code>Ruby 1.8.7</
 <a name="sdk_requirements_install"></a>
 ## Tango Card Ruby SDK RubyGem Install ##
 
-Use [RubyGem](http://rubygems.org/) to install Tango Card Ruby SDK Gem file `gems\Ruby193\tangocard_sdk-[current version].gem` for `Ruby 1.9.3`:
+Use [RubyGem](http://rubygems.org/) to install Tango Card Ruby SDK Gem file `tangocard_sdk-[current version].gem`:
 
-```Test
-
-    > gem install gems\Ruby193\tangocard_sdk-[current version].gem
-
+```Text
+    > gem uninstall -Iax tangocard_sdk
+    Successfully uninstalled tangocard_sdk-1.0.1.7
+    
+    *> gem install tangocard_sdk-1.0.1.7.gem*
+    Successfully installed tangocard_sdk-1.0.1.7
+    
+    > gem query -n "tangocard_sdk"
+    *** LOCAL GEMS ***
+    tangocard_sdk (1.0.1.7)
 ```
 
 <a name="tango_card_service_api_requests"></a>
@@ -620,7 +658,31 @@ There a several configuration and certification files that are referenced by eit
 <a name="examples"></a>
 ## examples ##
 
-The examples sub-directory contains full "start to finish" examples of all of the supported methods. This includes catching all of the possible failure modes, etc. 
+The examples sub-directory contains full "start to finish" store front examples of all of the supported Tango Card Ruby SDK methods. This includes catching all of the possible failure modes, etc. 
+
+### config/api_config.api ###
+
+When running `examples`, it is pulling configuration values from `config/api_config.api` file. This file can be modified to test against other accounts (`username` and `password`), recipients (`recipientEmail`), card SKU (`cardSku`) and denomination (`cardValue`)
+
+<dl>
+    <dt><code>app_tango_card_service_api</code></dt>
+    <dd>Available Tango Card Service API endpoints are INTEGRATION and PRODUCTION.<br>Default value: <code>INTEGRATION</code><dd>
+
+    <dt><code>app_username</code></dt>
+    <dd>Login `username` credentials for to chosen `app_tango_card_service_api`.<br>Default INTEGRATION `username`: <code>third_party_int@tangocard.com</code><dd>
+
+    <dt><code>app_password</code></dt>
+    <dd>Login `password` credentials for to chosen `app_tango_card_service_api`.<br>Default INTEGRATION `password`: <code>integrateme</code><dd>
+
+    <dt><code>app_card_sku</code></dt>
+    <dd>Gift Card SKU<br>Default SKU: <code>tango-card</code><dd>
+
+    <dt><code>app_card_value</code></dt>
+    <dd>Gift Card Value in Cents (100 = $1.00)<br>Default Value: <code>100</code><dd>
+
+    <dt><code>app_recipient_email</code></dt>
+    <dd>Gift Card Recipient's Email Address<br>Default SKU: <code>sally@example.com</code><dd>
+</dl>
 
 ### tangocard_store_example.rb ###
 
@@ -641,31 +703,40 @@ This example is intended to be run from the command line:
 #### Example Command Line Run ####
 
 ```Text
-    ==============================
-    = Tango Card PHP SDK Example =
-    ==============================
+=== Begin Examples ===
+        Tango Card Ruby SDK version: '1.0.1.7'
+        Example App Config File: './config/app_config.ini'
+
+==============================
+= Tango Card PHP SDK Example =
+==============================
 
         Success - GetAvailableBalance - Initial
-                I have an available balance of $8,734,906.42 dollars.
+        'third_party_int@tangocard.com': Available balance: $8,733,778.32.
 
-        Success - PurchaseCard - Delivery
-                Reference Order ID: 112-09213849-20
-                Card Token:         505b86cd7bcbf4.58389421
-                Card Number:        7001-4040-0104-5484-212
-                Card Pin:           387463
+        Success - PurchaseCard Confirmation with Email Delivery
+        Recipient Email:   'sally@example.com'
+        Gift Card SKU:     'tango-card'
+        Gift Card Value:    100 (cents)
+        Reference Order ID: 112-09214333-27
+        Card Token:         5064a5e7a67759.43161949
+        Card Number:        7001-1040-0143-4184-413
+        Card Pin:           960802
 
-        Success - PurchaseCard - No Delivery
-                Reference Order ID: 112-09213850-20
-                Card Token:         505b86ce44be40.34850325
-                Card Number:        7001-1040-0105-2384-313
-                Card Pin:           835609
+        Success - PurchaseCard Confirmation without Email Delivery
+        Gift Card SKU:     'tango-card'
+        Gift Card Value:    100 (cents)
+        Reference Order ID: 112-09214334-27
+        Card Token:         5064a5e8769022.73062233
+        Card Number:        7001-4040-0104-4352-615
+        Card Pin:           789450
 
         Success - GetAvailableBalance - Concluding
-                I have an available balance of $8,734,904.42 dollars.
+        'third_party_int@tangocard.com': Available balance: $8,733,776.32.
 
-    ==============================
-    =   The End                  =
-    ==============================
+==============================
+=   The End                  =
+==============================
 ```
 
 ### tangocard_failures_example.rb ###

@@ -49,6 +49,7 @@ module TangoCardSdkExamples
         include Singleton
 
         attr_reader :config_vars
+        attr_reader :config_vars
 
         #
         # Constructior
@@ -63,11 +64,11 @@ module TangoCardSdkExamples
         def read_config()
             @config_vars = nil
             begin
-                config_file = File.dirname(File.dirname(__FILE__)) + "/config/app_config.ini"
-                if not File.file?(config_file)
-                    raise Exception.new( "TangocardExample: Missing config file: '%s'" % [config_file] )
+                @config_file = File.dirname(File.dirname(__FILE__)) + "/config/app_config.ini"
+                if not File.file?(@config_file)
+                    raise Exception.new( "TangocardExample: Missing config file: '%s'" % [@config_file] )
                 end
-                config_ini = IniFile.new(:filename => config_file, :comment => '#', :parameter => '=')
+                config_ini = IniFile.new(:filename => @config_file, :comment => '#', :parameter => '=')
                 @config_vars = config_ini['TANGOCARD']
             rescue Exception => e
                 raise e
@@ -83,12 +84,16 @@ module TangoCardSdkExamples
             end
 
             begin
+                puts "=== Begin Examples ==="
+                puts "\tTango Card Ruby SDK version: '%s'" % [TangoCardSdk::TangoCardServiceApi.version]
+                puts "\tExample App Config File: '%s'" % [@config_file]
                 TangoCard_Store_Example.run(@config_vars)
                 TangoCard_Failures_Example.run(@config_vars)
+              puts "=== Begin Examples ==="
             rescue Exception => e
-                p "=== Unexpected Error ==="
-                p e.message
-                p e.backtrace
+                puts "=== Unexpected Error ==="
+                puts e.message
+                puts e.backtrace
             end
         end
         

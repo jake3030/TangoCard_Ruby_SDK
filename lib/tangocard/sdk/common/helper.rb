@@ -42,7 +42,14 @@ module TangoCardSdk
     class Helper
         # Test if provided value is nil or empty string
         def self.is_null_or_empty(str)
-            return str.nil? or not str.is_a?(String) or str.empty?
+            return (str.nil? or not str.is_a?(String) or str.empty?)
+        end
+        
+        # Remove all new line character combinations from provided string
+        #
+        # [param] string str
+        def self.nl_to_br(str)
+            return str.gsub(/\r\n/, "<br>").gsub(/\n\r/, "<br>").gsub(/\r/, "<br>").gsub(/\n/, "<br>")
         end
     end
 end

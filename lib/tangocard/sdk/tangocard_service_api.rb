@@ -30,7 +30,7 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     Id: tangocard_service_api.rb 2012-09-18 18:00:00 PST 
+# [version]     Id: tangocard_service_api.rb 2012-09-27 12:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -42,7 +42,14 @@
 #
 module TangoCardSdk
     class TangoCardServiceApi
-
+        
+        # Return current Ruby SDK version
+        #
+        # [return] string tc_sdk_version
+        def self.version()
+            return SdkConfig.instance.config_value("tc_sdk_version").to_s
+        end
+        
         # 
         # Get the available Tango Card account balance for provided authentication (username and password)
         #
@@ -137,15 +144,28 @@ module TangoCardSdk
                 giftFrom
             )
             responsePurchaseCard = nil
-            
+
             if Helper.is_null_or_empty(username) 
                 raise ArgumentError.new("Parameter 'username' is not defined.")
             end
             if Helper.is_null_or_empty(password)
                 raise ArgumentError.new("Parameter 'password' is not defined.")
             end
-
-            crlf = /(\r\n|\n\r|\r|\n)/  
+            if Helper.is_null_or_empty(cardSku)
+                raise ArgumentError.new("Parameter 'cardSku' is not defined.")
+            end
+            if cardValue.nil?
+                raise ArgumentError.new("Parameter 'cardValue' is not defined.")
+            end
+            if not cardValue.is_a?(Integer)
+                raise ArgumentError.new("Parameter 'cardValue' is not an integer.")
+            end
+            if tcSend.nil?
+                raise ArgumentError.new("Parameter 'tcSend' is not defined.")
+            end
+            if not tcSend.is_a?(Boolean)
+                raise ArgumentError.new("Parameter 'tcSend' is not a boolean.")
+            end
                     
             begin
                 # set up the request
@@ -153,12 +173,12 @@ module TangoCardSdk
                         enumTangoCardServiceApi,
                         username.strip,
                         password,
-                        Helper.is_null_or_empty(cardSku)        ? nil : cardSku.strip.force_encoding("UTF-8"),
+                        Helper.is_null_or_empty(cardSku)        ? nil : cardSku.strip,
                         cardValue,
                         tcSend,
-                        Helper.is_null_or_empty(recipientName)  ? nil : recipientName.strip.force_encoding("UTF-8"),
+                        Helper.is_null_or_empty(recipientName)  ? nil : recipientName.strip,
                         Helper.is_null_or_empty(recipientEmail) ? nil : recipientEmail.strip,
-                        Helper.is_null_or_empty(giftMessage)    ? nil : (giftMessage.strip.force_encoding("UTF-8")).gsub(crlf, '<br>'),
+                        Helper.is_null_or_empty(giftMessage)    ? nil : Helper.nl_to_br(giftMessage.strip),
                         Helper.is_null_or_empty(giftFrom)       ? nil : giftFrom.strip
                     )
 

@@ -88,17 +88,17 @@ module TangoCardSdkExamples
                 end
             rescue TangoCardSdk::TangoCardServiceException => e
                 puts "\n\t=== Tango Card Service Failure ==="
-                puts "\t\tFailure response type: %s" % [e.responseType]
-                puts "\t\tFailure response:      %s" % [e.message]
+                puts "\tFailure response type: %s" % [e.responseType]
+                puts "\tFailure response:      %s" % [e.message]
             rescue TangoCardSdk::TangoCardSdkException => e
                 puts "\n\t=== Tango Card SDK Failure ==="
-                puts "\t\t" + e.message
-                puts "\t\t" + e.backtrace
+                puts "\t" + e.message
+                puts "\t" + e.backtrace
             rescue Exception => e
                 puts "\n\t=== Unexpected Error ==="
-                puts "\t\t" + e.class
-                puts "\t\t" + e.message
-                puts "\t\t" + e.backtrace
+                puts "\t" + e.class
+                puts "\t" + e.message
+                puts "\t" + e.backtrace
             end
         
             puts "\n===== End Get Available Balance with Invalid Credentials ===="
@@ -139,22 +139,22 @@ module TangoCardSdkExamples
                 end
             rescue TangoCardSdk::TangoCardServiceException => e
                 puts "\n\t=== Tango Card Service Failure ==="
-                puts "\t\tFailure response type: %s" % [e.responseType]
-                puts "\t\tFailure response:      %s" % [e.message]
+                puts "\tFailure response type: %s" % [e.responseType]
+                puts "\tFailure response:      %s" % [e.message]
                 
                 if e.responseType == TangoCardSdk::ServiceResponseEnum.to_s(TangoCardSdk::ServiceResponseEnum::INS_FUNDS)
-                    puts "\t\tAvailable Balance: %s" % [TangocardExamples::currencify(e.response().availableBalance.to_f/100)]
-                    puts "\t\tOrder Cost       : %s" % [TangocardExamples::currencify(e.response().orderCost.to_f/100)]
+                    puts "\tAvailable Balance: %s" % [TangocardExamples::currencify(e.response().availableBalance.to_f/100)]
+                    puts "\tOrder Cost       : %s" % [TangocardExamples::currencify(e.response().orderCost.to_f/100)]
                 end
             rescue TangoCardSdk::TangoCardSdkException => e
                 puts "\n\t=== Tango Card SDK Failure ==="
-                puts "\t\t" + e.message
-                puts "\t\t" + e.backtrace
+                puts "\t" + e.message
+                puts "\t" + e.backtrace
             rescue Exception => e
                 puts "\n\t=== Unexpected Error ==="
-                puts "\t\t" + e.class
-                puts "\t\t" + e.message
-                puts "\t\t" + e.backtrace
+                puts "\t" + e.class
+                puts "\t" + e.message
+                puts "\t" + e.backtrace
             end
         
             puts "\n======== End Purchase Card with Insufficient Funds ========"

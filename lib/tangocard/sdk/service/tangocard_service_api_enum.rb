@@ -59,7 +59,7 @@ module TangoCardSdk
         # [constant] array
         #
         ENUM_TO_STRING = {
-                TangoCardServiceApiEnum::UNDEFINED => "UNDEFINED",
+                TangoCardServiceApiEnum::UNDEFINED => "TEST",
                 TangoCardServiceApiEnum::INTEGRATION => "INTEGRATION",
                 TangoCardServiceApiEnum::PRODUCTION => "PRODUCTION"
                 }
@@ -69,7 +69,7 @@ module TangoCardSdk
         # [constant] array
         #
         STRING_TO_ENUM = {
-                "UNDEFINED" => TangoCardServiceApiEnum::UNDEFINED,
+                "TEST" => TangoCardServiceApiEnum::UNDEFINED,
                 "INTEGRATION" => TangoCardServiceApiEnum::INTEGRATION,
                 "PRODUCTION" => TangoCardServiceApiEnum::PRODUCTION
                 }
