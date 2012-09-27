@@ -44,13 +44,13 @@
             <li><a href="#tango_card_service_api_security">Tango Card Service API Security</a></li>
         </ul>
     </li>
-    <li><a href="#tango_card_sdk_methods">Tango Card SDK Methods</a>
+    <li><a href="#tango_card_sdk_methods">SDK Methods</a>
         <ul>
             <li><a href="#get_available_balance">Get Available Balance</a></li>
             <li><a href="#purchase_card">Purchase Card</a></li>
         </ul>
     </li>
-    <li><a href="#tango_card_error_handling">Tango Card Error Handling</a>
+    <li><a href="#tango_card_error_handling">SDK Error Handling</a>
         <ul>
             <li><a href="#service_failure_responses">Service Failure Responses</a></li>
             <li><a href="#sdk_error_responses">SDK Error Responses</a></li>
@@ -312,7 +312,7 @@ The use of SSL allows for securely transmitting data and prevents <a href="http:
 The lack of sessions and the inability to communicate with the API over HTTP prevents <a href="http://en.wikipedia.org/wiki/Session_hijacking" target="_blank">session hijacking</a> and <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">cross-site request forgery</a>.
 
 <a name="tango_card_sdk_methods"></a>
-# Tango Card SDK Methods #
+# SDK Methods #
 
 <a name="get_available_balance"></a>
 ## Get Available Balance ##
@@ -484,7 +484,7 @@ Assuming success, the `out` parameter `response` will be an instance of `TangoCa
 </dl>
 
 <a name="tango_card_error_handling"></a>
-# Tango Card Error Handling #
+# SDK Error Handling #
 
 The Tango Card Service API SDK handles its errors by throwing the following exceptions:
 
