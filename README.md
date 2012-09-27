@@ -216,6 +216,7 @@ Using this build requires RubyGem installs of <code>json</code> and <code>inifil
     </li>
     <li><code>gem install json</code></li>
     <li><code>gem install inifile</code></li>
+    <li><b><code>gem install tangocard_sdk-[current version].gem</code></b></li>
 </ul>
 
 <a name="sdk_requirements_build"></a>
@@ -227,8 +228,8 @@ If your Ruby version is other than <code>Ruby 1.9.3</code> or <code>Ruby 1.8.7</
     > gem build tangocard_sdk.gemspec
       Successfully built RubyGem
       Name: tangocard_sdk
-      Version: 1.0.8
-      File: tangocard_sdk-1.0.8.gem
+      Version: 1.0.10
+      File: tangocard_sdk-1.0.10.gem
 ```
 
 <a name="sdk_requirements_install"></a>
@@ -238,14 +239,14 @@ Use [RubyGem](http://rubygems.org/) to install Tango Card Ruby SDK Gem file `tan
 
 ```Text
     > gem uninstall -Iax tangocard_sdk
-    Successfully uninstalled tangocard_sdk-1.0.1.7
+    Successfully uninstalled tangocard_sdk-1.0.10
     
-    *> gem install tangocard_sdk-1.0.1.7.gem*
-    Successfully installed tangocard_sdk-1.0.1.7
+    > gem install tangocard_sdk-1.0.10.gem
+    Successfully installed tangocard_sdk-1.0.10
     
     > gem query -n "tangocard_sdk"
     *** LOCAL GEMS ***
-    tangocard_sdk (1.0.1.7)
+    tangocard_sdk (1.0.10)
 ```
 
 <a name="tango_card_service_api_requests"></a>
@@ -704,7 +705,7 @@ This example is intended to be run from the command line:
 
 ```Text
 === Begin Examples ===
-        Tango Card Ruby SDK version: '1.0.1.7'
+        Tango Card Ruby SDK version: '1.0.10'
         Example App Config File: './config/app_config.ini'
 
 ==============================
