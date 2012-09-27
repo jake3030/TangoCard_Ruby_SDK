@@ -32,7 +32,12 @@
         </ul>
     </li>
     <li><a href="#sdk_overview">Tango Card Ruby SDK Overview</a></li>
-    <li><a href="#sdk_requirements">Tango Card SDK Requirements</a></li>
+    <li><a href="#sdk_requirements">Tango Card SDK Requirements</a>
+        <ul>
+            <li><a href="#sdk_requirements_environment">Gem Environment Requirements</a></li>
+            <li><a href="#sdk_requirements_install">Gem Installation</a></li>
+        </ul>
+    </li>
     <li><a href="#tango_card_service_api_requests">Tango Card Service API Requests</a>
         <ul>
             <li><a href="#tango_card_service_api_endpoints">Tango Card Service API Endpoints</a></li>
@@ -211,7 +216,7 @@ The provided built RubyGem file labeled `tangocard_sdk-<current-version>.gem` ha
 Using this build requires RubyGem installs of <code>json</code> and <code>inifile</code>.
 
 <a name="sdk_requirements_environment"></a>
-## Tango Card Ruby SDK Environment ##
+## Gem Environment Requirements ##
 
 <ul>
     <li><a href="http://www.ruby-lang.org/en/downloads/" target="_blank">Ruby 1.9.3</a></li>
@@ -226,21 +231,8 @@ Using this build requires RubyGem installs of <code>json</code> and <code>inifil
     <li><b><code>gem install tangocard_sdk-[current version].gem</code></b></li>
 </ul>
 
-<a name="sdk_requirements_build"></a>
-## Tango Card Ruby SDK RubyGem Build ##
-
-If your Ruby version is other than <code>Ruby 1.9.3</code> or <code>Ruby 1.8.7</code>, then this SDK provides a build file `tangocard_sdk.gemspec` to build required `tangocard_sdk`.
-
-```Text
-    > gem build tangocard_sdk.gemspec
-      Successfully built RubyGem
-      Name: tangocard_sdk
-      Version: 1.0.10
-      File: tangocard_sdk-1.0.10.gem
-```
-
 <a name="sdk_requirements_install"></a>
-## Tango Card Ruby SDK RubyGem Install ##
+## Gem Installation ##
 
 Use [RubyGem](http://rubygems.org/) to install Tango Card Ruby SDK Gem file `tangocard_sdk-[current version].gem`. To assure that you install the correct `tangocard_sdk` gem, uninstall all existing instances within your local ruby environment. Here is an example recommended installation:
 
