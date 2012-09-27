@@ -80,13 +80,21 @@
 <a name="introduction"></a>
 # Introduction #
 
-<a name="tango_card_sdk"></a>
+<a name="tango_card_sdks"></a>
 ## Tango Card SDK ##
-Tango Card's SDK is flexible, secure, and straightforward. It allows any server to purchase the Tango Card and is intended for users requiring high volume transactions and processes.
+Tango Card's SDKs are flexible, secure, and straight forward. It allows any server to purchase the Tango Card and is intended for users requiring high volume transactions.
+
+there are several Tango Card SDKs currently available that use the `Tango Card Service API`:
+<ul>
+    <li><a href="https://github.com/tangocarddev/TangoCard_DotNet_SDK" target="_blank">Tango Card C#/.Net 4.0 SDK</a></li>
+    <li><a href="https://github.com/tangocarddev/TangoCard_PHP_SDK" target="_blank">Tango Card PHP SDK</a></li>
+    <li><a href="https://github.com/tangocarddev/TangoCard_Java_SDK" target="_blank">Tango Card Java SDK</a></li>
+    <li><a href="https://github.com/tangocarddev/TangoCard_Ruby_SDK" target="_blank">Tango Card Ruby SDK</a></li>
+</ul>
 
 <a name="tango_card_service_api"></a>
 ## Tango Card Service API ##
-For those developers who wish to develop directly with our Tango Card API endpoints and do not wish to use our available SDKs or need more detail of how our API is defined, the following document is available:
+For those developers who wish to develop directly with our `Tango Card Service API` endpoints and do not wish to use our available SDKs or need more detail of how our API is defined, the following document is available:
 <ul>
     <li><a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a></li>
 </ul>
