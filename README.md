@@ -56,8 +56,15 @@
         <ul>
             <li><a href="#lib">lib</a></li>
             <li><a href="#configuration_files">configuration files</a></li>
-            <li><a href="#examples">examples</a></li>        
-            <li><a href="#unittests">unittests</a></li>
+            <li><a href="#examples">examples</a>
+                <ul>
+                    <li><a href="#examples_config">Example Configuration</a></li>
+                    <li><a href="#examples_success">Success Requests</a></li>
+                    <li><a href="#examples_failures">Failure Requests</a></li>
+                </ul>
+            </li>        
+            <li><a href="#unittests">unittests</a>
+            </li>
         </ul>
     </li>
     <li><a href="#sdk_development_environment">SDK Development Environment</a></li>
@@ -134,7 +141,7 @@ The API is optimized for ordering the Tango Card, which has SKU of ```"tango-car
 If you have questions about potentially incorporating other brands or digital goods in your program please contact us at general@tangocard.com.
 
 <a name="sdk_support"></a>
-# Tango Card PHP SDK and Service API Support #
+# Tango Card Ruby SDK and Service API Support #
 If you have any questions with the Tango Card Ruby SDK or our Service API, please contact us at sdk@tangocard.com.
 
 <a name="sdk_support_contact"></a>
@@ -171,7 +178,7 @@ Cache-Control: no-cache
 HTTP/1.1 200 OK
 Date: Wed, 26 Sep 2012 04:30:36 GMT
 Server: Apache/2.2.22 (Ubuntu)
-X-Powered-By: PHP/5.3.10-1ubuntu3.3
+X-Powered-By: Ruby/5.3.10-1ubuntu3.3
 Access-Control-Allow-Origin: *
 Content-Length: 68
 Connection: close
@@ -659,9 +666,10 @@ There a several configuration and certification files that are referenced by eit
 <a name="examples"></a>
 ## examples ##
 
-The examples sub-directory contains full "start to finish" store front examples of all of the supported Tango Card Ruby SDK methods. This includes catching all of the possible failure modes, etc. 
+The `examples` sub-directory contains full "start to finish" store front examples of all of the supported Tango Card Ruby SDK methods. This includes catching all of the possible failure modes, etc. 
 
-### config/api_config.api ###
+<a name="examples_config"></a>
+### Example Configuration: `config/api_config.api` ###
 
 When running `examples`, it is pulling configuration values from `config/api_config.api` file. This file can be modified to test against other accounts (`username` and `password`), recipients (`recipientEmail`), card SKU (`cardSku`) and denomination (`cardValue`)
 
@@ -685,7 +693,8 @@ When running `examples`, it is pulling configuration values from `config/api_con
     <dd>Gift Card Recipient's Email Address<br>Default SKU: <code>sally@example.com</code><dd>
 </dl>
 
-### tangocard_store_example.rb ###
+<a name="examples_success"></a>
+### Success Request Examples: `tangocard_store_example.rb` ###
 
 This is a complete example of requesting available balance and purchasing Tango Cards.
 
@@ -709,7 +718,7 @@ This example is intended to be run from the command line:
         Example App Config File: './config/app_config.ini'
 
 ==============================
-= Tango Card PHP SDK Example =
+= Tango Card Ruby SDK Example =
 ==============================
 
         Success - GetAvailableBalance - Initial
@@ -740,7 +749,8 @@ This example is intended to be run from the command line:
 ==============================
 ```
 
-### tangocard_failures_example.rb ###
+<a name="examples_failures"></a>
+### Failure Request Examples: `tangocard_failures_example.rb` ###
 
 Example of how the SDK handles various failure responses, such as:
 * Insufficient Funds
@@ -759,7 +769,7 @@ This example is intended to be run from the command line:
 
 ```Text
     ==============================
-    = Tango Card PHP SDK Example =
+    = Tango Card Ruby SDK Example =
     =   with Failures            =
     ==============================
 

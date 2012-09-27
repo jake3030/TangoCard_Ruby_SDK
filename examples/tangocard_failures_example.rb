@@ -47,7 +47,7 @@ module TangoCardSdkExamples
         
         def self.run(config_vars)
             puts "\n=============================="
-            puts "= Tango Card PHP SDK Example ="
+            puts "= Tango Card Ruby SDK Example ="
             puts "=   with Failures            ="
             puts "=============================="
             
