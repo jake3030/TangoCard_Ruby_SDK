@@ -31,8 +31,8 @@
             <li><a href="#sdk_support_resolve">Resolving Issues using Fiddler 2</a></li>
         </ul>
     </li>
-    <li><a href="#sdk_overview">Tango Card Ruby SDK Overview</a></li>
-    <li><a href="#sdk_requirements">Tango Card SDK Requirements</a>
+    <li><a href="#sdk_overview"> SDK Overview</a></li>
+    <li><a href="#sdk_requirements">SDK Requirements</a>
         <ul>
             <li><a href="#sdk_requirements_environment">Gem Environment Requirements</a></li>
             <li><a href="#sdk_requirements_install">Gem Installation</a></li>
@@ -193,7 +193,7 @@ Content-Type: application/json
 ```
 
 <a name="sdk_overview"></a>
-# Tango Card Ruby SDK Overview #
+#  SDK Overview #
 
 The Tango Card Ruby SDK is a wrapper around the Tango Card Service API. environments. As such, it has two primary types of objects, Requests and Responses; which are handled by a wrapper class `TangoCardSdk::TangoCardServiceApi`.
 
