@@ -71,6 +71,10 @@ module TangoCardSdkExamples
                 cardValueTangoCardCents = Integer(app_card_value)
                 enumTangoCardServiceApi = TangoCardSdk::TangoCardServiceApiEnum::to_enum(app_tango_card_service_api)
                 
+                #
+                # Get Available Balance for account of provided username\password credentials
+                #
+                
                 responseGetAvailableBalance = TangoCardSdk::TangoCardServiceApi.get_available_balance(
                     enumTangoCardServiceApi,
                     app_username, 
@@ -90,11 +94,15 @@ module TangoCardSdkExamples
                     raise RuntimeError.new('Unexpected response.')
                 end
                 
+                #
+                # Purchase Card (with emailing to recipientEmail) using funds from account of provided username\password credentials
+                #
+                
                 giftMessage = "Example: Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n\r601 Union Street, Suite 4200\r\nSeattle, WA\r98101"
 
                 responsePurchaseCard_Delivery = TangoCardSdk::TangoCardServiceApi.purchase_card(
                         enumTangoCardServiceApi,
-                        app_username, 
+                        app_username,
                         app_password,
                         app_card_sku,                                                                   # cardSku
                         cardValueTangoCardCents,                                                        # cardValue in cents (example 500 = $5.00
@@ -123,6 +131,10 @@ module TangoCardSdkExamples
                     raise RuntimeError.new('Unexpected response.')
                 end
 
+                #
+                # Purchase Card (without emailing) using funds from account of provided username\password credentials
+                #
+                
                 responsePurchaseCard_NoDelivery = TangoCardSdk::TangoCardServiceApi.purchase_card(
                         enumTangoCardServiceApi,
                         app_username, 
@@ -152,6 +164,9 @@ module TangoCardSdkExamples
                     raise RuntimeError.new('Unexpected response.')
                 end
                 
+                #
+                # Get Available Balance (updated) for account of provided username\password credentials
+                #
                 responseGetAvailableBalanceUpdate = TangoCardSdk::TangoCardServiceApi.get_available_balance(
                         enumTangoCardServiceApi,
                         app_username, 

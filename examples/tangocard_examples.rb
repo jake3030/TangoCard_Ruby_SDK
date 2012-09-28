@@ -89,7 +89,7 @@ module TangoCardSdkExamples
                 puts "\tExample App Config File: '%s'" % [@config_file]
                 TangoCard_Store_Example.run(@config_vars)
                 TangoCard_Failures_Example.run(@config_vars)
-              puts "=== Begin Examples ==="
+              puts "=== End Examples ==="
             rescue Exception => e
                 puts "=== Unexpected Error ==="
                 puts e.message

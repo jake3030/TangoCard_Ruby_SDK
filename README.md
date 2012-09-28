@@ -67,9 +67,8 @@
                     <li><a href="#examples_success">Success Requests</a></li>
                     <li><a href="#examples_failures">Failure Requests</a></li>
                 </ul>
-            </li>        
-            <li><a href="#unittests">unittests</a>
             </li>
+            <li><a href="#unittests">unittests</a></li>
         </ul>
     </li>
     <li><a href="#sdk_development_environment">SDK Development Environment</a></li>
@@ -103,7 +102,7 @@ For those developers who wish to develop directly with our `Tango Card Service A
 ## Incorporate the Tango Card ##
 The Tango Card SDKs, through the <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, allows you to incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications. 
 
-Tango Card is the “exactly what you want” gift card and allows the recipient to use their value exactly how they want – they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
+Tango Card is the "exactly what you want" gift card and allows the recipient to use their value exactly how they want – they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
 
 Tango Card value can be used via the web or from almost any mobile device. There are no fees or expiration dates of any kind. It’s great for the recipient, and even better for you because it is an entire gift card program delivered in one card allowing you to focus on your core business. 
 
@@ -156,6 +155,8 @@ If you have questions about potentially incorporating other brands or digital go
 <a name="sdk_support"></a>
 # Tango Card Ruby SDK and Service API Support #
 If you have any questions with the Tango Card Ruby SDK or our Service API, please contact us at sdk@tangocard.com.
+
+If you have any issues using this SKD, such as bugs or change requests, then please <a href="https://github.com/tangocarddev/TangoCard_Ruby_SDK/issues?state=open" target="_blank">Open Issue</a> in this repository.
 
 <a name="sdk_support_contact"></a>
 ## Contact Us ##
@@ -217,7 +218,7 @@ The wrapper class `TangoCardSdk::TangoCardServiceApi` currently handles the foll
 ![Tango Card Service Api](https://github.com/tangocarddev/TangoCard_Ruby_SDK/raw/master/doc/images/tangocardserviceapi.png "Tango Card Service API")
 
 <a name="sdk_requirements"></a>
-# Tango Card Ruby SDK Requirements #
+# SDK Requirements #
 
 The provided built RubyGem file labeled `tangocard_sdk-<current-version>.gem` has been tested within both `Ruby 1.9.3` and `Ruby 1.8.7`.
 
@@ -829,7 +830,7 @@ Unittests for this SDK can be run from the command line. File `unittests\unittes
 <a name="sdk_development_environment"></a>
 # SDK Development Environment #
 
-This Ruby SDK project was built using:
+This Ruby SDK was built using:
 
 * [eclipse Juno](http://www.eclipse.org/juno/)
 * [Ruby 1.9.3](http://www.ruby-lang.org/en/downloads/)
