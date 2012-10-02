@@ -43,8 +43,8 @@ module TangoCardSdk
         # Set up a new GetAvailableBalance request.
         #
         # [param] TangoCardServiceApiEnum   enumTangoCardServiceApi Selection of which Tango Card Service API environment
-        # [param] string username Tango Card Service access username
-        # [param] string password Tango Card Service access password
+        # [param] string username The username to access User's registered Tango Card account
+        # [param] string password The password to access User's registered Tango Card account
         #
         def initialize( 
                 enumTangoCardServiceApi, 

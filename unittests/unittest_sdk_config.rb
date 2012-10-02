@@ -28,7 +28,7 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     unittest_sdk_config.rb 2012-20-19 15:00:00 PST
+# [version]     unittest_sdk_config.rb 2012-10-02 15:00:00 PST
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
@@ -51,12 +51,6 @@ module TangoCardSdkUnitTest
             actual = TangoCardSdk::SdkConfig.instance.config_value("tc_sdk_environment_production_url")
             assert_equal( "https://api.tangocard.com", actual )
         end
-        
-      
-      def test_tc_sku
-          actual = TangoCardSdk::SdkConfig.instance.config_value("tc_sdk_card_sku")
-          assert_equal( "tango-card", actual )
-      end
     end
 end
 __END__

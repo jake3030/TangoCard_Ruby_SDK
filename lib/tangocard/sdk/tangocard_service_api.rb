@@ -54,8 +54,8 @@ module TangoCardSdk
         # Get the available Tango Card account balance for provided authentication (username and password)
         #
         # [param] TangoCardSdk::TangoCardServiceApiEnum enumTangoCardServiceApi
-        # [param] string username
-        # [param] string password
+        # [param] string username The username to access User's registered Tango Card account
+        # [param] string password The password to access User's registered Tango Card account
         # 
         # [return] TangoCardSdk::GetAvailableBalanceResponse responseGetAvailableBalance
         # 
@@ -115,15 +115,16 @@ module TangoCardSdk
         # Upon successful purchase, Tango Card Service will respond with confirmation information.
         #
         # [param] TangoCardSdk::TangoCardServiceApiEnum enumTangoCardServiceApi
-        # [param] string username
-        # [param] string password
-        # [param] string cardSku
-        # [param] string cardValue
-        # [param] boolean tcSend
-        # [param] string recipientName
-        # [param] string recipientEmail
-        # [param] string giftMessage
-        # [param] string giftFrom
+        # [param] string username The username to access User's registered Tango Card account
+        # [param] string password The password to access User's registered Tango Card account
+        # [param] string cardSku The SKU of the card to purchase.
+        # [param] int    cardValue The value of the card to buy in cents (example 500 = $5.00).
+        # [param] bool   tcSend Determines if Tango Card Service will send an email with gift card information to recipient. Email gift card and return the card's details (true), or just return the card's details (false).
+        # [param] string recipientName The name of the recipient. Only necessary if tcSend = true. If tcSend = false, then this input will be ignored.
+        # [param] string recipientEmail The email address of the recipient. Only necessary if tcSend = true. If tcSend = false, then this input will be ignored.
+        # [param] string giftMessage The gift message to send to the recipient. Only necessary if tcSend = true. If tcSend = false, this input will be ignored.
+        # [param] string giftFrom The name of the person giving the gift. Optional if tcSend = true. If tcSend = false, then this input will be ignored.
+        # [param] string companyIdentifier The Company identifier for which Email Template to use when sending Gift Card. Optional if tcSend = true. If tcSend = false, then this input will be ignored.
         # 
         # [return] TangoCardSdk::PurchaseCardResponse Returns responsePurchaseCard upon success, else nil.
         # 
@@ -141,7 +142,8 @@ module TangoCardSdk
                 recipientName,
                 recipientEmail,
                 giftMessage,
-                giftFrom
+                giftFrom,
+                companyIdentifier
             )
             responsePurchaseCard = nil
 
@@ -173,13 +175,14 @@ module TangoCardSdk
                         enumTangoCardServiceApi,
                         username.strip,
                         password,
-                        Helper.is_null_or_empty(cardSku)        ? nil : cardSku.strip,
+                        cardSku.strip,
                         cardValue,
                         tcSend,
-                        Helper.is_null_or_empty(recipientName)  ? nil : recipientName.strip,
-                        Helper.is_null_or_empty(recipientEmail) ? nil : recipientEmail.strip,
-                        Helper.is_null_or_empty(giftMessage)    ? nil : Helper.nl_to_br(giftMessage.strip),
-                        Helper.is_null_or_empty(giftFrom)       ? nil : giftFrom.strip
+                        Helper.is_null_or_empty(recipientName)      ? nil : recipientName.strip,
+                        Helper.is_null_or_empty(recipientEmail)     ? nil : recipientEmail.strip,
+                        Helper.is_null_or_empty(giftMessage)        ? nil : Helper.nl_to_br(giftMessage.strip),
+                        Helper.is_null_or_empty(giftFrom)           ? nil : giftFrom.strip,
+                        Helper.is_null_or_empty(companyIdentifier)  ? nil : companyIdentifier.strip
                     )
 
                 if requestPurchaseCard.nil? 

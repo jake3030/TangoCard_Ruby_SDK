@@ -29,7 +29,7 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     service_response_enum.rb 2012-20-19 15:00:00 PST
+# [version]     service_response_enum.rb 2012-10-02 15:00:00 PST
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
