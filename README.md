@@ -347,7 +347,7 @@ The use of SSL allows for securely transmitting data and prevents <a href="http:
 
 The lack of sessions and the inability to communicate with the API over HTTP prevents <a href="http://en.wikipedia.org/wiki/Session_hijacking" target="_blank">session hijacking</a> and <a href="http://en.wikipedia.org/wiki/Cross-site_request_forgery" target="_blank">cross-site request forgery</a>.
 
-<a name="tango_card_sdk_methods"></a>
+<a name="sdk_methods"></a>
 # SDK Methods #
 
 <a name="get_available_balance"></a>
