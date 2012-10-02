@@ -104,13 +104,14 @@ module TangoCardSdkExamples
                         enumTangoCardServiceApi,
                         app_username,
                         app_password,
-                        app_card_sku,                                                                   # cardSku
-                        cardValueTangoCardCents,                                                        # cardValue in cents (example 500 = $5.00
-                        true,                                                                           # tcSend 
-                        "Sally Customer",                                                               # recipientName
-                        app_recipient_email,                                                            # recipientEmail
-                        giftMessage,                                                                    # giftMessage
-                        "Bill Support"                                                                  # giftFrom
+                        app_card_sku,                                       # cardSku
+                        cardValueTangoCardCents,                            # cardValue in cents (example 500 = $5.00
+                        true,                                               # tcSend 
+                        "Sally Customer",                                   # recipientName
+                        app_recipient_email,                                # recipientEmail
+                        giftMessage,                                        # giftMessage
+                        "Bill Support",                                     # giftFrom
+                        nil                                                 # companyIdentifier (default is Tango Card email template)
                     )
    
                 if not responsePurchaseCard_Delivery.nil?
@@ -145,7 +146,8 @@ module TangoCardSdkExamples
                         nil,                                       # recipientName
                         nil,                                       # recipientEmail
                         nil,                                       # giftMessage
-                        nil                                        # giftFrom 
+                        nil,                                       # giftFrom
+                        nil                                        # companyIdentifier
                     )
                 if not responsePurchaseCard_NoDelivery.nil?
                     # we have a response from the server, lets see what we got (and do something with it)

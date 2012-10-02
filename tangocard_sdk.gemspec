@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name        = 'tangocard_sdk'
-  s.version     = '1.0.10'
-  s.date        = %q{2012-09-27}
+  s.version     = '1.1.0'
+  s.date        = %q{2012-10-02}
   s.summary     = "Tango Card Ruby SDK"
   s.description = "Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications."
   s.authors     = ["Tango Card"]

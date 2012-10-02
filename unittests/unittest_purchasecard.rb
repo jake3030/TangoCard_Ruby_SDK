@@ -102,10 +102,10 @@ module TangoCardSdkUnitTest
             responseGetAvailableBalance = nil
             begin
                 responseGetAvailableBalance = TangoCardSdk::TangoCardServiceApi.get_available_balance(
-                    enumTangoCardServiceApi,
-                    app_username, 
-                    app_password
-                )
+                        enumTangoCardServiceApi,
+                        app_username, 
+                        app_password
+                    )
             rescue Exception => e
                 flunk e.message
             end
@@ -118,17 +118,18 @@ module TangoCardSdkUnitTest
             
             begin    
                 responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password,
-                                app_card_sku,                           # cardSku
-                                cardValueTangoCardCents,                # cardValue
-                                true,                                   # tcSend 
-                                "Sally Example",                        # recipientName
-                                "sally@example.com",                    # recipientEmail
-                                "Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n601 Union Street, Suite 4200\nSeattle, WA 98101",                       # giftMessage
-                                "Bill Example"                          # giftFrom
-                                )
+                        enumTangoCardServiceApi,
+                        app_username, 
+                        app_password,
+                        app_card_sku,                           # cardSku
+                        cardValueTangoCardCents,                # cardValue
+                        true,                                   # tcSend 
+                        "Sally Example",                        # recipientName
+                        "sally@example.com",                    # recipientEmail
+                        "Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n601 Union Street, Suite 4200\nSeattle, WA 98101",                       # giftMessage
+                        "Bill Example",                         # giftFrom
+                        nil                                     # companyIdentifier (default is Tango Card email template)
+                    )
             rescue Exception => e
                 flunk e.message
             end
@@ -139,10 +140,10 @@ module TangoCardSdkUnitTest
             responseGetAvailableBalance = nil
             begin
               responseGetAvailableBalance = TangoCardSdk::TangoCardServiceApi.get_available_balance(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password
-                                )
+                    enumTangoCardServiceApi,
+                    app_username, 
+                    app_password
+                )
             rescue Exception => e
                 flunk e.message
             end
@@ -179,10 +180,10 @@ module TangoCardSdkUnitTest
             responseGetAvailableBalance = nil
             begin
               responseGetAvailableBalance = TangoCardSdk::TangoCardServiceApi.get_available_balance(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password
-                                )
+                    enumTangoCardServiceApi,
+                    app_username, 
+                    app_password
+                )
             rescue Exception => e
                 flunk e.message
             end
@@ -196,17 +197,18 @@ module TangoCardSdkUnitTest
             responsePurchaseCard = nil
             begin    
               responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password,
-                                app_card_sku,                           # cardSku
-                                cardValueTangoCardCents,                # cardValue
-                                false,                                  # tcSend 
-                                nil,                                    # recipientName
-                                nil,                                    # recipientEmail
-                                nil,                                    # giftMessage
-                                nil                                     # giftFrom
-                                )
+                    enumTangoCardServiceApi,
+                    app_username, 
+                    app_password,
+                    app_card_sku,                           # cardSku
+                    cardValueTangoCardCents,                # cardValue
+                    false,                                  # tcSend 
+                    nil,                                    # recipientName
+                    nil,                                    # recipientEmail
+                    nil,                                    # giftMessage
+                    nil,                                    # giftFrom
+                    nil                                     # companyIdentifier (default is Tango Card email template)
+                )
             rescue Exception => e
                 flunk e.message
             end
@@ -256,17 +258,18 @@ module TangoCardSdkUnitTest
             responsePurchaseCard = nil
             begin    
                 responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                  enumTangoCardServiceApi,
-                                  username, 
-                                  password,
-                                  app_card_sku,                          # cardSku
-                                  cardValueTangoCardCents,               # cardValue
-                                  false,                                 # tcSend 
-                                  nil,                                   # recipientName
-                                  nil,                                   # recipientEmail
-                                  nil,                                   # giftMessage
-                                  nil                                    # giftFrom 
-                                  )
+                        enumTangoCardServiceApi,
+                        username, 
+                        password,
+                        app_card_sku,                           # cardSku
+                        cardValueTangoCardCents,                # cardValue
+                        false,                                  # tcSend 
+                        nil,                                    # recipientName
+                        nil,                                    # recipientEmail
+                        nil,                                    # giftMessage
+                        nil,                                    # giftFrom
+                        nil                                     # companyIdentifier (default is Tango Card email template)
+                    )
                 
                 flunk "Failed to throw TangoCardServiceException"
         
@@ -300,17 +303,18 @@ module TangoCardSdkUnitTest
 
             begin    
                 responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                enumTangoCardServiceApi,
-                                username, 
-                                password,
-                                app_card_sku,                          # cardSku
-                                cardValueTangoCardCents,               # cardValue
-                                false,                                 # tcSend 
-                                nil,                                   # recipientName
-                                nil,                                   # recipientEmail
-                                nil,                                   # giftMessage
-                                nil                                    # giftFrom
-                                )
+                        enumTangoCardServiceApi,
+                        username, 
+                        password,
+                        app_card_sku,                           # cardSku
+                        cardValueTangoCardCents,                # cardValue
+                        false,                                  # tcSend 
+                        nil,                                    # recipientName
+                        nil,                                    # recipientEmail
+                        nil,                                    # giftMessage
+                        nil,                                    # giftFrom
+                        nil                                     # companyIdentifier (default is Tango Card email template)
+                    )
 
                 flunk "Failed to throw TangoCardServiceException"
 
@@ -343,17 +347,18 @@ module TangoCardSdkUnitTest
             responsePurchaseCard = nil
             begin    
                 responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password,
-                                "mango-card",                           # cardSku
-                                cardValueTangoCardCents,                # cardValue
-                                false,                                  # tcSend 
-                                nil,                                    # recipientName
-                                nil,                                    # recipientEmail
-                                nil,                                    # giftMessage
-                                nil                                     # giftFrom
-                                )
+                    enumTangoCardServiceApi,
+                        app_username, 
+                        app_password,
+                        "mango-card",                           # cardSku
+                        cardValueTangoCardCents,                # cardValue
+                        false,                                  # tcSend 
+                        nil,                                    # recipientName
+                        nil,                                    # recipientEmail
+                        nil,                                    # giftMessage
+                        nil,                                    # giftFrom
+                        nil                                     # companyIdentifier (default is Tango Card email template)
+                    )
 
                 flunk "Failed to throw TangoCardServiceException"
 

@@ -122,16 +122,17 @@ module TangoCardSdkExamples
                 puts "\n======== Purchase Card with Insufficient Funds ========"
 
                 responsePurchaseCard_NoDelivery = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                      enumTangoCardServiceApi,
-                      username, 
-                      password,
-                      app_card_sku,                      # cardSku
-                      cardValueTangoCardCents,           # cardValue
-                      false,                             # tcSend 
-                      nil,                               # recipientName
-                      nil,                               # recipientEmail
-                      nil,                               # giftMessage
-                      nil                                # giftFrom
+                        enumTangoCardServiceApi,
+                        username, 
+                        password,
+                        app_card_sku,                       # cardSku
+                        cardValueTangoCardCents,            # cardValue
+                        false,                              # tcSend 
+                        nil,                                # recipientName
+                        nil,                                # recipientEmail
+                        nil,                                # giftMessage
+                        nil,                                # giftFrom
+                        nil                                 # companyIdentifier (default is Tango Card email template)
                     )
                     
                 if not responsePurchaseCard_NoDelivery.nil?

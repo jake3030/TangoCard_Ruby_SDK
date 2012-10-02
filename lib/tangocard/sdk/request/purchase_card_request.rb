@@ -54,44 +54,41 @@ module TangoCardSdk
         # [property]
         #
         attr_accessor :recipient_name
-        
+
         #
         # [property]
         #
         attr_accessor :recipient_email
-        
+
         #
         # [property]
         #
         attr_accessor :gift_message
-        
+
         #
         # [property]
         #
         attr_accessor :gift_from
+
+        #
+        # [property]
+        #
+        attr_accessor :company_identifier
         
         #
         # Set up a new PurchaseCard request.
         # 
         # [param] TangoCardSdk::TangoCardServiceApiEnum     enumTangoCardServiceApi Selection of which Tango Card Service API environment
-        # [param] string                                    username Tango Card Service access username
-        # [param] string                                    password Tango Card Service access password
-        # [param] string                                    cardSku The SKU of the card to purchase.
-        # [param] int                                       cardValue The value of the card to buy in cents (example 500 = $5.00).
-        # [param] bool   tcSend Whether TangoCard is to send the card to the 
-        #       recipient (true), or return the card's details (false).
-        # [param] string recipientName The name of the recipient. Only 
-        #       necessary if tcSend = true. If tcSend = false, input will be 
-        #       ignored.
-        # [param] string recipientEmail The email address of the recipient. 
-        #       Only necessary if tcSend = true. If tcSend = false, input will 
-        #       be ignored.
-        # [param] string giftMessage The gift message to send to the recipient. 
-        #       Only necessary if tcSend = true. If tcSend = false, input will 
-        #       be ignored.
-        # [param] string giftFrom The name of the person giving the gift. Only 
-        #       necessary if tcSend = true. If tcSend = false, input will be 
-        #       ignored.
+        # [param] string username The username to access User's registered Tango Card account
+        # [param] string password The password to access User's registered Tango Card account
+        # [param] string cardSku The SKU of the card to purchase.
+        # [param] int    cardValue The value of the card to buy in cents (example 500 = $5.00).
+        # [param] bool   tcSend Determines if Tango Card Service will send an email with gift card information to recipient. Email gift card and return the card's details (true), or just return the card's details (false).
+        # [param] string recipientName The name of the recipient. Only necessary if tcSend = true. If tcSend = false, then this input will be ignored.
+        # [param] string recipientEmail The email address of the recipient. Only necessary if tcSend = true. If tcSend = false, then this input will be ignored.
+        # [param] string giftMessage The gift message to send to the recipient. Only necessary if tcSend = true. If tcSend = false, this input will be ignored.
+        # [param] string giftFrom The name of the person giving the gift. Optional if tcSend = true. If tcSend = false, then this input will be ignored.
+        # [param] string companyIdentifier The Company identifier for which Email Template when sending Gift Card. Optional if tcSend = true. If tcSend = false, then this input will be ignored.
         #       
         # [raise] ArgumentError
         #
@@ -105,7 +102,8 @@ module TangoCardSdk
                 recipientName = nil, 
                 recipientEmail = nil, 
                 giftMessage = nil, 
-                giftFrom = nil
+                giftFrom = nil, 
+                companyIdentifier = nil
             )
         
             # parent construct
@@ -114,7 +112,7 @@ module TangoCardSdk
             # -----------------------------------------------------------------
             # validate inputs
             # ----------------------------------------------------------------- 
-         
+
             # cardSku
             if not cardSku.is_a?(String)
                 raise ArgumentError.new("Parameter 'cardSku' must be a string.")
@@ -123,14 +121,14 @@ module TangoCardSdk
             elsif cardSku.length > 255
                 raise ArgumentError.new("Parameter 'cardSku' must have a length less than 255.")
             end
-            
+
             # cardValue
             if not cardValue.is_a?(Integer)
                 raise ArgumentError.new("Parameter 'cardValue' must be an integer.")
             elsif cardValue < 1
                 raise ArgumentError.new("Parameter 'cardValue' must have a value which is greater than or equal to 1.")
             end   
-            
+
             # tcSend
             if tcSend.nil?
                 raise ArgumentError.new("Parameter 'tcSend' must be a boolean: '%s'" % [tcSend.to_s] )
@@ -150,7 +148,7 @@ module TangoCardSdk
                 elsif recipientName.length > 255
                     raise ArgumentError.new("Parameter 'recipientName' must have a length less than 256.")
                 end
-                
+
                 # recipientEmail
                 if recipientEmail.nil?
                     raise ArgumentError.new("Parameter 'recipientEmail' must be present (not nil) if tcSend is set to true.")
@@ -161,7 +159,18 @@ module TangoCardSdk
                 elsif recipientEmail.length > 255
                     raise ArgumentError.new("Parameter 'recipientEmail' must have a length less than 256.")
                 end
-                
+
+                # giftMessage [Optional]
+                if not giftMessage.nil?
+                    if not giftMessage.is_a?(String)
+                        raise ArgumentError.new("Parameter 'giftMessage' must be a string.")
+                    elsif giftMessage.length < 1
+                        raise ArgumentError.new("Parameter 'giftMessage' must have a length greater than zero.")
+                    elsif giftMessage.length > 255
+                        raise ArgumentError.new("Parameter 'giftMessage' must have a length less than 256.")
+                    end
+                end
+
                 # giftFrom
                 if giftFrom.nil?
                     raise ArgumentError.new("Parameter 'giftFrom' must be present (not nil) if tcSend is set to true.")
@@ -172,15 +181,15 @@ module TangoCardSdk
                 elsif giftFrom.length > 255
                     raise ArgumentError.new("Parameter 'giftFrom' must have a length less than 256.")
                 end
-                
-                # giftMessage [Optional]
-                if not giftMessage.nil?
-                    if not giftMessage.is_a?(String)
-                        raise ArgumentError.new("Parameter 'giftMessage' must be a string.")
-                    elsif giftMessage.length < 1
-                        raise ArgumentError.new("Parameter 'giftMessage' must have a length greater than zero.")
-                    elsif giftMessage.length > 255
-                        raise ArgumentError.new("Parameter 'giftMessage' must have a length less than 256.")
+
+                # companyIdentifier
+                if not companyIdentifier.nil?
+                    if not companyIdentifier.is_a?(String)
+                        raise ArgumentError.new("Parameter 'companyIdentifier' must be a string.")
+                    elsif companyIdentifier.length < 1
+                        raise ArgumentError.new("Parameter 'companyIdentifier' must have a length greater than zero.")
+                    elsif companyIdentifier.length > 255
+                        raise ArgumentError.new("Parameter 'companyIdentifier' must have a length less than 256.")
                     end
                 end
             end
@@ -196,8 +205,11 @@ module TangoCardSdk
                 @recipient_name  = recipientName 
                 @recipient_email = recipientEmail
                 @gift_from       = giftFrom
-                if not giftMessage.nil? && !giftMessage.empty? 
+                if not Helper.is_null_or_empty(giftMessage)
                     @gift_message    = giftMessage
+                end
+                if not Helper.is_null_or_empty(companyIdentifier)
+                    @company_identifier    = companyIdentifier
                 end
             end
         end
@@ -236,8 +248,11 @@ module TangoCardSdk
                     request['recipientName' ] = @recipient_name
                     request['recipientEmail'] = @recipient_email
                     request['giftFrom'      ] = @gift_from
-                    if ( !@gift_message.nil? && !@gift_message.empty? )
+                    if not Helper.is_null_or_empty(@gift_message)
                         request['giftMessage'] = @gift_message
+                    end
+                    if not Helper.is_null_or_empty(@company_identifier)
+                        request['companyIdentifier'] = @company_identifier
                     end
                 end
                 
