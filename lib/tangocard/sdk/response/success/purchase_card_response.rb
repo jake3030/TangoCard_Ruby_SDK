@@ -1,5 +1,5 @@
 #
-# tangocard-sdk.rb
+# purchase_card_response.rb
 #
 
 #
@@ -29,13 +29,47 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     Id: purchase_card_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
+module TangoCardSdk
+    class PurchaseCardResponse < SuccessResponse
+        # 
+        #  @ignore
+        # 
+        attr_accessor :referenceOrderId
+        
+        # 
+        #  @ignore
+        # 
+        attr_accessor :cardToken
+        
+        # 
+        #  @ignore
+        # 
+        attr_accessor :cardNumber
+        
+        # 
+        #  @ignore
+        # 
+        attr_accessor :cardPin
+        
+        # 
+        # Constructor
+        #
+        #  Construct a new PurchaseCard success type.
+        #  @param object responseJson The parsed (JSON) object returned from the 
+        #        Tango Card services.
+        # 
+        def initialize(responseJson)
 
-require 'tangocard_sdk'
-__END__
+            @referenceOrderId   = responseJson['response']['referenceOrderId']
+            @cardToken          = responseJson['response']['cardToken']
+            @cardNumber         = responseJson['response']['cardNumber']
+            @cardPin            = responseJson['response']['cardPin']
+
+        end
+    end
+end

@@ -1,8 +1,7 @@
 #
-# tangocard-sdk.rb
+# invalid_input_response.rb
 #
 
-#
 # 
 # Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
@@ -29,13 +28,37 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     Id: invalid_input_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
+module TangoCardSdk
+    class InvalidInputResponse < FailureResponse
+        #
+        # [property]
+        #
+        attr_accessor :invalid
+        
+        #
+        # Construct a new InvalidInput failure type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            @invalid = responseJson['response']['invalid']
+        end
 
-require 'tangocard_sdk'
-__END__
+        #
+        # Get error message for this failure response.
+        # [return] string
+        #    
+        def message()
+            message = "Unknown."
+            if not @invalid['cardSku'].nil?
+               message = @invalid['cardSku']
+            end
+            return "Invalid input: %s" % [message]
+        end
+    end
+end

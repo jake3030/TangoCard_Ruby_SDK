@@ -1,5 +1,5 @@
 #
-# unittest_service_response_enums.rb
+# sdk_config.rb
 #
 
 # 
@@ -28,40 +28,52 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     unittest_service_response_enums.rb 2012-10-02 15:00:00 PST
+# [version]     sdk_config.rb 2012-10-02 15:00:00 PST
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
+# encoding: UTF-8
 
-$:.unshift File.dirname(__FILE__)
+require 'singleton'
+require 'inifile'
 
-require 'rubygems'
-require 'tangocard_sdk'
-require 'test/unit'
-
-module TangoCardSdkUnitTest
-
-    class UnitTest_ServiceResponseEnum < Test::Unit::TestCase
-        def test_SUCCESS
-            act = TangoCardSdk::ServiceResponseEnum.to_s( TangoCardSdk::ServiceResponseEnum::SUCCESS )
-            assert_equal( "SUCCESS", act )
-            
-            act = TangoCardSdk::ServiceResponseEnum.to_enum( "SUCCESS" )
-            assert_equal( TangoCardSdk::ServiceResponseEnum::SUCCESS, act )
+module TangoCardSdk
+    class SdkConfig
+        include Singleton
+        
+        attr_reader :config_vars
+        attr_reader :config_status
+        
+        # 
+        # Constructor
+        #
+        def initialize()
+          self.read_config()
         end
         
-        def test_SYS_ERROR
-            act = TangoCardSdk::ServiceResponseEnum.to_s( TangoCardSdk::ServiceResponseEnum::SYS_ERROR )
-            assert_equal( "SYS_ERROR", act )
-            
-            act = TangoCardSdk::ServiceResponseEnum.to_enum( "SYS_ERROR" )
-            assert_equal( TangoCardSdk::ServiceResponseEnum::SYS_ERROR, act )
-        end
-        
-        def test_GARBAGE
-            assert_raise TangoCardSdk::TangoCardSdkException do
-                TangoCardSdk::ServiceResponseEnum.to_enum( "GARBAGE" )
+        # 
+        # Read SDK configuration file
+        #
+        def read_config()
+            @config_vars = nil
+            begin
+                config_file = File.dirname(File.dirname(File.dirname(__FILE__))) + "/config/tc_sdk_config.ini"
+                if not File.file?(config_file)
+                    raise TangoCardSdkException.new( "Missing config file. '%s'" % [config_file] )
+                end
+                config_ini = IniFile.new(:filename => config_file, :comment => '#', :parameter => '=')
+                @config_vars = config_ini['TANGOCARD']
+            rescue Exception => e
+                raise e
             end
+        end
+        
+        def config_value(key)
+          if not @config_vars.nil?
+              return @config_vars[key]
+          else
+              raise TangoCardSdkException.new( "Undefined configuation variables." )
+          end
         end
     end
 end

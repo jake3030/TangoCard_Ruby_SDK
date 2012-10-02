@@ -1,10 +1,10 @@
-﻿#
+#
 # tangocard_store_example.rb, Example code using Tango Card SDK to get available 
 # balance and purchase card.
 # 
 
 # 
-# (c) 2012 Tango Card, Inc
+# Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -27,10 +27,10 @@
 # 
 # Ruby Version 1.9
 # 
-# @category    TangoCard
-# @package     Examples
-# @version     Id: tangocard_store_example.rb 2012-09-18 18:00:00 PST 
-# @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
+# [category]    TangoCard
+# [package]     Examples
+# [version]     Id: tangocard_store_example.rb 2012-09-18 18:00:00 PST 
+# [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
@@ -50,23 +50,30 @@ module TangoCardSdkExamples
     class TangoCard_Store_Example
 
         def self.run(config_vars)
-        
-            p "=============================="
-            p "= Tango Card PHP SDK Example ="
-            p "=============================="
+
+            puts "\n=============================="
+            puts "= Tango Card Ruby SDK Example ="
+            puts "=============================="
                 
             begin  
 
-                app_username           = config_vars['app_username']
-                app_password           = config_vars['app_password']
-                app_card_sku           = config_vars['app_card_sku']
-                            
+                app_username            = config_vars['app_username']
+                app_password            = config_vars['app_password']
+                app_card_sku            = config_vars['app_card_sku']
+                app_card_value          = config_vars['app_card_value']
+                app_recipient_email     = config_vars['app_recipient_email']
+
                 app_tango_card_service_api = config_vars['app_tango_card_service_api']      
                 if app_tango_card_service_api.nil? || app_tango_card_service_api.empty?
                     throw RuntimeError.new( "Unexpected config condition" )
                 end
                 
+                cardValueTangoCardCents = Integer(app_card_value)
                 enumTangoCardServiceApi = TangoCardSdk::TangoCardServiceApiEnum::to_enum(app_tango_card_service_api)
+                
+                #
+                # Get Available Balance for account of provided username\password credentials
+                #
                 
                 responseGetAvailableBalance = TangoCardSdk::TangoCardServiceApi.get_available_balance(
                     enumTangoCardServiceApi,
@@ -74,12 +81,12 @@ module TangoCardSdkExamples
                     app_password
                     )
                  
-                if !responseGetAvailableBalance.nil?
+                if not responseGetAvailableBalance.nil?
                     # we have a response from the server, lets see what we got (and do something with it)
                     if responseGetAvailableBalance.is_a? TangoCardSdk::GetAvailableBalanceResponse
-                        p "Success - GetAvailableBalance - Initial"
+                        puts "\n\tSuccess - GetAvailableBalance - Initial"
                         tango_cents_available_balance = responseGetAvailableBalance.availableBalance
-                        p "I have an available balance of %s dollars." % [TangocardExamples::currencify(tango_cents_available_balance.to_f/100)]
+                        puts "\t'%s': Available balance: %s." % [app_username, TangocardExamples::currencify(tango_cents_available_balance.to_f/100)]
                     else
                         raise RuntimeError.new('Unexpected response.')
                     end
@@ -87,30 +94,37 @@ module TangoCardSdkExamples
                     raise RuntimeError.new('Unexpected response.')
                 end
                 
-                cardValueTangoCardCents = 100 # 1.00 dollars
+                #
+                # Purchase Card (with emailing to recipientEmail) using funds from account of provided username\password credentials
+                #
+                
+                giftMessage = "Example: Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n\r601 Union Street, Suite 4200\r\nSeattle, WA\r98101"
 
                 responsePurchaseCard_Delivery = TangoCardSdk::TangoCardServiceApi.purchase_card(
                         enumTangoCardServiceApi,
-                        app_username, 
+                        app_username,
                         app_password,
-                        app_card_sku,                           # cardSku
-                        cardValueTangoCardCents,                # cardValue
-                        true,                                   # tcSend 
-                        "Sally Example",                        # recipientName
-                        "sally@example.com",                    # recipientEmail
-                        "Happy Birthday",                       # giftMessage
-                        "Bill Example",                         # giftFrom
-                        "Tango Card PHP SDK Example"            # companyIdentifier
+                        app_card_sku,                                       # cardSku
+                        cardValueTangoCardCents,                            # cardValue in cents (example 500 = $5.00
+                        true,                                               # tcSend 
+                        "Sally Customer",                                   # recipientName
+                        app_recipient_email,                                # recipientEmail
+                        giftMessage,                                        # giftMessage
+                        "Bill Support",                                     # giftFrom
+                        nil                                                 # companyIdentifier (default is Tango Card email template)
                     )
    
-                if !responsePurchaseCard_Delivery.nil?
+                if not responsePurchaseCard_Delivery.nil?
                     # we have a response from the server, lets see what we got (and do something with it)
                     if responsePurchaseCard_Delivery.is_a? TangoCardSdk::PurchaseCardResponse
-                        p "Success - PurchaseCard - Delivery"
-                        p "Reference Order ID: %s" % [responsePurchaseCard_Delivery.referenceOrderId.to_s]
-                        p "Card Token:         %s" % [responsePurchaseCard_Delivery.cardToken.to_s]
-                        p "Card Number:        %s" % [responsePurchaseCard_Delivery.cardNumber.to_s]
-                        p "Card Pin:           %s" % [responsePurchaseCard_Delivery.cardPin.to_s]
+                        puts "\n\tSuccess - PurchaseCard Confirmation with Email Delivery"
+                        puts "\tRecipient Email:   '%s'" % [app_recipient_email]
+                        puts "\tGift Card SKU:     '%s'" % [app_card_sku]
+                        puts "\tGift Card Value:    %s (cents)" % [cardValueTangoCardCents]
+                        puts "\tReference Order ID: %s" % [responsePurchaseCard_Delivery.referenceOrderId.to_s]
+                        puts "\tCard Token:         %s" % [responsePurchaseCard_Delivery.cardToken.to_s]
+                        puts "\tCard Number:        %s" % [responsePurchaseCard_Delivery.cardNumber.to_s]
+                        puts "\tCard Pin:           %s" % [responsePurchaseCard_Delivery.cardPin.to_s]
                     else
                         raise RuntimeError.new('Unexpected response.')
                     end
@@ -118,6 +132,10 @@ module TangoCardSdkExamples
                     raise RuntimeError.new('Unexpected response.')
                 end
 
+                #
+                # Purchase Card (without emailing) using funds from account of provided username\password credentials
+                #
+                
                 responsePurchaseCard_NoDelivery = TangoCardSdk::TangoCardServiceApi.purchase_card(
                         enumTangoCardServiceApi,
                         app_username, 
@@ -129,16 +147,18 @@ module TangoCardSdkExamples
                         nil,                                       # recipientEmail
                         nil,                                       # giftMessage
                         nil,                                       # giftFrom
-                        "Tango Card PHP SDK Example"               # companyIdentifier
+                        nil                                        # companyIdentifier
                     )
-                if !responsePurchaseCard_NoDelivery.nil?
+                if not responsePurchaseCard_NoDelivery.nil?
                     # we have a response from the server, lets see what we got (and do something with it)
                     if responsePurchaseCard_NoDelivery.is_a? TangoCardSdk::PurchaseCardResponse
-                        p "Success - PurchaseCard - No Delivery"
-                        p "Reference Order ID: %s" % [responsePurchaseCard_NoDelivery.referenceOrderId.to_s]
-                        p "Card Token:         %s" % [responsePurchaseCard_NoDelivery.cardToken.to_s]
-                        p "Card Number:        %s" % [responsePurchaseCard_NoDelivery.cardNumber.to_s]
-                        p "Card Pin:           %s" % [responsePurchaseCard_NoDelivery.cardPin.to_s]
+                        puts "\n\tSuccess - PurchaseCard Confirmation without Email Delivery"
+                        puts "\tGift Card SKU:     '%s'" % [app_card_sku]
+                        puts "\tGift Card Value:    %s (cents)" % [cardValueTangoCardCents]
+                        puts "\tReference Order ID: %s" % [responsePurchaseCard_NoDelivery.referenceOrderId.to_s]
+                        puts "\tCard Token:         %s" % [responsePurchaseCard_NoDelivery.cardToken.to_s]
+                        puts "\tCard Number:        %s" % [responsePurchaseCard_NoDelivery.cardNumber.to_s]
+                        puts "\tCard Pin:           %s" % [responsePurchaseCard_NoDelivery.cardPin.to_s]
                     else
                         raise RuntimeError.new('Unexpected response.')
                     end
@@ -146,17 +166,20 @@ module TangoCardSdkExamples
                     raise RuntimeError.new('Unexpected response.')
                 end
                 
+                #
+                # Get Available Balance (updated) for account of provided username\password credentials
+                #
                 responseGetAvailableBalanceUpdate = TangoCardSdk::TangoCardServiceApi.get_available_balance(
                         enumTangoCardServiceApi,
                         app_username, 
                         app_password
                     ) 
-                if !responseGetAvailableBalanceUpdate.nil?
+                if not responseGetAvailableBalanceUpdate.nil?
                     # we have a response from the server, lets see what we got (and do something with it)
                     if responseGetAvailableBalanceUpdate.is_a? TangoCardSdk::GetAvailableBalanceResponse
-                        p "Success - GetAvailableBalance - Concluding"
+                        puts "\n\tSuccess - GetAvailableBalance - Concluding"
                         tango_cents_available_balance = responseGetAvailableBalanceUpdate.availableBalance
-                        p "I have an available balance of %s dollars." % [TangocardExamples::currencify(tango_cents_available_balance.to_f/100)]
+                        puts "\t'%s': Available balance: %s." % [app_username, TangocardExamples::currencify(tango_cents_available_balance.to_f/100)]
                     else
                         raise RuntimeError.new('Unexpected response.')
                     end 
@@ -164,28 +187,28 @@ module TangoCardSdkExamples
                     raise RuntimeError.new('Unexpected response.')
                 end
             rescue TangoCardSdk::TangoCardServiceException => e
-                p "TangoCardServiceException: %s" % [e.message]
+                puts "TangoCardServiceException: %s" % [e.message]
             rescue TangoCardSdk::TangoCardSdkException => e
-                p "TangoCardSdkException: %s" % [e.message]
+                puts "TangoCardSdkException: %s" % [e.message]
             rescue ArgumentError => e
-                p "Invalid arguments: %s" % [e.message]
+                puts "Invalid arguments: %s" % [e.message]
             rescue ScriptError => e
-                p "Unexpected Value: %s" % [e.message]
+                puts "Unexpected Value: %s" % [e.message]
                 p e.backtrace
             rescue RuntimeError => e
-                p "Runtime Exception: %s" % [e.message]
+                puts "Runtime Exception: %s" % [e.message]
                 p e.backtrace
             rescue Exception => e
-                p "Unexpected Exception: %s: %s" % [e.class, e.message]
+                puts "Unexpected Exception: %s: %s" % [e.class, e.message]
                 p e.backtrace
             end
 
-            p "=============================="
-            p "=   The End                  ="
-            p "=============================="
+            puts "\n=============================="
+            puts "=   The End                  ="
+            puts "=============================="
         
         end
         
     end
 end
-
+__END__

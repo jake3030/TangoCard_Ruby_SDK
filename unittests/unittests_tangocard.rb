@@ -1,8 +1,7 @@
 #
-# tangocard-sdk.rb
+# unittests_tangocard.rb
 #
 
-#
 # 
 # Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
@@ -29,13 +28,20 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     unittests_tangocard.rb 2012-09-21 15:00:00 PST
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
+# The SDK initialization enters here. Loads all needed libraries and files. Inspects
+# the current runtime to see if Rails is present. If it is, we inject our helper into
+# ActiveSupport.
 
-require 'tangocard_sdk'
+$:.unshift File.dirname(__FILE__)
+
+require 'unittest_getavailablebalance.rb'
+require 'unittest_purchasecard.rb'
+require 'unittest_sdk_config.rb'
+require 'unittest_service_api_enums.rb'
+require 'unittest_service_response_enums.rb'
 __END__

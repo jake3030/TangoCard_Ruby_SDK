@@ -1,9 +1,9 @@
-﻿#
+#
 # unittest_sdk_config.rb
 #
 
 # 
-# (c) 2012 Tango Card, Inc
+# Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,10 +26,10 @@
 # 
 # Ruby Version 1.9
 # 
-# @category    TangoCard
-# @package     SDK
-# @version     $Id: unittest_sdk_config.rb 2012-09-19 15:00:00 PST $
-# @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
+# [category]    TangoCard
+# [package]     SDK
+# [version]     unittest_sdk_config.rb 2012-10-02 15:00:00 PST
+# [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
@@ -51,11 +51,6 @@ module TangoCardSdkUnitTest
             actual = TangoCardSdk::SdkConfig.instance.config_value("tc_sdk_environment_production_url")
             assert_equal( "https://api.tangocard.com", actual )
         end
-        
-      
-      def test_tc_sku
-          actual = TangoCardSdk::SdkConfig.instance.config_value("tc_sdk_card_sku")
-          assert_equal( "tango-card", actual )
-      end
     end
 end
+__END__

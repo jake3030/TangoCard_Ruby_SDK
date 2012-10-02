@@ -1,9 +1,8 @@
 #
-# tangocard-sdk.rb
+# insufficient_funds_response.rb
 #
 
 #
-# 
 # Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
@@ -29,13 +28,39 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     Id: insufficient_funds_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
+module TangoCardSdk
+    class InsufficientFundsResponse < FailureResponse
+        #
+        # [property]
+        #
+        attr_reader :availableBalance
 
-require 'tangocard_sdk'
-__END__
+        #
+        # [property]
+        #
+        attr_reader :orderCost
+
+        #
+        # Construct a new InsufficientFunds failure type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            @availableBalance = responseJson['response']['availableBalance']
+            @orderCost        = responseJson['response']['orderCost']
+        end
+
+        #
+        # Get error message for this failure response.
+        # [return] string
+        #    
+        def message()
+            return "Available Balance: %s, Order Cost: %s" % [@availableBalance, @orderCost]
+        end
+    end
+end

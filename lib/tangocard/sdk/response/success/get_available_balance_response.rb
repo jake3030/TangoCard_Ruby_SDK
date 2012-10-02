@@ -1,5 +1,5 @@
 #
-# tangocard-sdk.rb
+# get_available_balance_response.rb
 #
 
 #
@@ -29,13 +29,27 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     Id: get_available_balance_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
+module TangoCardSdk
+    class GetAvailableBalanceResponse < SuccessResponse
+        #
+        # [property]
+        #
+        attr_accessor :availableBalance
+        
+        #
+        # Construct a new GetAvailableBalance success type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            
+            @availableBalance = responseJson['response']['availableBalance'].to_f
+        end
 
-require 'tangocard_sdk'
-__END__
+    end
+end

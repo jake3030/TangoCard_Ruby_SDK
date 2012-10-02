@@ -1,8 +1,7 @@
 #
-# tangocard-sdk.rb
+# system_error_response.rb
 #
 
-#
 # 
 # Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
@@ -29,13 +28,35 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     Id: system_error_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
+module TangoCardSdk
+    class SystemErrorResponse < FailureResponse
+        #
+        # [property]
+        #
+        attr_accessor :errorCode
+        
+        # 
+        # Constructor
+        #
+        # Construct a new SystemError failure type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            @errorCode = responseJson['response']['errorCode']
+        end
 
-require 'tangocard_sdk'
-__END__
+        #
+        # Get error message for this failure response.
+        # [return] string
+        #
+        def message()
+            return "Error Code: %s" % [@errorCode]
+        end
+    end
+end

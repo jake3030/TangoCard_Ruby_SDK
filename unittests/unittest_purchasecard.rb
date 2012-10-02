@@ -1,9 +1,9 @@
-﻿#
+#
 # unittest_purchasecard.rb
 #
 
 # 
-# (c) 2012 Tango Card, Inc
+# Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,10 +26,10 @@
 # 
 # Ruby Version 1.9
 # 
-# @category    TangoCard
-# @package     SDK
-# @version     Id: unittest_purchasecard.rb 2012-09-19 15:00:00 PST 
-# @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
+# [category]    TangoCard
+# [package]     SDK
+# [version]     Id: unittest_purchasecard.rb 2012-09-19 15:00:00 PST 
+# [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
@@ -47,9 +47,9 @@ module TangoCardSdkUnitTest
         def setup
             @config_vars = nil
             begin
-                config_file = "../config/app_config.ini"
-                unless File.file?(config_file)
-                    raise Exception.new( "Missing config file: %s" % [config_file] )
+                config_file = File.dirname(File.dirname(__FILE__)) + "/config/app_config.ini"
+                if not File.file?(config_file)
+                    raise Exception.new( "TangocardExample: Missing config file: '%s'" % [config_file] )
                 end
                 config_ini = IniFile.new(:filename => config_file, :comment => '#', :parameter => '=')
                 @config_vars = config_ini['TANGOCARD']
@@ -80,9 +80,10 @@ module TangoCardSdkUnitTest
             assert_not_nil  @config_vars['app_password']    # password
         end    
         
-        #
         # 
-        # Enter description here ...
+        # Unit Test for puchasing the Tango Card and requesting
+        # the Tango Card Service to send digital card to provided
+        # email address.
         #
         def test_PurchaseCard_with_Delivery()
         
@@ -101,10 +102,10 @@ module TangoCardSdkUnitTest
             responseGetAvailableBalance = nil
             begin
                 responseGetAvailableBalance = TangoCardSdk::TangoCardServiceApi.get_available_balance(
-                    enumTangoCardServiceApi,
-                    app_username, 
-                    app_password
-                )
+                        enumTangoCardServiceApi,
+                        app_username, 
+                        app_password
+                    )
             rescue Exception => e
                 flunk e.message
             end
@@ -117,18 +118,18 @@ module TangoCardSdkUnitTest
             
             begin    
                 responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password,
-                                app_card_sku,                           # cardSku
-                                cardValueTangoCardCents,                # cardValue
-                                true,                                   # tcSend 
-                                "Sally Example",                        # recipientName
-                                "sally@example.com",                    # recipientEmail
-                                "Happy Birthday",                       # giftMessage
-                                "Bill Example",                         # giftFrom
-                                "Tango Card PHP SDK Unit Test"          # companyIdentifier
-                                )
+                        enumTangoCardServiceApi,
+                        app_username, 
+                        app_password,
+                        app_card_sku,                           # cardSku
+                        cardValueTangoCardCents,                # cardValue
+                        true,                                   # tcSend 
+                        "Sally Example",                        # recipientName
+                        "sally@example.com",                    # recipientEmail
+                        "Hello from Tango Card Ruby SDK:\nTango Card\nPhone: 1-877-55-TANGO\n601 Union Street, Suite 4200\nSeattle, WA 98101",                       # giftMessage
+                        "Bill Example",                         # giftFrom
+                        nil                                     # companyIdentifier (default is Tango Card email template)
+                    )
             rescue Exception => e
                 flunk e.message
             end
@@ -139,10 +140,10 @@ module TangoCardSdkUnitTest
             responseGetAvailableBalance = nil
             begin
               responseGetAvailableBalance = TangoCardSdk::TangoCardServiceApi.get_available_balance(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password
-                                )
+                    enumTangoCardServiceApi,
+                    app_username, 
+                    app_password
+                )
             rescue Exception => e
                 flunk e.message
             end
@@ -158,9 +159,9 @@ module TangoCardSdkUnitTest
             assert_equal( tango_cents_expected_balance, tango_cents_updated_balance)
         end
         
-        #
         # 
-        # Enter description here ...
+        # Unit Test for puchasing the Tango Card and not requesting
+        # the Tango Card Service to send digital card.
         #
         def test_PurchaseCard_noSend()
         
@@ -179,10 +180,10 @@ module TangoCardSdkUnitTest
             responseGetAvailableBalance = nil
             begin
               responseGetAvailableBalance = TangoCardSdk::TangoCardServiceApi.get_available_balance(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password
-                                )
+                    enumTangoCardServiceApi,
+                    app_username, 
+                    app_password
+                )
             rescue Exception => e
                 flunk e.message
             end
@@ -196,18 +197,18 @@ module TangoCardSdkUnitTest
             responsePurchaseCard = nil
             begin    
               responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password,
-                                app_card_sku,                           # cardSku
-                                cardValueTangoCardCents,                # cardValue
-                                false,                                  # tcSend 
-                                nil,                                    # recipientName
-                                nil,                                    # recipientEmail
-                                nil,                                    # giftMessage
-                                nil,                                    # giftFrom
-                                "Tango Card PHP SDK Unit Test"          # companyIdentifier
-                                )
+                    enumTangoCardServiceApi,
+                    app_username, 
+                    app_password,
+                    app_card_sku,                           # cardSku
+                    cardValueTangoCardCents,                # cardValue
+                    false,                                  # tcSend 
+                    nil,                                    # recipientName
+                    nil,                                    # recipientEmail
+                    nil,                                    # giftMessage
+                    nil,                                    # giftFrom
+                    nil                                     # companyIdentifier (default is Tango Card email template)
+                )
             rescue Exception => e
                 flunk e.message
             end
@@ -225,21 +226,21 @@ module TangoCardSdkUnitTest
             rescue Exception => e
                 flunk e.message
             end
-            
+
             assert_not_nil responseGetAvailableBalance
             assert( responseGetAvailableBalance.is_a? TangoCardSdk::GetAvailableBalanceResponse )
-        
+
             tango_cents_updated_balance = responseGetAvailableBalance.availableBalance
             assert 0 <= tango_cents_updated_balance
-                       
+
             assert_not_equal( tango_cents_available_balance, tango_cents_updated_balance)
             tango_cents_expected_balance = tango_cents_available_balance - cardValueTangoCardCents
             assert_equal( tango_cents_expected_balance, tango_cents_updated_balance )
         end
-        
-        #
+
         # 
-        # Enter description here ...
+        # Unit test to assure failure when trying to purchase a card
+        # with invalid authentication credentials
         #
         def test_PurchaseCard_InvalidCredentials()
         
@@ -257,18 +258,18 @@ module TangoCardSdkUnitTest
             responsePurchaseCard = nil
             begin    
                 responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                  enumTangoCardServiceApi,
-                                  username, 
-                                  password,
-                                  app_card_sku,                          # cardSku
-                                  cardValueTangoCardCents,               # cardValue
-                                  false,                                 # tcSend 
-                                  nil,                                  # recipientName
-                                  nil,                                  # recipientEmail
-                                  nil,                                  # giftMessage
-                                  nil,                                  # giftFrom
-                                  "Tango Card PHP SDK Unit Test"         # companyIdentifier
-                                  )
+                        enumTangoCardServiceApi,
+                        username, 
+                        password,
+                        app_card_sku,                           # cardSku
+                        cardValueTangoCardCents,                # cardValue
+                        false,                                  # tcSend 
+                        nil,                                    # recipientName
+                        nil,                                    # recipientEmail
+                        nil,                                    # giftMessage
+                        nil,                                    # giftFrom
+                        nil                                     # companyIdentifier (default is Tango Card email template)
+                    )
                 
                 flunk "Failed to throw TangoCardServiceException"
         
@@ -283,9 +284,9 @@ module TangoCardSdkUnitTest
             assert_nil responsePurchaseCard
         end
         
-        #
         # 
-        # Enter description here ...
+        # Unit test to assure failure when trying to purchase a card
+        # from an account with insufficient funds.
         #
         def test_PurchaseCard_InsufficientFunds()
         
@@ -302,18 +303,18 @@ module TangoCardSdkUnitTest
 
             begin    
                 responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                enumTangoCardServiceApi,
-                                username, 
-                                password,
-                                app_card_sku,                          # cardSku
-                                cardValueTangoCardCents,               # cardValue
-                                false,                                 # tcSend 
-                                nil,                                  # recipientName
-                                nil,                                  # recipientEmail
-                                nil,                                  # giftMessage
-                                nil,                                  # giftFrom
-                                "Tango Card PHP SDK Unit Test"         # companyIdentifier
-                                )
+                        enumTangoCardServiceApi,
+                        username, 
+                        password,
+                        app_card_sku,                           # cardSku
+                        cardValueTangoCardCents,                # cardValue
+                        false,                                  # tcSend 
+                        nil,                                    # recipientName
+                        nil,                                    # recipientEmail
+                        nil,                                    # giftMessage
+                        nil,                                    # giftFrom
+                        nil                                     # companyIdentifier (default is Tango Card email template)
+                    )
 
                 flunk "Failed to throw TangoCardServiceException"
 
@@ -328,9 +329,9 @@ module TangoCardSdkUnitTest
             assert_nil responsePurchaseCard
         end
 
-        #
         # 
-        # Enter description here ...
+        # Unit test to assure failure when purchasing a gift card
+        # with an invalid card sku.
         #
         def test_PurchaseCard_InvalidInput_Sku()
 
@@ -346,18 +347,18 @@ module TangoCardSdkUnitTest
             responsePurchaseCard = nil
             begin    
                 responsePurchaseCard = TangoCardSdk::TangoCardServiceApi.purchase_card(
-                                enumTangoCardServiceApi,
-                                app_username, 
-                                app_password,
-                                "mango-card",                           # cardSku
-                                cardValueTangoCardCents,                # cardValue
-                                false,                                  # tcSend 
-                                nil,                                   # recipientName
-                                nil,                                   # recipientEmail
-                                nil,                                   # giftMessage
-                                nil,                                   # giftFrom
-                                "Tango Card PHP SDK Unit Test"          # companyIdentifier
-                                )
+                    enumTangoCardServiceApi,
+                        app_username, 
+                        app_password,
+                        "mango-card",                           # cardSku
+                        cardValueTangoCardCents,                # cardValue
+                        false,                                  # tcSend 
+                        nil,                                    # recipientName
+                        nil,                                    # recipientEmail
+                        nil,                                    # giftMessage
+                        nil,                                    # giftFrom
+                        nil                                     # companyIdentifier (default is Tango Card email template)
+                    )
 
                 flunk "Failed to throw TangoCardServiceException"
 
@@ -374,3 +375,4 @@ module TangoCardSdkUnitTest
 
     end
 end
+__END__

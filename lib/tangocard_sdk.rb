@@ -1,9 +1,9 @@
-﻿#
+#
 # tangocard_sdk.rb
 #
 
 # 
-# (c) 2012 Tango Card, Inc
+# Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,10 +26,10 @@
 # 
 # Ruby Version 1.9
 # 
-# @category    TangoCard
-# @package     SDK
-# @version     $Id: tangocard_sdk.rb 2012-09-19 15:00:00 PST $
-# @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
+# [category]    TangoCard
+# [package]     SDK
+# [version]     tangocard_sdk.rb 2012-09-20 15:00:00 PST
+# [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
@@ -43,58 +43,32 @@ require 'uri'
 require 'rubygems'
 require 'json'
 require 'openssl'
-require 'bigdecimal'
 require 'date'
 require 'singleton'
 require 'inifile'
 
 $:.unshift File.dirname(__FILE__)
 
-require "tangocard_sdk/tangocard_service_api"
-require "tangocard_sdk/common/helper"
-require "tangocard_sdk/common/sdk_config"
-require "tangocard_sdk/common/tangocard_sdk_exception"
-require "tangocard_sdk/request/base_request"
-require "tangocard_sdk/request/get_available_balance_request"
-require "tangocard_sdk/request/purchase_card_request"
-require "tangocard_sdk/response/base_response"
-require "tangocard_sdk/response/service_response_enum"
-require "tangocard_sdk/response/failure/failure_response"
-require "tangocard_sdk/response/failure/insufficient_funds_response"
-require "tangocard_sdk/response/failure/insufficient_inventory_response"
-require "tangocard_sdk/response/failure/invalid_credentials_response"
-require "tangocard_sdk/response/failure/invalid_input_response"
-require "tangocard_sdk/response/failure/system_error_response"
-require "tangocard_sdk/response/success/success_response"
-require "tangocard_sdk/response/success/get_available_balance_response"
-require "tangocard_sdk/response/success/purchase_card_response"
-require "tangocard_sdk/service/service_proxy"
-require "tangocard_sdk/service/tangocard_service_api_enum"
-require "tangocard_sdk/service/tangocard_service_exception"
+require "tangocard/sdk/tangocard_service_api"
+require "tangocard/sdk/common/helper"
+require "tangocard/sdk/common/sdk_config"
+require "tangocard/sdk/common/tangocard_sdk_exception"
+require "tangocard/sdk/request/base_request"
+require "tangocard/sdk/request/get_available_balance_request"
+require "tangocard/sdk/request/purchase_card_request"
+require "tangocard/sdk/response/base_response"
+require "tangocard/sdk/response/service_response_enum"
+require "tangocard/sdk/response/failure/failure_response"
+require "tangocard/sdk/response/failure/insufficient_funds_response"
+require "tangocard/sdk/response/failure/insufficient_inventory_response"
+require "tangocard/sdk/response/failure/invalid_credentials_response"
+require "tangocard/sdk/response/failure/invalid_input_response"
+require "tangocard/sdk/response/failure/system_error_response"
+require "tangocard/sdk/response/success/success_response"
+require "tangocard/sdk/response/success/get_available_balance_response"
+require "tangocard/sdk/response/success/purchase_card_response"
+require "tangocard/sdk/service/service_proxy"
+require "tangocard/sdk/service/tangocard_service_api_enum"
+require "tangocard/sdk/service/tangocard_service_exception"
 
-
-# Load our Rails plugin
-
-if defined?(Rails)
-  if defined?(Rails::Railtie)
-    module AuthorizeNet
-      class Railtie < Rails::Railtie
-        initializer "tangocard_sdk.load_path_initialize" do |app|
-          %w{ models controllers helpers }.each do |dir|
-            path = File.join(File.dirname(__FILE__), 'app', dir)
-            $LOAD_PATH << path
-            ActiveSupport::Dependencies.autoload_paths << path
-            ActiveSupport::Dependencies.autoload_once_paths.delete(path)
-          end
-        end
-      end
-    end
-  else
-    %w{ models controllers helpers }.each do |dir|
-      path = File.join(File.dirname(__FILE__), 'app', dir)
-      $LOAD_PATH << path
-      ActiveSupport::Dependencies.load_paths << path
-      ActiveSupport::Dependencies.load_once_paths.delete(path)
-    end
-  end
-end
+__END__

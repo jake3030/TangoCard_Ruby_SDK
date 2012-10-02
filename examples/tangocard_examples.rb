@@ -1,9 +1,9 @@
-﻿#
+#
 # tangocard_examples.rb, Example code using Tango Card SDK
 # 
 
 # 
-# (c) 2012 Tango Card, Inc
+# Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,10 +26,10 @@
 # 
 # Ruby Version 1.9
 # 
-# @category    TangoCard
-# @package     Examples
-# @version     Id: tangocard_examples.rb 2012-09-18 18:00:00 PST 
-# @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
+# [category]    TangoCard
+# [package]     Examples
+# [version]     Id: tangocard_examples.rb 2012-09-18 18:00:00 PST 
+# [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 #  
 
@@ -49,33 +49,47 @@ module TangoCardSdkExamples
         include Singleton
 
         attr_reader :config_vars
+        attr_reader :config_vars
 
+        #
+        # Constructior
+        #
         def initialize()
             self.read_config()
         end
 
+        #
+        # Read provided example app_config.ini file for test configuration settings
+        #
         def read_config()
             @config_vars = nil
             begin
-                config_file = "../config/app_config.ini"
-                unless File.file?(config_file)
-                    raise Exception.new( "Missing config file: %s" % [config_file] )
+                @config_file = File.dirname(File.dirname(__FILE__)) + "/config/app_config.ini"
+                if not File.file?(@config_file)
+                    raise Exception.new( "TangocardExample: Missing config file: '%s'" % [@config_file] )
                 end
-                config_ini = IniFile.new(:filename => config_file, :comment => '#', :parameter => '=')
+                config_ini = IniFile.new(:filename => @config_file, :comment => '#', :parameter => '=')
                 @config_vars = config_ini['TANGOCARD']
             rescue Exception => e
-                raise Exception.new( "TangocardExample: %s" % [e.message] )
+                raise e
             end
         end
 
+        #
+        # Run examples
+        #
         def run()
             if @config_vars.nil?
                 raise Exception.new( "Undefined configuation variables." )
             end
-            
+
             begin
+                puts "=== Begin Examples ==="
+                puts "\tTango Card Ruby SDK version: '%s'" % [TangoCardSdk::TangoCardServiceApi.version]
+                puts "\tExample App Config File: '%s'" % [@config_file]
                 TangoCard_Store_Example.run(@config_vars)
                 TangoCard_Failures_Example.run(@config_vars)
+              puts "=== End Examples ==="
             rescue Exception => e
                 puts "=== Unexpected Error ==="
                 puts e.message
@@ -85,10 +99,10 @@ module TangoCardSdkExamples
         
         # takes a number and options hash and outputs a string in any currency format
         def self.currencify(number, options={})
-            # :currency_before => false puts the currency symbol after the number
+            # :currency_before => false p the currency symbol after the number
             # default format: $12,345,678.90
             options = {:currency_symbol => "$", :delimiter => ",", :decimal_symbol => ".", :currency_before => true, :no_decimal => false}.merge(options)
-            
+
             # split integer and fractional parts 
             int, frac = ("%.2f" % number).split('.')
             # insert the delimiters
@@ -110,3 +124,4 @@ module TangoCardSdkExamples
 end
 
 TangoCardSdkExamples::TangocardExamples.instance.run()
+__END__

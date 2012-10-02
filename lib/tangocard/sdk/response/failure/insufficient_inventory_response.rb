@@ -1,8 +1,7 @@
 #
-# tangocard-sdk.rb
+# insufficient_inventory_response.rb
 #
 
-#
 # 
 # Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
@@ -29,13 +28,41 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     Id: insufficient_inventory_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
-
-require 'tangocard_sdk'
-__END__
+module TangoCardSdk
+    class InsufficientInventoryResponse < FailureResponse
+        #
+        # [property]
+        #
+        attr_accessor :sku
+        
+        #
+        # [property]
+        #
+        attr_accessor :value
+        
+        # 
+        # Constructor
+        #
+        # Construct a new InsufficientInventory failure type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            @sku   = responseJson['response']['sku']
+            @value = responseJson['response']['value']
+        end
+        
+        #
+        # Get error message for this failure response.
+        # [return] string
+        #    
+        def message()
+            return "SKU: %s, Value: %s" % [@sku, @value]
+        end
+    end
+end

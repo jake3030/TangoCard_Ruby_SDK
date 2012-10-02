@@ -1,8 +1,7 @@
 #
-# tangocard-sdk.rb
+# helper.rb
 #
 
-#
 # 
 # Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
@@ -29,13 +28,29 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     Id: helper 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
+module Boolean; end 
+class TrueClass; include Boolean; end 
+class FalseClass; include Boolean; end 
 
-require 'tangocard_sdk'
+
+module TangoCardSdk
+    class Helper
+        # Test if provided value is nil or empty string
+        def self.is_null_or_empty(str)
+            return (str.nil? or not str.is_a?(String) or str.empty?)
+        end
+        
+        # Remove all new line character combinations from provided string
+        #
+        # [param] string str
+        def self.nl_to_br(str)
+            return str.gsub(/\r\n/, "<br>").gsub(/\n\r/, "<br>").gsub(/\r/, "<br>").gsub(/\n/, "<br>")
+        end
+    end
+end
 __END__

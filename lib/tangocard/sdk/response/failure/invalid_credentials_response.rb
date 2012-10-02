@@ -1,9 +1,8 @@
 #
-# tangocard-sdk.rb
+# invalid_credentials_response.rb
 #
 
 #
-# 
 # Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
@@ -29,13 +28,39 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     Id: invalid_credentials_response.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
-
-require 'tangocard_sdk'
-__END__
+module TangoCardSdk
+    class InvalidCredentialsResponse < FailureResponse
+        #
+        # [property]
+        #
+        attr_accessor :message_credentials
+        
+        # 
+        # Constructor
+        #
+        # Construct a new InvalidCredentials failure type.
+        # [param] object responseJson The parsed (JSON) object returned from the 
+        #       Tango Card services.
+        #
+        def initialize(responseJson)
+            @message_credentials = responseJson['response']['message']
+        end
+        
+        #
+        # Get the detailed error message.
+        # [return] string A message from the Tango Card services indicating 
+        #        what it thinks the problem is.
+        #
+        def message()
+            if ( @message_credentials == "TCP:PNPA:3" )
+                return "Provided user credentials are not valid."
+            end
+            return @message_credentials
+        end
+    end
+end

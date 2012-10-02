@@ -1,5 +1,5 @@
 #
-# tangocard-sdk.rb
+# failure_response.rb
 #
 
 #
@@ -29,13 +29,12 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     failure_response.rb 2012-10-02 15:00:00 PST
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
-
-require 'tangocard_sdk'
-__END__
+module TangoCardSdk
+    class FailureResponse < BaseResponse
+    end
+end

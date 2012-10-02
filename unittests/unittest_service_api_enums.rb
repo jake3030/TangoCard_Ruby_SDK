@@ -1,9 +1,9 @@
-﻿#
+#
 # unittest_service_api_enums.rb
 #
 
 # 
-# (c) 2012 Tango Card, Inc
+# Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,10 +26,10 @@
 # 
 # Ruby Version 1.9
 # 
-# @category    TangoCard
-# @package     SDK
-# @version     $Id: unittest_service_api_enums.rb 2012-09-19 15:00:00 PST $
-# @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
+# [category]    TangoCard
+# [package]     SDK
+# [version]     unittest_service_api_enums.rb 2012-10-02 15:00:00 PST
+# [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
@@ -60,8 +60,9 @@ module TangoCardSdkUnitTest
         
         def test_GARBAGE
             assert_raise TangoCardSdk::TangoCardSdkException do
-                act = TangoCardSdk::TangoCardServiceApiEnum.to_enum( "GARBAGE" )
+                TangoCardSdk::TangoCardServiceApiEnum.to_enum( "GARBAGE" )
             end
         end
     end
 end
+__END__

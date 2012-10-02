@@ -1,5 +1,5 @@
 #
-# tangocard-sdk.rb
+# tangocard_service_exception.rb
 #
 
 #
@@ -29,13 +29,38 @@
 # 
 # [category]    TangoCard
 # [package]     SDK
-# [version]     tangocard-sdk.rb 2012-10-02 15:00:00 PST
+# [version]     Id: tangocard_service_exception.rb 2012-09-19 15:00:00 PST 
 # [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
-# This file is just here to avoid obnoxious gem name/require name issues. All this
-# file does is require authorize_net.rb, the real initialization file.
+module TangoCardSdk
+    class TangoCardServiceException < Exception
 
-require 'tangocard_sdk'
+          # 
+          # Failure response type
+          # [constant] string
+          #
+          attr_reader :responseType
+
+          # 
+          # Failure response object
+          # [constant] FailureResponse
+          #
+          attr_reader :response
+
+          # 
+          # Constructor
+          #
+          # [param] TangoCardSdk::ServiceResponseEnum       responseType
+          # [param] TangoCardSdk::FailureResponse           response
+          # [param] string                                  message
+          #
+          def initialize(responseType, response, message = nil)
+              @responseType = ServiceResponseEnum.to_s(responseType)
+              @response = response
+              super(response.message)
+          end
+    end
+end
 __END__

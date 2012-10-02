@@ -1,9 +1,9 @@
-﻿#
+#
 # unittest_getavailablebalance.rb
 #
 
 # 
-# (c) 2012 Tango Card, Inc
+# Copyright (c) 2012 Tango Card, Inc
 # All rights reserved.
 # 
 # Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -26,10 +26,10 @@
 # 
 # Ruby Version 1.9
 # 
-# @category    TangoCard
-# @package     SDK
-# @version     Id: unittest_getavailablebalance.rb 2012-09-19 15:00:00 PST 
-# @copyright   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
+# [category]    TangoCard
+# [package]     SDK
+# [version]     Id: unittest_getavailablebalance.rb 2012-09-19 15:00:00 PST 
+# [copyright]   Copyright (c) 2012, Tango Card (http://www.tangocard.com)
 # 
 # 
 
@@ -47,9 +47,9 @@ module TangoCardSdkUnitTest
         def setup
             @config_vars = nil
             begin
-                config_file = "../config/app_config.ini"
-                unless File.file?(config_file)
-                    raise Exception.new( "Missing config file: %s" % [config_file] )
+                config_file = File.dirname(File.dirname(__FILE__)) + "/config/app_config.ini"
+                if not File.file?(config_file)
+                    raise Exception.new( "TangocardExample: Missing config file: '%s'" % [config_file] )
                 end
                 config_ini = IniFile.new(:filename => config_file, :comment => '#', :parameter => '=')
                 @config_vars = config_ini['TANGOCARD']
@@ -115,10 +115,10 @@ module TangoCardSdkUnitTest
             tango_cents_available_balance = responseGetAvailableBalance.availableBalance
             assert  0 <= tango_cents_available_balance  
         end
-        
-        #
+
         # 
-        # Enter description here ...
+        # Unit test to assure failure when trying to get available
+        # account balance with invalid authentication credentials
         #
         def test_GetAvailableBalance_InvalidCredentials()
         
@@ -149,9 +149,4 @@ module TangoCardSdkUnitTest
 
     end
 end
-
-
-
-
-
-
+__END__
