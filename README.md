@@ -27,9 +27,14 @@
             <li><a href="#puchasing_options_templates">The Tango Card and custom Company Email Templates</a></li>
         </ul>
     </li>
-    <li><a href="#sdk_support">Tango Card Ruby SDK and Service API Support</a>
+    <li><a href="#sdk_support">Tango Card SDKs and Service API Support</a>
         <ul>
-            <li><a href="#sdk_support_resolve">Resolving Issues using Fiddler 2</a></li>
+            <li><a href="#sdk_support_resolve">Resolving Issues</a>
+                <ul>
+                    <li><a href="#sdk_support_resolve_fiddler_2">Fiddler 2</a></li>
+                    <li><a href="#sdk_support_resolve_jquery_diagnostic_tool">Tango Card Diagnostic Tool</a></li>
+                </ul>
+            </li>
         </ul>
     </li>
     <li><a href="#sdk_overview">SDK Overview</a></li>
@@ -181,20 +186,21 @@ When you are ready to purchase a card, the Tango Card Service API has several op
 # Tango Card Ruby SDK and Service API Support #
 If you have any questions with the Tango Card Ruby SDK or our Service API, please contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Card Ruby SDK Question">sdk@tangocard.com</a>.
 
-If you have any issues using this SKD, such as bugs or change requests, then please do <a href="https://github.com/tangocarddev/TangoCard_Ruby_SDK/issues?state=open" target="_blank">Open Issue</a> in this repository.
-
-<a name="sdk_support_contact"></a>
-## Contact Us ##
-To learn more about Tango Card integration solutions, call 1.877.55.TANGO.
+If you have any issues using this SDK, such as bugs or change requests, then please do <a href="https://github.com/tangocarddev/TangoCard_Ruby_SDK/issues?state=open" target="_blank">Open Issue</a> in this repository.
 
 <a name="sdk_support_resolve"></a>
-## Resolving Issues using Fiddler 2 ##
+## Resolving Issues ##
 
-The best way to resolve any issues that pertain to using our Tango Card Ruby SDK or our Tango Card Service API is by using this freely available tool <a href="http://www.fiddler2.com/fiddler2/" target="_blank">`Fiddler 2 - Web Debugging Proxy`</a>, and providing us with the raw request and response bodies using its `Inspectors` tab feature.
+To expidite any issues you might be experiencing with our `Tango Card Service API` or our `Tango Card SDKs`, gather as much information by using the following two resolution approaches, and include the results when you contact us through <a href="mailto:sdk@tangocard.com?Subject=Tango Card C#/.NET 4.0 SDK Question">sdk@tangocard.com</a>.
+
+<a name="sdk_support_resolve_fiddler_2"></a>
+### Resolving Issues using Fiddler 2 ###
+
+The best way to resolve any issues that pertain to using our Tango Card SDKs or our Tango Card Service API is by using this freely available tool <a href="http://www.fiddler2.com/fiddler2/" target="_blank">`Fiddler 2 - Web Debugging Proxy`</a>, and providing us with the raw request and response bodies using its `Inspectors` tab feature.
 
 Using `Fiddler 2` will provide us with the most complete detail and the fastest response from Tango Card by understanding if there is an issue on how a request was presented to our service, or if it is an issue with our service on how we replied to your request.
 
-### Fiddler 2 Example - Raw Request from Client - Get Available Balance ###
+#### Fiddler 2 Example - Raw Request from Client - Get Available Balance ####
 
 ```Text
 POST https://int.tangocard.com/Version2/GetAvailableBalance HTTP/1.1
@@ -211,13 +217,13 @@ Cache-Control: no-cache
 {"username":"third_party_int@tangocard.com","password":"integrateme"}
 ```
  
-### Fiddler 2 Example - Raw Response from Service - Get Available Balance ###
+#### Fiddler 2 Example - Raw Response from Service - Get Available Balance ####
 
 ```Text
 HTTP/1.1 200 OK
 Date: Wed, 26 Sep 2012 04:30:36 GMT
 Server: Apache/2.2.22 (Ubuntu)
-X-Powered-By: Ruby/5.3.10-1ubuntu3.3
+X-Powered-By: PHP/5.3.10-1ubuntu3.3
 Access-Control-Allow-Origin: *
 Content-Length: 68
 Connection: close
@@ -225,6 +231,11 @@ Content-Type: application/json
  
 {"responseType":"SUCCESS","response":{"availableBalance":873431432}}
 ```
+
+<a name="sdk_support_resolve_jquery_diagnostic_tool"></a>
+### Resolving Issues using Tango Card Diagnostic Tool ###
+
+Within our <a href="https://github.com/tangocarddev/TangoCard_jQuery_SDK" target="_blank"><code>Tango Card jQuery Plugin</code></a>, there is diagnostic tool which communicates with `Tango Card Service API` through <code><a href="http://api.jquery.com/jQuery.ajax/" target="_blank">jQuery.ajax()</a><code> calls. It is useful for making raw calls to our service.
 
 <a name="sdk_overview"></a>
 # SDK Overview #
@@ -874,5 +885,6 @@ The Tango Card Ruby SDK is free to use, given some restrictions. Please see the 
 
 <a name="contact_us"></a>
 # Contact Us #
+If you have any questions about using this SDK, please do contact us at <a href="mailto:sdk@tangocard.com?Subject=Tango Ruby SDK Question">sdk@tangocard.com</a> 
 
 To learn more about Tango Card integration solutions, call 1.877.55.TANGO.
