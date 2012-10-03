@@ -1,6 +1,6 @@
 <h1>Tango Card Ruby SDK</h1>
 <h3>Incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.</h3>
-<h4>Update: 2012-10-02</h4>
+<h4>Update: 2012-10-03</h4>
 ===
 
 # Table of Contents #
@@ -29,7 +29,6 @@
     </li>
     <li><a href="#sdk_support">Tango Card Ruby SDK and Service API Support</a>
         <ul>
-            <li><a href="#sdk_support_contact">Contact Us</a></li>
             <li><a href="#sdk_support_resolve">Resolving Issues using Fiddler 2</a></li>
         </ul>
     </li>
@@ -75,7 +74,7 @@
     </li>
     <li><a href="#sdk_development_environment">SDK Development Environment</a></li>
     <li><a href="#license">License</a></li>
-    <li><a href="#production_deployment">Production Deployment</a></li>
+    <li><a href="#contact_us">Contact Us</a></li>
 </ul>
 
 <a name="introduction"></a>
@@ -91,6 +90,7 @@ there are several Tango Card SDKs currently available that use the `Tango Card S
     <li><a href="https://github.com/tangocarddev/TangoCard_PHP_SDK" target="_blank">Tango Card PHP SDK</a></li>
     <li><a href="https://github.com/tangocarddev/TangoCard_Java_SDK" target="_blank">Tango Card Java SDK</a></li>
     <li><a href="https://github.com/tangocarddev/TangoCard_Ruby_SDK" target="_blank">Tango Card Ruby SDK</a></li>
+    <li><a href="https://github.com/tangocarddev/TangoCard_jQuery_SDK" target="_blank">Tango Card jQuery Plugin</a></li>
 </ul>
 
 <a name="tango_card_service_api"></a>
@@ -104,9 +104,9 @@ For those developers who wish to develop directly with our `Tango Card Service A
 ## Incorporate the Tango Card ##
 The Tango Card SDKs, through our <a href="https://github.com/tangocarddev/General/blob/master/Tango_Card_Service_API.md" target="_blank">Tango Card Service API</a>, allows you to incorporate the innovative Tango Card directly into your reward, loyalty, and engagement applications.
 
-Tango Card is the "exactly what you want" gift card and allows the recipient to use their value exactly how they want – they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
+Tango Card is the "exactly what you want" gift card and allows the recipient to use their value exactly how they want - they can select a premier gift card, they can divide their value among Brands, they can use some today and save the rest for another day. They can also donate to a non-profit organization. 
 
-Tango Card value can be used via the web or from almost any mobile device. There are no fees or expiration dates of any kind. It’s great for the recipient, and even better for you because it is an entire gift card program delivered in one card allowing you to focus on your core business. 
+Tango Card value can be used via the web or from almost any mobile device. There are no fees or expiration dates of any kind. It's great for the recipient, and even better for you because it is an entire gift card program delivered in one card allowing you to focus on your core business. 
 
 Tango Card solutions are already used by Microsoft Bing, FedEx, Extole, Plink, beintoo, Lead Valu, Getty Images, and many others.
 
@@ -526,7 +526,7 @@ Assuming success, the `out` parameter `response` will be an instance of `TangoCa
 <a name="sdk_error_handling"></a>
 # SDK Error Handling #
 
-The Tango Card Service API SDK handles its errors by throwing the following exceptions:
+The Tango Card Ruby SDK handles its errors by throwing the following exceptions:
 
 * Custom `TangoCardSdk::TangoCardServiceException` is thrown when the `Tango Card Service API` return a `Failure Response` for a given `Request`.
 * Custom `TangoCardSdk::TangoCardSdkException` is thrown when the Tango Card SDK has detected an error within its code, regardless of any given Request.
@@ -537,7 +537,7 @@ The Tango Card Service API SDK handles its errors by throwing the following exce
 <a name="service_failure_responses"></a>
 ## Service Failure Responses ##
 
-A service will return the following failure responses as enumerated by `TangoCardSdk::ServiceResponseEnum`:
+The `Tango Card Service API` handles its errors by returning the following failure responses as enumerated by `TangoCardSdk::ServiceResponseEnum`:
 
 <table>
     <tr><th>Failure</th><th>Failure Reponse Type</th><th>Failure Response Object</th></tr>
@@ -865,9 +865,14 @@ This Ruby SDK was built using:
 
 * [eclipse Juno](http://www.eclipse.org/juno/)
 * [Ruby 1.9.3](http://www.ruby-lang.org/en/downloads/)
-* [Dynamic Languages Toolkit – Ruby Development Tools](http://www.eclipse.org/dltk/)
+* [Dynamic Languages Toolkit - Ruby Development Tools](http://www.eclipse.org/dltk/)
 
 <a name="license"></a>
 # License #
 
-The Tango Card Ruby SDK is free to use, given some restrictions. Please see the LICENSE file for details.
+The Tango Card Ruby SDK is free to use, given some restrictions. Please see the <a href="https://github.com/tangocarddev/TangoCard_Ruby_SDK/blob/master/LICENSE.md" target="_blank">LICENSE</a> file for details.
+
+<a name="contact_us"></a>
+# Contact Us #
+
+To learn more about Tango Card integration solutions, call 1.877.55.TANGO.
